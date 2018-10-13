@@ -26,6 +26,7 @@ public class TestController {
         return "success";
     }
 
+    //请求格式 /user/hello/1
     @RequestMapping(value = "/hello/{id}",method = RequestMethod.GET)
     @ResponseBody
     public JSONObject hello(@PathVariable("id")int id){
