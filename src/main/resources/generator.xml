@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+        PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+
+<generatorConfiguration>
+
+    <context id="testTables" targetRuntime="MyBatis3">
+
+        <!--是否在代码中显示注释-->
+        <commentGenerator>
+            <property name="suppressDate" value="true" />
+            <property name="suppressAllComments" value="true" />
+        </commentGenerator>
+
+        <!-- 数据库连接信息：驱动类、连接地址、用户名、密码 -->
+        <jdbcConnection driverClass="com.mysql.jdbc.Driver"
+                        connectionURL="jdbc:mysql://localhost:3306/banksystem"
+                        userId="root"
+                        password="ljf123456">
+        </jdbcConnection>
+
+        <!-- 默认false，把JDBC DECIMAL和NUMERIC 类型解析为 Integer；
+             为true时，把JDBC DECIMAL和NUMERIC 类型解析为 java.math.BigDecimal-->
+        <javaTypeResolver>
+            <property name="forceBigDecimals" value="false" />
+        </javaTypeResolver>
+
+        <!-- 生成POJO类的位置 -->
+        <javaModelGenerator targetPackage="com.bank.pojo" targetProject="src/main/java">
+            <!-- enableSubPackages：是否让scheme作为包的后缀 -->
+            <property name="enableSubPackages" value="true"/>
+            <!-- 从数据库返回的值被清理前后的空格 -->
+            <property name="trimStrings" value="true"/>
+        </javaModelGenerator>
+
+        <!-- 生成xml映射文件的位置 -->
+        <sqlMapGenerator targetPackage="mapper" targetProject="src/main/resources">
+            <property name="enableSubPackages" value="true"/>
+        </sqlMapGenerator>
+
+        <!-- 生成mapper接口的位置 -->
+        <javaClientGenerator type="XMLMAPPER" targetPackage="com.bank.mapper" targetProject="src/main/java">
+            <property name="enableSubPackages" value="true"/>
+        </javaClientGenerator>
+
+        <!-- 指定数据库表，要生成哪些表，就写哪些表，要和数据库中对应，不能写错！ -->
+
+        <!--<table schema="banksystem" tableName="users"></table>-->
+
+        <table schema="banksystem" tableName="bank_users" domainObjectName="User" >
+            <property name="my.isgen.usekeys" value="true"/>
+            <property name="useActualColumnNames" value="false"/>
+        </table>
+
+
+
+    </context>
+
+</generatorConfiguration>
