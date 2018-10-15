@@ -45,7 +45,5 @@
             </set>
         </constructor-arg>
     </bean>
-
     <!--<bean class="com.bank.component.JedisClientCluster" name="jedisClient"></bean>-->
-
 </beans>
