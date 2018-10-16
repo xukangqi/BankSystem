@@ -60,6 +60,7 @@
     <file url="file://$PROJECT_DIR$/src/main/java/com/bank/pojo/BankUserExample.java" charset="GBK" />
     <file url="file://$PROJECT_DIR$/src/main/java/com/bank/pojo/BankWithdraw.java" charset="GBK" />
     <file url="file://$PROJECT_DIR$/src/main/java/com/bank/pojo/BankWithdrawExample.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/main/resources/数据库总表.md" charset="GBK" />
     <file url="PROJECT" charset="GBK" />
   </component>
 </project>
