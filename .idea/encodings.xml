@@ -2,6 +2,64 @@
 <project version="4">
   <component name="Encoding">
     <file url="file://$PROJECT_DIR$" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/bank/mapper/BankAccountMapper.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/bank/mapper/BankAccountMapper.xml" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/bank/mapper/BankCustomerMapper.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/bank/mapper/BankCustomerMapper.xml" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/bank/mapper/BankDepositeMapper.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/bank/mapper/BankDepositeMapper.xml" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/bank/mapper/BankDepositeRateMapper.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/bank/mapper/BankDepositeRateMapper.xml" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/bank/mapper/BankFundHoldMapper.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/bank/mapper/BankFundHoldMapper.xml" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/bank/mapper/BankFundLogMapper.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/bank/mapper/BankFundLogMapper.xml" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/bank/mapper/BankFundProductMapper.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/bank/mapper/BankFundProductMapper.xml" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/bank/mapper/BankLoadMapper.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/bank/mapper/BankLoadMapper.xml" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/bank/mapper/BankLoadPaymentMapper.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/bank/mapper/BankLoadPaymentMapper.xml" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/bank/mapper/BankLoadTypeMapper.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/bank/mapper/BankLoadTypeMapper.xml" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/bank/mapper/BankRemitLogMapper.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/bank/mapper/BankRemitLogMapper.xml" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/bank/mapper/BankTransferLogMapper.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/bank/mapper/BankTransferLogMapper.xml" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/bank/mapper/BankUserMapper.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/bank/mapper/BankUserMapper.xml" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/bank/mapper/BankWithdrawMapper.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/bank/mapper/BankWithdrawMapper.xml" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/bank/pojo/BankAccount.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/bank/pojo/BankAccountExample.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/bank/pojo/BankCustomer.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/bank/pojo/BankCustomerExample.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/bank/pojo/BankDeposite.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/bank/pojo/BankDepositeExample.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/bank/pojo/BankDepositeRate.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/bank/pojo/BankDepositeRateExample.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/bank/pojo/BankFundHold.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/bank/pojo/BankFundHoldExample.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/bank/pojo/BankFundHoldKey.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/bank/pojo/BankFundLog.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/bank/pojo/BankFundLogExample.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/bank/pojo/BankFundProduct.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/bank/pojo/BankFundProductExample.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/bank/pojo/BankFundProductKey.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/bank/pojo/BankLoad.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/bank/pojo/BankLoadExample.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/bank/pojo/BankLoadPayment.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/bank/pojo/BankLoadPaymentExample.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/bank/pojo/BankLoadType.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/bank/pojo/BankLoadTypeExample.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/bank/pojo/BankRemitLog.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/bank/pojo/BankRemitLogExample.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/bank/pojo/BankTransferLog.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/bank/pojo/BankTransferLogExample.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/bank/pojo/BankUser.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/bank/pojo/BankUserExample.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/bank/pojo/BankWithdraw.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/bank/pojo/BankWithdrawExample.java" charset="GBK" />
     <file url="PROJECT" charset="GBK" />
   </component>
 </project>

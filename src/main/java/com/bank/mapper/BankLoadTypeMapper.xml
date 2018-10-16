@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.bank.mapper.BankLoadTypeMapper" >
+  <resultMap id="BaseResultMap" type="com.bank.pojo.BankLoadType" >
+    <id column="load_type_name" property="loadTypeName" jdbcType="VARCHAR" />
+    <result column="period_one" property="periodOne" jdbcType="DOUBLE" />
+    <result column="period_two" property="periodTwo" jdbcType="DOUBLE" />
+    <result column="period_three" property="periodThree" jdbcType="DOUBLE" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    load_type_name, period_one, period_two, period_three
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.bank.pojo.BankLoadTypeExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from bank_load_type
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from bank_load_type
+    where load_type_name = #{loadTypeName,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from bank_load_type
+    where load_type_name = #{loadTypeName,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.bank.pojo.BankLoadTypeExample" >
+    delete from bank_load_type
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.bank.pojo.BankLoadType" >
+    insert into bank_load_type (load_type_name, period_one, period_two, 
+      period_three)
+    values (#{loadTypeName,jdbcType=VARCHAR}, #{periodOne,jdbcType=DOUBLE}, #{periodTwo,jdbcType=DOUBLE}, 
+      #{periodThree,jdbcType=DOUBLE})
+  </insert>
+  <insert id="insertSelective" parameterType="com.bank.pojo.BankLoadType" >
+    insert into bank_load_type
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="loadTypeName != null" >
+        load_type_name,
+      </if>
+      <if test="periodOne != null" >
+        period_one,
+      </if>
+      <if test="periodTwo != null" >
+        period_two,
+      </if>
+      <if test="periodThree != null" >
+        period_three,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="loadTypeName != null" >
+        #{loadTypeName,jdbcType=VARCHAR},
+      </if>
+      <if test="periodOne != null" >
+        #{periodOne,jdbcType=DOUBLE},
+      </if>
+      <if test="periodTwo != null" >
+        #{periodTwo,jdbcType=DOUBLE},
+      </if>
+      <if test="periodThree != null" >
+        #{periodThree,jdbcType=DOUBLE},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.bank.pojo.BankLoadTypeExample" resultType="java.lang.Integer" >
+    select count(*) from bank_load_type
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update bank_load_type
+    <set >
+      <if test="record.loadTypeName != null" >
+        load_type_name = #{record.loadTypeName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.periodOne != null" >
+        period_one = #{record.periodOne,jdbcType=DOUBLE},
+      </if>
+      <if test="record.periodTwo != null" >
+        period_two = #{record.periodTwo,jdbcType=DOUBLE},
+      </if>
+      <if test="record.periodThree != null" >
+        period_three = #{record.periodThree,jdbcType=DOUBLE},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update bank_load_type
+    set load_type_name = #{record.loadTypeName,jdbcType=VARCHAR},
+      period_one = #{record.periodOne,jdbcType=DOUBLE},
+      period_two = #{record.periodTwo,jdbcType=DOUBLE},
+      period_three = #{record.periodThree,jdbcType=DOUBLE}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.bank.pojo.BankLoadType" >
+    update bank_load_type
+    <set >
+      <if test="periodOne != null" >
+        period_one = #{periodOne,jdbcType=DOUBLE},
+      </if>
+      <if test="periodTwo != null" >
+        period_two = #{periodTwo,jdbcType=DOUBLE},
+      </if>
+      <if test="periodThree != null" >
+        period_three = #{periodThree,jdbcType=DOUBLE},
+      </if>
+    </set>
+    where load_type_name = #{loadTypeName,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.bank.pojo.BankLoadType" >
+    update bank_load_type
+    set period_one = #{periodOne,jdbcType=DOUBLE},
+      period_two = #{periodTwo,jdbcType=DOUBLE},
+      period_three = #{periodThree,jdbcType=DOUBLE}
+    where load_type_name = #{loadTypeName,jdbcType=VARCHAR}
+  </update>
+</mapper>

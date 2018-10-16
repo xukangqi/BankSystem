@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.bank.mapper.BankFundProductMapper" >
+  <resultMap id="BaseResultMap" type="com.bank.pojo.BankFundProduct" >
+    <id column="purchase_date" property="purchaseDate" jdbcType="VARCHAR" />
+    <id column="fund_id" property="fundId" jdbcType="VARCHAR" />
+    <result column="type" property="type" jdbcType="VARCHAR" />
+    <result column="purchase_rate" property="purchaseRate" jdbcType="DOUBLE" />
+    <result column="net_asset_value" property="netAssetValue" jdbcType="DOUBLE" />
+    <result column="redemption_rate" property="redemptionRate" jdbcType="DOUBLE" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    purchase_date, fund_id, type, purchase_rate, net_asset_value, redemption_rate
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.bank.pojo.BankFundProductExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from bank_fund_product
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="com.bank.pojo.BankFundProductKey" >
+    select 
+    <include refid="Base_Column_List" />
+    from bank_fund_product
+    where purchase_date = #{purchaseDate,jdbcType=VARCHAR}
+      and fund_id = #{fundId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.bank.pojo.BankFundProductKey" >
+    delete from bank_fund_product
+    where purchase_date = #{purchaseDate,jdbcType=VARCHAR}
+      and fund_id = #{fundId,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.bank.pojo.BankFundProductExample" >
+    delete from bank_fund_product
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.bank.pojo.BankFundProduct" >
+    insert into bank_fund_product (purchase_date, fund_id, type, 
+      purchase_rate, net_asset_value, redemption_rate
+      )
+    values (#{purchaseDate,jdbcType=VARCHAR}, #{fundId,jdbcType=VARCHAR}, #{type,jdbcType=VARCHAR}, 
+      #{purchaseRate,jdbcType=DOUBLE}, #{netAssetValue,jdbcType=DOUBLE}, #{redemptionRate,jdbcType=DOUBLE}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.bank.pojo.BankFundProduct" >
+    insert into bank_fund_product
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="purchaseDate != null" >
+        purchase_date,
+      </if>
+      <if test="fundId != null" >
+        fund_id,
+      </if>
+      <if test="type != null" >
+        type,
+      </if>
+      <if test="purchaseRate != null" >
+        purchase_rate,
+      </if>
+      <if test="netAssetValue != null" >
+        net_asset_value,
+      </if>
+      <if test="redemptionRate != null" >
+        redemption_rate,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="purchaseDate != null" >
+        #{purchaseDate,jdbcType=VARCHAR},
+      </if>
+      <if test="fundId != null" >
+        #{fundId,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="purchaseRate != null" >
+        #{purchaseRate,jdbcType=DOUBLE},
+      </if>
+      <if test="netAssetValue != null" >
+        #{netAssetValue,jdbcType=DOUBLE},
+      </if>
+      <if test="redemptionRate != null" >
+        #{redemptionRate,jdbcType=DOUBLE},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.bank.pojo.BankFundProductExample" resultType="java.lang.Integer" >
+    select count(*) from bank_fund_product
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update bank_fund_product
+    <set >
+      <if test="record.purchaseDate != null" >
+        purchase_date = #{record.purchaseDate,jdbcType=VARCHAR},
+      </if>
+      <if test="record.fundId != null" >
+        fund_id = #{record.fundId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.type != null" >
+        type = #{record.type,jdbcType=VARCHAR},
+      </if>
+      <if test="record.purchaseRate != null" >
+        purchase_rate = #{record.purchaseRate,jdbcType=DOUBLE},
+      </if>
+      <if test="record.netAssetValue != null" >
+        net_asset_value = #{record.netAssetValue,jdbcType=DOUBLE},
+      </if>
+      <if test="record.redemptionRate != null" >
+        redemption_rate = #{record.redemptionRate,jdbcType=DOUBLE},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update bank_fund_product
+    set purchase_date = #{record.purchaseDate,jdbcType=VARCHAR},
+      fund_id = #{record.fundId,jdbcType=VARCHAR},
+      type = #{record.type,jdbcType=VARCHAR},
+      purchase_rate = #{record.purchaseRate,jdbcType=DOUBLE},
+      net_asset_value = #{record.netAssetValue,jdbcType=DOUBLE},
+      redemption_rate = #{record.redemptionRate,jdbcType=DOUBLE}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.bank.pojo.BankFundProduct" >
+    update bank_fund_product
+    <set >
+      <if test="type != null" >
+        type = #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="purchaseRate != null" >
+        purchase_rate = #{purchaseRate,jdbcType=DOUBLE},
+      </if>
+      <if test="netAssetValue != null" >
+        net_asset_value = #{netAssetValue,jdbcType=DOUBLE},
+      </if>
+      <if test="redemptionRate != null" >
+        redemption_rate = #{redemptionRate,jdbcType=DOUBLE},
+      </if>
+    </set>
+    where purchase_date = #{purchaseDate,jdbcType=VARCHAR}
+      and fund_id = #{fundId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.bank.pojo.BankFundProduct" >
+    update bank_fund_product
+    set type = #{type,jdbcType=VARCHAR},
+      purchase_rate = #{purchaseRate,jdbcType=DOUBLE},
+      net_asset_value = #{netAssetValue,jdbcType=DOUBLE},
+      redemption_rate = #{redemptionRate,jdbcType=DOUBLE}
+    where purchase_date = #{purchaseDate,jdbcType=VARCHAR}
+      and fund_id = #{fundId,jdbcType=VARCHAR}
+  </update>
+</mapper>

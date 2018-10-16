@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.bank.mapper.BankLoadPaymentMapper" >
+  <resultMap id="BaseResultMap" type="com.bank.pojo.BankLoadPayment" >
+    <id column="payment_id" property="paymentId" jdbcType="BIGINT" />
+    <result column="trans_id" property="transId" jdbcType="BIGINT" />
+    <result column="ins_num" property="insNum" jdbcType="SMALLINT" />
+    <result column="payment_amount" property="paymentAmount" jdbcType="DOUBLE" />
+    <result column="payment_date" property="paymentDate" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    payment_id, trans_id, ins_num, payment_amount, payment_date
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.bank.pojo.BankLoadPaymentExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from bank_load_payment
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from bank_load_payment
+    where payment_id = #{paymentId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from bank_load_payment
+    where payment_id = #{paymentId,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.bank.pojo.BankLoadPaymentExample" >
+    delete from bank_load_payment
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.bank.pojo.BankLoadPayment" >
+    insert into bank_load_payment (payment_id, trans_id, ins_num, 
+      payment_amount, payment_date)
+    values (#{paymentId,jdbcType=BIGINT}, #{transId,jdbcType=BIGINT}, #{insNum,jdbcType=SMALLINT}, 
+      #{paymentAmount,jdbcType=DOUBLE}, #{paymentDate,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.bank.pojo.BankLoadPayment" >
+    insert into bank_load_payment
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="paymentId != null" >
+        payment_id,
+      </if>
+      <if test="transId != null" >
+        trans_id,
+      </if>
+      <if test="insNum != null" >
+        ins_num,
+      </if>
+      <if test="paymentAmount != null" >
+        payment_amount,
+      </if>
+      <if test="paymentDate != null" >
+        payment_date,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="paymentId != null" >
+        #{paymentId,jdbcType=BIGINT},
+      </if>
+      <if test="transId != null" >
+        #{transId,jdbcType=BIGINT},
+      </if>
+      <if test="insNum != null" >
+        #{insNum,jdbcType=SMALLINT},
+      </if>
+      <if test="paymentAmount != null" >
+        #{paymentAmount,jdbcType=DOUBLE},
+      </if>
+      <if test="paymentDate != null" >
+        #{paymentDate,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.bank.pojo.BankLoadPaymentExample" resultType="java.lang.Integer" >
+    select count(*) from bank_load_payment
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update bank_load_payment
+    <set >
+      <if test="record.paymentId != null" >
+        payment_id = #{record.paymentId,jdbcType=BIGINT},
+      </if>
+      <if test="record.transId != null" >
+        trans_id = #{record.transId,jdbcType=BIGINT},
+      </if>
+      <if test="record.insNum != null" >
+        ins_num = #{record.insNum,jdbcType=SMALLINT},
+      </if>
+      <if test="record.paymentAmount != null" >
+        payment_amount = #{record.paymentAmount,jdbcType=DOUBLE},
+      </if>
+      <if test="record.paymentDate != null" >
+        payment_date = #{record.paymentDate,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update bank_load_payment
+    set payment_id = #{record.paymentId,jdbcType=BIGINT},
+      trans_id = #{record.transId,jdbcType=BIGINT},
+      ins_num = #{record.insNum,jdbcType=SMALLINT},
+      payment_amount = #{record.paymentAmount,jdbcType=DOUBLE},
+      payment_date = #{record.paymentDate,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.bank.pojo.BankLoadPayment" >
+    update bank_load_payment
+    <set >
+      <if test="transId != null" >
+        trans_id = #{transId,jdbcType=BIGINT},
+      </if>
+      <if test="insNum != null" >
+        ins_num = #{insNum,jdbcType=SMALLINT},
+      </if>
+      <if test="paymentAmount != null" >
+        payment_amount = #{paymentAmount,jdbcType=DOUBLE},
+      </if>
+      <if test="paymentDate != null" >
+        payment_date = #{paymentDate,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where payment_id = #{paymentId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.bank.pojo.BankLoadPayment" >
+    update bank_load_payment
+    set trans_id = #{transId,jdbcType=BIGINT},
+      ins_num = #{insNum,jdbcType=SMALLINT},
+      payment_amount = #{paymentAmount,jdbcType=DOUBLE},
+      payment_date = #{paymentDate,jdbcType=VARCHAR}
+    where payment_id = #{paymentId,jdbcType=BIGINT}
+  </update>
+</mapper>

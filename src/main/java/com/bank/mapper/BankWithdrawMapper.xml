@@ -1,0 +1,243 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.bank.mapper.BankWithdrawMapper" >
+  <resultMap id="BaseResultMap" type="com.bank.pojo.BankWithdraw" >
+    <id column="withdraw_id" property="withdrawId" jdbcType="BIGINT" />
+    <result column="cust_id" property="custId" jdbcType="VARCHAR" />
+    <result column="account" property="account" jdbcType="VARCHAR" />
+    <result column="withdraw_money" property="withdrawMoney" jdbcType="DOUBLE" />
+    <result column="wirhdraw_date" property="wirhdrawDate" jdbcType="VARCHAR" />
+    <result column="arrive_time" property="arriveTime" jdbcType="VARCHAR" />
+    <result column="reviewer_id" property="reviewerId" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    withdraw_id, cust_id, account, withdraw_money, wirhdraw_date, arrive_time, reviewer_id
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.bank.pojo.BankWithdrawExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from bank_withdraw
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from bank_withdraw
+    where withdraw_id = #{withdrawId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from bank_withdraw
+    where withdraw_id = #{withdrawId,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.bank.pojo.BankWithdrawExample" >
+    delete from bank_withdraw
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.bank.pojo.BankWithdraw" >
+    insert into bank_withdraw (withdraw_id, cust_id, account, 
+      withdraw_money, wirhdraw_date, arrive_time, 
+      reviewer_id)
+    values (#{withdrawId,jdbcType=BIGINT}, #{custId,jdbcType=VARCHAR}, #{account,jdbcType=VARCHAR}, 
+      #{withdrawMoney,jdbcType=DOUBLE}, #{wirhdrawDate,jdbcType=VARCHAR}, #{arriveTime,jdbcType=VARCHAR}, 
+      #{reviewerId,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.bank.pojo.BankWithdraw" >
+    insert into bank_withdraw
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="withdrawId != null" >
+        withdraw_id,
+      </if>
+      <if test="custId != null" >
+        cust_id,
+      </if>
+      <if test="account != null" >
+        account,
+      </if>
+      <if test="withdrawMoney != null" >
+        withdraw_money,
+      </if>
+      <if test="wirhdrawDate != null" >
+        wirhdraw_date,
+      </if>
+      <if test="arriveTime != null" >
+        arrive_time,
+      </if>
+      <if test="reviewerId != null" >
+        reviewer_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="withdrawId != null" >
+        #{withdrawId,jdbcType=BIGINT},
+      </if>
+      <if test="custId != null" >
+        #{custId,jdbcType=VARCHAR},
+      </if>
+      <if test="account != null" >
+        #{account,jdbcType=VARCHAR},
+      </if>
+      <if test="withdrawMoney != null" >
+        #{withdrawMoney,jdbcType=DOUBLE},
+      </if>
+      <if test="wirhdrawDate != null" >
+        #{wirhdrawDate,jdbcType=VARCHAR},
+      </if>
+      <if test="arriveTime != null" >
+        #{arriveTime,jdbcType=VARCHAR},
+      </if>
+      <if test="reviewerId != null" >
+        #{reviewerId,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.bank.pojo.BankWithdrawExample" resultType="java.lang.Integer" >
+    select count(*) from bank_withdraw
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update bank_withdraw
+    <set >
+      <if test="record.withdrawId != null" >
+        withdraw_id = #{record.withdrawId,jdbcType=BIGINT},
+      </if>
+      <if test="record.custId != null" >
+        cust_id = #{record.custId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.account != null" >
+        account = #{record.account,jdbcType=VARCHAR},
+      </if>
+      <if test="record.withdrawMoney != null" >
+        withdraw_money = #{record.withdrawMoney,jdbcType=DOUBLE},
+      </if>
+      <if test="record.wirhdrawDate != null" >
+        wirhdraw_date = #{record.wirhdrawDate,jdbcType=VARCHAR},
+      </if>
+      <if test="record.arriveTime != null" >
+        arrive_time = #{record.arriveTime,jdbcType=VARCHAR},
+      </if>
+      <if test="record.reviewerId != null" >
+        reviewer_id = #{record.reviewerId,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update bank_withdraw
+    set withdraw_id = #{record.withdrawId,jdbcType=BIGINT},
+      cust_id = #{record.custId,jdbcType=VARCHAR},
+      account = #{record.account,jdbcType=VARCHAR},
+      withdraw_money = #{record.withdrawMoney,jdbcType=DOUBLE},
+      wirhdraw_date = #{record.wirhdrawDate,jdbcType=VARCHAR},
+      arrive_time = #{record.arriveTime,jdbcType=VARCHAR},
+      reviewer_id = #{record.reviewerId,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.bank.pojo.BankWithdraw" >
+    update bank_withdraw
+    <set >
+      <if test="custId != null" >
+        cust_id = #{custId,jdbcType=VARCHAR},
+      </if>
+      <if test="account != null" >
+        account = #{account,jdbcType=VARCHAR},
+      </if>
+      <if test="withdrawMoney != null" >
+        withdraw_money = #{withdrawMoney,jdbcType=DOUBLE},
+      </if>
+      <if test="wirhdrawDate != null" >
+        wirhdraw_date = #{wirhdrawDate,jdbcType=VARCHAR},
+      </if>
+      <if test="arriveTime != null" >
+        arrive_time = #{arriveTime,jdbcType=VARCHAR},
+      </if>
+      <if test="reviewerId != null" >
+        reviewer_id = #{reviewerId,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where withdraw_id = #{withdrawId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.bank.pojo.BankWithdraw" >
+    update bank_withdraw
+    set cust_id = #{custId,jdbcType=VARCHAR},
+      account = #{account,jdbcType=VARCHAR},
+      withdraw_money = #{withdrawMoney,jdbcType=DOUBLE},
+      wirhdraw_date = #{wirhdrawDate,jdbcType=VARCHAR},
+      arrive_time = #{arriveTime,jdbcType=VARCHAR},
+      reviewer_id = #{reviewerId,jdbcType=VARCHAR}
+    where withdraw_id = #{withdrawId,jdbcType=BIGINT}
+  </update>
+</mapper>

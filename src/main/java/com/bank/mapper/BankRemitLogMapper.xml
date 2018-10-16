@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.bank.mapper.BankRemitLogMapper" >
+  <resultMap id="BaseResultMap" type="com.bank.pojo.BankRemitLog" >
+    <id column="remit_id" property="remitId" jdbcType="BIGINT" />
+    <result column="remit_out_account" property="remitOutAccount" jdbcType="VARCHAR" />
+    <result column="remit_in_account" property="remitInAccount" jdbcType="VARCHAR" />
+    <result column="amount" property="amount" jdbcType="DOUBLE" />
+    <result column="remit_generate_date" property="remitGenerateDate" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    remit_id, remit_out_account, remit_in_account, amount, remit_generate_date
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.bank.pojo.BankRemitLogExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from bank_remit_log
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from bank_remit_log
+    where remit_id = #{remitId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from bank_remit_log
+    where remit_id = #{remitId,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.bank.pojo.BankRemitLogExample" >
+    delete from bank_remit_log
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.bank.pojo.BankRemitLog" >
+    insert into bank_remit_log (remit_id, remit_out_account, remit_in_account, 
+      amount, remit_generate_date)
+    values (#{remitId,jdbcType=BIGINT}, #{remitOutAccount,jdbcType=VARCHAR}, #{remitInAccount,jdbcType=VARCHAR}, 
+      #{amount,jdbcType=DOUBLE}, #{remitGenerateDate,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.bank.pojo.BankRemitLog" >
+    insert into bank_remit_log
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="remitId != null" >
+        remit_id,
+      </if>
+      <if test="remitOutAccount != null" >
+        remit_out_account,
+      </if>
+      <if test="remitInAccount != null" >
+        remit_in_account,
+      </if>
+      <if test="amount != null" >
+        amount,
+      </if>
+      <if test="remitGenerateDate != null" >
+        remit_generate_date,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="remitId != null" >
+        #{remitId,jdbcType=BIGINT},
+      </if>
+      <if test="remitOutAccount != null" >
+        #{remitOutAccount,jdbcType=VARCHAR},
+      </if>
+      <if test="remitInAccount != null" >
+        #{remitInAccount,jdbcType=VARCHAR},
+      </if>
+      <if test="amount != null" >
+        #{amount,jdbcType=DOUBLE},
+      </if>
+      <if test="remitGenerateDate != null" >
+        #{remitGenerateDate,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.bank.pojo.BankRemitLogExample" resultType="java.lang.Integer" >
+    select count(*) from bank_remit_log
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update bank_remit_log
+    <set >
+      <if test="record.remitId != null" >
+        remit_id = #{record.remitId,jdbcType=BIGINT},
+      </if>
+      <if test="record.remitOutAccount != null" >
+        remit_out_account = #{record.remitOutAccount,jdbcType=VARCHAR},
+      </if>
+      <if test="record.remitInAccount != null" >
+        remit_in_account = #{record.remitInAccount,jdbcType=VARCHAR},
+      </if>
+      <if test="record.amount != null" >
+        amount = #{record.amount,jdbcType=DOUBLE},
+      </if>
+      <if test="record.remitGenerateDate != null" >
+        remit_generate_date = #{record.remitGenerateDate,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update bank_remit_log
+    set remit_id = #{record.remitId,jdbcType=BIGINT},
+      remit_out_account = #{record.remitOutAccount,jdbcType=VARCHAR},
+      remit_in_account = #{record.remitInAccount,jdbcType=VARCHAR},
+      amount = #{record.amount,jdbcType=DOUBLE},
+      remit_generate_date = #{record.remitGenerateDate,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.bank.pojo.BankRemitLog" >
+    update bank_remit_log
+    <set >
+      <if test="remitOutAccount != null" >
+        remit_out_account = #{remitOutAccount,jdbcType=VARCHAR},
+      </if>
+      <if test="remitInAccount != null" >
+        remit_in_account = #{remitInAccount,jdbcType=VARCHAR},
+      </if>
+      <if test="amount != null" >
+        amount = #{amount,jdbcType=DOUBLE},
+      </if>
+      <if test="remitGenerateDate != null" >
+        remit_generate_date = #{remitGenerateDate,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where remit_id = #{remitId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.bank.pojo.BankRemitLog" >
+    update bank_remit_log
+    set remit_out_account = #{remitOutAccount,jdbcType=VARCHAR},
+      remit_in_account = #{remitInAccount,jdbcType=VARCHAR},
+      amount = #{amount,jdbcType=DOUBLE},
+      remit_generate_date = #{remitGenerateDate,jdbcType=VARCHAR}
+    where remit_id = #{remitId,jdbcType=BIGINT}
+  </update>
+</mapper>

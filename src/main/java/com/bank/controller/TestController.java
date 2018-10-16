@@ -1,6 +1,6 @@
 package com.bank.controller;
 
-import com.bank.pojo.User;
+import com.bank.pojo.BankUser;
 import com.bank.service.TestService;
 import net.sf.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,7 +22,7 @@ public class TestController {
     @ResponseBody
     public String sayHello(){
         System.out.println("get request");
-        testService.test();
+        testService.test1();
         return "success";
     }
 
@@ -68,13 +68,15 @@ public class TestController {
     //post请求 /user/hello4 前端发送一个User类，后端自动注入
     @RequestMapping(value = "/hello4",method = RequestMethod.POST)
     @ResponseBody
-    public JSONObject hello4(User user){
+    public JSONObject hello4(BankUser user){
         JSONObject jsonObject=new JSONObject();
         //service层操作
 
 
         //返回结果
         jsonObject.put("result","success");
+        jsonObject.put("message","123");
+        jsonObject.put("data",new BankUser());
         return  jsonObject;
     }
 }
