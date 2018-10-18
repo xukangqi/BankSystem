@@ -3,14 +3,14 @@ package com.bank.pojo;
 import java.util.ArrayList;
 import java.util.List;
 
-public class BankLoadExample {
+public class BankLoanExample {
     protected String orderByClause;
 
     protected boolean distinct;
 
     protected List<Criteria> oredCriteria;
 
-    public BankLoadExample() {
+    public BankLoanExample() {
         oredCriteria = new ArrayList<Criteria>();
     }
 
@@ -374,63 +374,63 @@ public class BankLoadExample {
             return (Criteria) this;
         }
 
-        public Criteria andLoadAmountIsNull() {
-            addCriterion("load_amount is null");
+        public Criteria andLoanAmountIsNull() {
+            addCriterion("loan_amount is null");
             return (Criteria) this;
         }
 
-        public Criteria andLoadAmountIsNotNull() {
-            addCriterion("load_amount is not null");
+        public Criteria andLoanAmountIsNotNull() {
+            addCriterion("loan_amount is not null");
             return (Criteria) this;
         }
 
-        public Criteria andLoadAmountEqualTo(Double value) {
-            addCriterion("load_amount =", value, "loadAmount");
+        public Criteria andLoanAmountEqualTo(Double value) {
+            addCriterion("loan_amount =", value, "loanAmount");
             return (Criteria) this;
         }
 
-        public Criteria andLoadAmountNotEqualTo(Double value) {
-            addCriterion("load_amount <>", value, "loadAmount");
+        public Criteria andLoanAmountNotEqualTo(Double value) {
+            addCriterion("loan_amount <>", value, "loanAmount");
             return (Criteria) this;
         }
 
-        public Criteria andLoadAmountGreaterThan(Double value) {
-            addCriterion("load_amount >", value, "loadAmount");
+        public Criteria andLoanAmountGreaterThan(Double value) {
+            addCriterion("loan_amount >", value, "loanAmount");
             return (Criteria) this;
         }
 
-        public Criteria andLoadAmountGreaterThanOrEqualTo(Double value) {
-            addCriterion("load_amount >=", value, "loadAmount");
+        public Criteria andLoanAmountGreaterThanOrEqualTo(Double value) {
+            addCriterion("loan_amount >=", value, "loanAmount");
             return (Criteria) this;
         }
 
-        public Criteria andLoadAmountLessThan(Double value) {
-            addCriterion("load_amount <", value, "loadAmount");
+        public Criteria andLoanAmountLessThan(Double value) {
+            addCriterion("loan_amount <", value, "loanAmount");
             return (Criteria) this;
         }
 
-        public Criteria andLoadAmountLessThanOrEqualTo(Double value) {
-            addCriterion("load_amount <=", value, "loadAmount");
+        public Criteria andLoanAmountLessThanOrEqualTo(Double value) {
+            addCriterion("loan_amount <=", value, "loanAmount");
             return (Criteria) this;
         }
 
-        public Criteria andLoadAmountIn(List<Double> values) {
-            addCriterion("load_amount in", values, "loadAmount");
+        public Criteria andLoanAmountIn(List<Double> values) {
+            addCriterion("loan_amount in", values, "loanAmount");
             return (Criteria) this;
         }
 
-        public Criteria andLoadAmountNotIn(List<Double> values) {
-            addCriterion("load_amount not in", values, "loadAmount");
+        public Criteria andLoanAmountNotIn(List<Double> values) {
+            addCriterion("loan_amount not in", values, "loanAmount");
             return (Criteria) this;
         }
 
-        public Criteria andLoadAmountBetween(Double value1, Double value2) {
-            addCriterion("load_amount between", value1, value2, "loadAmount");
+        public Criteria andLoanAmountBetween(Double value1, Double value2) {
+            addCriterion("loan_amount between", value1, value2, "loanAmount");
             return (Criteria) this;
         }
 
-        public Criteria andLoadAmountNotBetween(Double value1, Double value2) {
-            addCriterion("load_amount not between", value1, value2, "loadAmount");
+        public Criteria andLoanAmountNotBetween(Double value1, Double value2) {
+            addCriterion("loan_amount not between", value1, value2, "loanAmount");
             return (Criteria) this;
         }
 
@@ -494,123 +494,123 @@ public class BankLoadExample {
             return (Criteria) this;
         }
 
-        public Criteria andLoadInterestIsNull() {
-            addCriterion("load_interest is null");
+        public Criteria andLoanInterestIsNull() {
+            addCriterion("loan_interest is null");
             return (Criteria) this;
         }
 
-        public Criteria andLoadInterestIsNotNull() {
-            addCriterion("load_interest is not null");
+        public Criteria andLoanInterestIsNotNull() {
+            addCriterion("loan_interest is not null");
             return (Criteria) this;
         }
 
-        public Criteria andLoadInterestEqualTo(Double value) {
-            addCriterion("load_interest =", value, "loadInterest");
+        public Criteria andLoanInterestEqualTo(Double value) {
+            addCriterion("loan_interest =", value, "loanInterest");
             return (Criteria) this;
         }
 
-        public Criteria andLoadInterestNotEqualTo(Double value) {
-            addCriterion("load_interest <>", value, "loadInterest");
+        public Criteria andLoanInterestNotEqualTo(Double value) {
+            addCriterion("loan_interest <>", value, "loanInterest");
             return (Criteria) this;
         }
 
-        public Criteria andLoadInterestGreaterThan(Double value) {
-            addCriterion("load_interest >", value, "loadInterest");
+        public Criteria andLoanInterestGreaterThan(Double value) {
+            addCriterion("loan_interest >", value, "loanInterest");
             return (Criteria) this;
         }
 
-        public Criteria andLoadInterestGreaterThanOrEqualTo(Double value) {
-            addCriterion("load_interest >=", value, "loadInterest");
+        public Criteria andLoanInterestGreaterThanOrEqualTo(Double value) {
+            addCriterion("loan_interest >=", value, "loanInterest");
             return (Criteria) this;
         }
 
-        public Criteria andLoadInterestLessThan(Double value) {
-            addCriterion("load_interest <", value, "loadInterest");
+        public Criteria andLoanInterestLessThan(Double value) {
+            addCriterion("loan_interest <", value, "loanInterest");
             return (Criteria) this;
         }
 
-        public Criteria andLoadInterestLessThanOrEqualTo(Double value) {
-            addCriterion("load_interest <=", value, "loadInterest");
+        public Criteria andLoanInterestLessThanOrEqualTo(Double value) {
+            addCriterion("loan_interest <=", value, "loanInterest");
             return (Criteria) this;
         }
 
-        public Criteria andLoadInterestIn(List<Double> values) {
-            addCriterion("load_interest in", values, "loadInterest");
+        public Criteria andLoanInterestIn(List<Double> values) {
+            addCriterion("loan_interest in", values, "loanInterest");
             return (Criteria) this;
         }
 
-        public Criteria andLoadInterestNotIn(List<Double> values) {
-            addCriterion("load_interest not in", values, "loadInterest");
+        public Criteria andLoanInterestNotIn(List<Double> values) {
+            addCriterion("loan_interest not in", values, "loanInterest");
             return (Criteria) this;
         }
 
-        public Criteria andLoadInterestBetween(Double value1, Double value2) {
-            addCriterion("load_interest between", value1, value2, "loadInterest");
+        public Criteria andLoanInterestBetween(Double value1, Double value2) {
+            addCriterion("loan_interest between", value1, value2, "loanInterest");
             return (Criteria) this;
         }
 
-        public Criteria andLoadInterestNotBetween(Double value1, Double value2) {
-            addCriterion("load_interest not between", value1, value2, "loadInterest");
+        public Criteria andLoanInterestNotBetween(Double value1, Double value2) {
+            addCriterion("loan_interest not between", value1, value2, "loanInterest");
             return (Criteria) this;
         }
 
-        public Criteria andLoadAmountSumIsNull() {
-            addCriterion("load_amount_sum is null");
+        public Criteria andLoanAmountSumIsNull() {
+            addCriterion("loan_amount_sum is null");
             return (Criteria) this;
         }
 
-        public Criteria andLoadAmountSumIsNotNull() {
-            addCriterion("load_amount_sum is not null");
+        public Criteria andLoanAmountSumIsNotNull() {
+            addCriterion("loan_amount_sum is not null");
             return (Criteria) this;
         }
 
-        public Criteria andLoadAmountSumEqualTo(Double value) {
-            addCriterion("load_amount_sum =", value, "loadAmountSum");
+        public Criteria andLoanAmountSumEqualTo(Double value) {
+            addCriterion("loan_amount_sum =", value, "loanAmountSum");
             return (Criteria) this;
         }
 
-        public Criteria andLoadAmountSumNotEqualTo(Double value) {
-            addCriterion("load_amount_sum <>", value, "loadAmountSum");
+        public Criteria andLoanAmountSumNotEqualTo(Double value) {
+            addCriterion("loan_amount_sum <>", value, "loanAmountSum");
             return (Criteria) this;
         }
 
-        public Criteria andLoadAmountSumGreaterThan(Double value) {
-            addCriterion("load_amount_sum >", value, "loadAmountSum");
+        public Criteria andLoanAmountSumGreaterThan(Double value) {
+            addCriterion("loan_amount_sum >", value, "loanAmountSum");
             return (Criteria) this;
         }
 
-        public Criteria andLoadAmountSumGreaterThanOrEqualTo(Double value) {
-            addCriterion("load_amount_sum >=", value, "loadAmountSum");
+        public Criteria andLoanAmountSumGreaterThanOrEqualTo(Double value) {
+            addCriterion("loan_amount_sum >=", value, "loanAmountSum");
             return (Criteria) this;
         }
 
-        public Criteria andLoadAmountSumLessThan(Double value) {
-            addCriterion("load_amount_sum <", value, "loadAmountSum");
+        public Criteria andLoanAmountSumLessThan(Double value) {
+            addCriterion("loan_amount_sum <", value, "loanAmountSum");
             return (Criteria) this;
         }
 
-        public Criteria andLoadAmountSumLessThanOrEqualTo(Double value) {
-            addCriterion("load_amount_sum <=", value, "loadAmountSum");
+        public Criteria andLoanAmountSumLessThanOrEqualTo(Double value) {
+            addCriterion("loan_amount_sum <=", value, "loanAmountSum");
             return (Criteria) this;
         }
 
-        public Criteria andLoadAmountSumIn(List<Double> values) {
-            addCriterion("load_amount_sum in", values, "loadAmountSum");
+        public Criteria andLoanAmountSumIn(List<Double> values) {
+            addCriterion("loan_amount_sum in", values, "loanAmountSum");
             return (Criteria) this;
         }
 
-        public Criteria andLoadAmountSumNotIn(List<Double> values) {
-            addCriterion("load_amount_sum not in", values, "loadAmountSum");
+        public Criteria andLoanAmountSumNotIn(List<Double> values) {
+            addCriterion("loan_amount_sum not in", values, "loanAmountSum");
             return (Criteria) this;
         }
 
-        public Criteria andLoadAmountSumBetween(Double value1, Double value2) {
-            addCriterion("load_amount_sum between", value1, value2, "loadAmountSum");
+        public Criteria andLoanAmountSumBetween(Double value1, Double value2) {
+            addCriterion("loan_amount_sum between", value1, value2, "loanAmountSum");
             return (Criteria) this;
         }
 
-        public Criteria andLoadAmountSumNotBetween(Double value1, Double value2) {
-            addCriterion("load_amount_sum not between", value1, value2, "loadAmountSum");
+        public Criteria andLoanAmountSumNotBetween(Double value1, Double value2) {
+            addCriterion("loan_amount_sum not between", value1, value2, "loanAmountSum");
             return (Criteria) this;
         }
 
@@ -744,63 +744,73 @@ public class BankLoadExample {
             return (Criteria) this;
         }
 
-        public Criteria andIsFinishedIsNull() {
-            addCriterion("is_finished is null");
+        public Criteria andLoanStatusIsNull() {
+            addCriterion("loan_status is null");
             return (Criteria) this;
         }
 
-        public Criteria andIsFinishedIsNotNull() {
-            addCriterion("is_finished is not null");
+        public Criteria andLoanStatusIsNotNull() {
+            addCriterion("loan_status is not null");
             return (Criteria) this;
         }
 
-        public Criteria andIsFinishedEqualTo(Boolean value) {
-            addCriterion("is_finished =", value, "isFinished");
+        public Criteria andLoanStatusEqualTo(String value) {
+            addCriterion("loan_status =", value, "loanStatus");
             return (Criteria) this;
         }
 
-        public Criteria andIsFinishedNotEqualTo(Boolean value) {
-            addCriterion("is_finished <>", value, "isFinished");
+        public Criteria andLoanStatusNotEqualTo(String value) {
+            addCriterion("loan_status <>", value, "loanStatus");
             return (Criteria) this;
         }
 
-        public Criteria andIsFinishedGreaterThan(Boolean value) {
-            addCriterion("is_finished >", value, "isFinished");
+        public Criteria andLoanStatusGreaterThan(String value) {
+            addCriterion("loan_status >", value, "loanStatus");
             return (Criteria) this;
         }
 
-        public Criteria andIsFinishedGreaterThanOrEqualTo(Boolean value) {
-            addCriterion("is_finished >=", value, "isFinished");
+        public Criteria andLoanStatusGreaterThanOrEqualTo(String value) {
+            addCriterion("loan_status >=", value, "loanStatus");
             return (Criteria) this;
         }
 
-        public Criteria andIsFinishedLessThan(Boolean value) {
-            addCriterion("is_finished <", value, "isFinished");
+        public Criteria andLoanStatusLessThan(String value) {
+            addCriterion("loan_status <", value, "loanStatus");
             return (Criteria) this;
         }
 
-        public Criteria andIsFinishedLessThanOrEqualTo(Boolean value) {
-            addCriterion("is_finished <=", value, "isFinished");
+        public Criteria andLoanStatusLessThanOrEqualTo(String value) {
+            addCriterion("loan_status <=", value, "loanStatus");
             return (Criteria) this;
         }
 
-        public Criteria andIsFinishedIn(List<Boolean> values) {
-            addCriterion("is_finished in", values, "isFinished");
+        public Criteria andLoanStatusLike(String value) {
+            addCriterion("loan_status like", value, "loanStatus");
             return (Criteria) this;
         }
 
-        public Criteria andIsFinishedNotIn(List<Boolean> values) {
-            addCriterion("is_finished not in", values, "isFinished");
+        public Criteria andLoanStatusNotLike(String value) {
+            addCriterion("loan_status not like", value, "loanStatus");
             return (Criteria) this;
         }
 
-        public Criteria andIsFinishedBetween(Boolean value1, Boolean value2) {
-            addCriterion("is_finished between", value1, value2, "isFinished");
+        public Criteria andLoanStatusIn(List<String> values) {
+            addCriterion("loan_status in", values, "loanStatus");
             return (Criteria) this;
         }
 
-        public Criteria andIsFinishedNotBetween(Boolean value1, Boolean value2) {
-            addCriterion("is_finished not between", value1, value2, "isFinished");
+        public Criteria andLoanStatusNotIn(List<String> values) {
+            addCriterion("loan_status not in", values, "loanStatus");
+            return (Criteria) this;
+        }
+
+        public Criteria andLoanStatusBetween(String value1, String value2) {
+            addCriterion("loan_status between", value1, value2, "loanStatus");
+            return (Criteria) this;
+        }
+
+        public Criteria andLoanStatusNotBetween(String value1, String value2) {
+            addCriterion("loan_status not between", value1, value2, "loanStatus");
             return (Criteria) this;
         }
 
@@ -874,73 +884,73 @@ public class BankLoadExample {
             return (Criteria) this;
         }
 
-        public Criteria andLoadTypeNameIsNull() {
-            addCriterion("load_type_name is null");
+        public Criteria andLoanTypeNameIsNull() {
+            addCriterion("loan_type_name is null");
             return (Criteria) this;
         }
 
-        public Criteria andLoadTypeNameIsNotNull() {
-            addCriterion("load_type_name is not null");
+        public Criteria andLoanTypeNameIsNotNull() {
+            addCriterion("loan_type_name is not null");
             return (Criteria) this;
         }
 
-        public Criteria andLoadTypeNameEqualTo(String value) {
-            addCriterion("load_type_name =", value, "loadTypeName");
+        public Criteria andLoanTypeNameEqualTo(String value) {
+            addCriterion("loan_type_name =", value, "loanTypeName");
             return (Criteria) this;
         }
 
-        public Criteria andLoadTypeNameNotEqualTo(String value) {
-            addCriterion("load_type_name <>", value, "loadTypeName");
+        public Criteria andLoanTypeNameNotEqualTo(String value) {
+            addCriterion("loan_type_name <>", value, "loanTypeName");
             return (Criteria) this;
         }
 
-        public Criteria andLoadTypeNameGreaterThan(String value) {
-            addCriterion("load_type_name >", value, "loadTypeName");
+        public Criteria andLoanTypeNameGreaterThan(String value) {
+            addCriterion("loan_type_name >", value, "loanTypeName");
             return (Criteria) this;
         }
 
-        public Criteria andLoadTypeNameGreaterThanOrEqualTo(String value) {
-            addCriterion("load_type_name >=", value, "loadTypeName");
+        public Criteria andLoanTypeNameGreaterThanOrEqualTo(String value) {
+            addCriterion("loan_type_name >=", value, "loanTypeName");
             return (Criteria) this;
         }
 
-        public Criteria andLoadTypeNameLessThan(String value) {
-            addCriterion("load_type_name <", value, "loadTypeName");
+        public Criteria andLoanTypeNameLessThan(String value) {
+            addCriterion("loan_type_name <", value, "loanTypeName");
             return (Criteria) this;
         }
 
-        public Criteria andLoadTypeNameLessThanOrEqualTo(String value) {
-            addCriterion("load_type_name <=", value, "loadTypeName");
+        public Criteria andLoanTypeNameLessThanOrEqualTo(String value) {
+            addCriterion("loan_type_name <=", value, "loanTypeName");
             return (Criteria) this;
         }
 
-        public Criteria andLoadTypeNameLike(String value) {
-            addCriterion("load_type_name like", value, "loadTypeName");
+        public Criteria andLoanTypeNameLike(String value) {
+            addCriterion("loan_type_name like", value, "loanTypeName");
             return (Criteria) this;
         }
 
-        public Criteria andLoadTypeNameNotLike(String value) {
-            addCriterion("load_type_name not like", value, "loadTypeName");
+        public Criteria andLoanTypeNameNotLike(String value) {
+            addCriterion("loan_type_name not like", value, "loanTypeName");
             return (Criteria) this;
         }
 
-        public Criteria andLoadTypeNameIn(List<String> values) {
-            addCriterion("load_type_name in", values, "loadTypeName");
+        public Criteria andLoanTypeNameIn(List<String> values) {
+            addCriterion("loan_type_name in", values, "loanTypeName");
             return (Criteria) this;
         }
 
-        public Criteria andLoadTypeNameNotIn(List<String> values) {
-            addCriterion("load_type_name not in", values, "loadTypeName");
+        public Criteria andLoanTypeNameNotIn(List<String> values) {
+            addCriterion("loan_type_name not in", values, "loanTypeName");
             return (Criteria) this;
         }
 
-        public Criteria andLoadTypeNameBetween(String value1, String value2) {
-            addCriterion("load_type_name between", value1, value2, "loadTypeName");
+        public Criteria andLoanTypeNameBetween(String value1, String value2) {
+            addCriterion("loan_type_name between", value1, value2, "loanTypeName");
             return (Criteria) this;
         }
 
-        public Criteria andLoadTypeNameNotBetween(String value1, String value2) {
-            addCriterion("load_type_name not between", value1, value2, "loadTypeName");
+        public Criteria andLoanTypeNameNotBetween(String value1, String value2) {
+            addCriterion("loan_type_name not between", value1, value2, "loanTypeName");
             return (Criteria) this;
         }
     }

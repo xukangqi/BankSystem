@@ -48,24 +48,24 @@ CREATE TABLE `bank_account` (
   FOREIGN KEY (`cust_id`) REFERENCES bank_customer (cust_id)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-DROP TABLE IF EXISTS `bank_deposite`;
-CREATE TABLE `bank_deposite` (
-  `deposite_id` bigint(20) NOT NULL,
+DROP TABLE IF EXISTS `bank_deposit`;
+CREATE TABLE `bank_deposit` (
+  `deposit_id` bigint(20) NOT NULL,
   `cust_id` varchar(16) DEFAULT NULL,
   `account` varchar(20) DEFAULT NULL,
-  `deposite_type` varchar(20) DEFAULT NULL,
-  `deposite_money` double DEFAULT NULL,
-  `deposite_rate` double DEFAULT NULL,
-  `deposite_date` varchar(20) DEFAULT NULL,
-  `deposite_duration` varchar(20) DEFAULT NULL,
+  `deposit_type` varchar(20) DEFAULT NULL,
+  `deposit_money` double DEFAULT NULL,
+  `deposit_rate` double DEFAULT NULL,
+  `deposit_date` varchar(20) DEFAULT NULL,
+  `deposit_duration` varchar(20) DEFAULT NULL,
   `transfer_way` varchar(20) DEFAULT NULL,
   `reviewer_id` varchar(16) DEFAULT NULL,
-  PRIMARY KEY (`deposite_id`),
+  PRIMARY KEY (`deposit_id`),
   FOREIGN KEY (`cust_id`) REFERENCES  `bank_customer`(`cust_id`),
   FOREIGN KEY (`account`) REFERENCES  `bank_account`(`account`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-DROP TABLE IF EXISTS `bank_deposite_rate`;
+DROP TABLE IF EXISTS `bank_deposit_rate`;
 CREATE TABLE `bank_deposite_rate` (
   `update_date` varchar(20) NOT NULL,
   `current_rate` double DEFAULT NULL,
@@ -75,15 +75,10 @@ CREATE TABLE `bank_deposite_rate` (
   `zczq_twy_rate` double DEFAULT NULL,
   `zczq_ty_rate` double DEFAULT NULL,
   `zczq_fy_rate` double DEFAULT NULL,
-  `lczq_oy_rate` double DEFAULT NULL,
-  `lczq_ty_rate` double DEFAULT NULL,
-  `lczq_fy_rate` double DEFAULT NULL,
-  `zclq_oy_rate` double DEFAULT NULL,
-  `zclq_ty_rate` double DEFAULT NULL,
-  `zclq_fy_rate` double DEFAULT NULL,
-  `cbqx_oy_rate` double DEFAULT NULL,
-  `cbqx_ty_rate` double DEFAULT NULL,
-  `cbqx_fy_rate` double DEFAULT NULL
+  `other_oy_rate` double DEFAULT NULL,
+  `other_ty_rate` double DEFAULT NULL,
+  `other_fy_rate` double DEFAULT NULL,
+   primary key (`update_date`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 DROP TABLE IF EXISTS `bank_withdraw`;
@@ -101,47 +96,47 @@ CREATE TABLE `bank_withdraw` (
   FOREIGN KEY (`account`) REFERENCES  `bank_account`(`account`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-DROP TABLE IF EXISTS `bank_load_type`;
-CREATE TABLE `bank_load_type` (
-  `load_type_name` varchar(255) NOT NULL,
+DROP TABLE IF EXISTS `bank_loan_type`;
+CREATE TABLE `bank_loan_type` (
+  `loan_type_name` varchar(255) NOT NULL,
   `period_one` double DEFAULT NULL,
   `period_two` double DEFAULT NULL,
   `period_three` double DEFAULT NULL,
-  PRIMARY KEY (`load_type_name`)
+  PRIMARY KEY (`loan_type_name`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 
-DROP TABLE IF EXISTS `bank_load`;
-CREATE TABLE `bank_load` (
+DROP TABLE IF EXISTS `bank_loan`;
+CREATE TABLE `bank_loan` (
   `trans_id` bigint(20) NOT NULL,
   `cust_id` varchar(16) NOT NULL,
   `account` varchar(20) NOT NULL,
   `trans_date` varchar(20) DEFAULT NULL,
-  `load_amount` double DEFAULT NULL,
+  `loan_amount` double DEFAULT NULL,
   `ins_count` smallint(6) DEFAULT NULL,
-  `load_interest` double DEFAULT NULL,
-  `load_amount_sum` double DEFAULT NULL,
+  `loan_interest` double DEFAULT NULL,
+  `loan_amount_sum` double DEFAULT NULL,
   `expiration_date` varchar(20) DEFAULT NULL,
   `recovered_amount` double DEFAULT NULL,
-  `is_finished` tinyint(1) DEFAULT '0',
+  `loan_status` varchar(16) DEFAULT NULL,
   `reviewer_id` varchar(16) DEFAULT NULL,
-  `load_type_name` varchar(255) DEFAULT NULL,
+  `loan_type_name` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`trans_id`),
-  FOREIGN KEY (`load_type_name`) REFERENCES `bank_load_type` (`load_type_name`),
+  FOREIGN KEY (`loan_type_name`) REFERENCES `bank_loan_type` (`loan_type_name`),
   FOREIGN KEY (`cust_id`) REFERENCES  `bank_customer`(`cust_id`),
   FOREIGN KEY (`account`) REFERENCES  `bank_account`(`account`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 
-DROP TABLE IF EXISTS `bank_load_payment`;
-CREATE TABLE `bank_load_payment` (
+DROP TABLE IF EXISTS `bank_loan_payment`;
+CREATE TABLE `bank_loan_payment` (
   `payment_id` bigint(20) NOT NULL,
   `trans_id` bigint(20) DEFAULT NULL,
   `ins_num` smallint(6) DEFAULT NULL,
   `payment_amount` double DEFAULT NULL,
   `payment_date` varchar(20) DEFAULT NULL,
   PRIMARY KEY (`payment_id`),
-  FOREIGN KEY (`trans_id`) REFERENCES `bank_load` (`trans_id`)
+  FOREIGN KEY (`trans_id`) REFERENCES `bank_loan` (`trans_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.bank.mapper.BankLoadPaymentMapper" >
-  <resultMap id="BaseResultMap" type="com.bank.pojo.BankLoadPayment" >
+<mapper namespace="com.bank.mapper.BankLoanPaymentMapper" >
+  <resultMap id="BaseResultMap" type="com.bank.pojo.BankLoanPayment" >
     <id column="payment_id" property="paymentId" jdbcType="BIGINT" />
     <result column="trans_id" property="transId" jdbcType="BIGINT" />
     <result column="ins_num" property="insNum" jdbcType="SMALLINT" />
@@ -69,13 +69,13 @@
   <sql id="Base_Column_List" >
     payment_id, trans_id, ins_num, payment_amount, payment_date
   </sql>
-  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.bank.pojo.BankLoadPaymentExample" >
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.bank.pojo.BankLoanPaymentExample" >
     select
     <if test="distinct" >
       distinct
     </if>
     <include refid="Base_Column_List" />
-    from bank_load_payment
+    from bank_loan_payment
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
@@ -86,27 +86,27 @@
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
     select 
     <include refid="Base_Column_List" />
-    from bank_load_payment
+    from bank_loan_payment
     where payment_id = #{paymentId,jdbcType=BIGINT}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
-    delete from bank_load_payment
+    delete from bank_loan_payment
     where payment_id = #{paymentId,jdbcType=BIGINT}
   </delete>
-  <delete id="deleteByExample" parameterType="com.bank.pojo.BankLoadPaymentExample" >
-    delete from bank_load_payment
+  <delete id="deleteByExample" parameterType="com.bank.pojo.BankLoanPaymentExample" >
+    delete from bank_loan_payment
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.bank.pojo.BankLoadPayment" >
-    insert into bank_load_payment (payment_id, trans_id, ins_num, 
+  <insert id="insert" parameterType="com.bank.pojo.BankLoanPayment" >
+    insert into bank_loan_payment (payment_id, trans_id, ins_num, 
       payment_amount, payment_date)
     values (#{paymentId,jdbcType=BIGINT}, #{transId,jdbcType=BIGINT}, #{insNum,jdbcType=SMALLINT}, 
       #{paymentAmount,jdbcType=DOUBLE}, #{paymentDate,jdbcType=VARCHAR})
   </insert>
-  <insert id="insertSelective" parameterType="com.bank.pojo.BankLoadPayment" >
-    insert into bank_load_payment
+  <insert id="insertSelective" parameterType="com.bank.pojo.BankLoanPayment" >
+    insert into bank_loan_payment
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="paymentId != null" >
         payment_id,
@@ -142,14 +142,14 @@
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.bank.pojo.BankLoadPaymentExample" resultType="java.lang.Integer" >
-    select count(*) from bank_load_payment
+  <select id="countByExample" parameterType="com.bank.pojo.BankLoanPaymentExample" resultType="java.lang.Integer" >
+    select count(*) from bank_loan_payment
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
   </select>
   <update id="updateByExampleSelective" parameterType="map" >
-    update bank_load_payment
+    update bank_loan_payment
     <set >
       <if test="record.paymentId != null" >
         payment_id = #{record.paymentId,jdbcType=BIGINT},
@@ -172,7 +172,7 @@
     </if>
   </update>
   <update id="updateByExample" parameterType="map" >
-    update bank_load_payment
+    update bank_loan_payment
     set payment_id = #{record.paymentId,jdbcType=BIGINT},
       trans_id = #{record.transId,jdbcType=BIGINT},
       ins_num = #{record.insNum,jdbcType=SMALLINT},
@@ -182,8 +182,8 @@
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.bank.pojo.BankLoadPayment" >
-    update bank_load_payment
+  <update id="updateByPrimaryKeySelective" parameterType="com.bank.pojo.BankLoanPayment" >
+    update bank_loan_payment
     <set >
       <if test="transId != null" >
         trans_id = #{transId,jdbcType=BIGINT},
@@ -200,8 +200,8 @@
     </set>
     where payment_id = #{paymentId,jdbcType=BIGINT}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.bank.pojo.BankLoadPayment" >
-    update bank_load_payment
+  <update id="updateByPrimaryKey" parameterType="com.bank.pojo.BankLoanPayment" >
+    update bank_loan_payment
     set trans_id = #{transId,jdbcType=BIGINT},
       ins_num = #{insNum,jdbcType=SMALLINT},
       payment_amount = #{paymentAmount,jdbcType=DOUBLE},

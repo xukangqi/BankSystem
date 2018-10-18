@@ -1,7 +1,7 @@
 package com.bank.pojo;
 
-public class BankLoadType {
-    private String loadTypeName;
+public class BankLoanType {
+    private String loanTypeName;
 
     private Double periodOne;
 
@@ -9,12 +9,12 @@ public class BankLoadType {
 
     private Double periodThree;
 
-    public String getLoadTypeName() {
-        return loadTypeName;
+    public String getLoanTypeName() {
+        return loanTypeName;
     }
 
-    public void setLoadTypeName(String loadTypeName) {
-        this.loadTypeName = loadTypeName == null ? null : loadTypeName.trim();
+    public void setLoanTypeName(String loanTypeName) {
+        this.loanTypeName = loanTypeName == null ? null : loanTypeName.trim();
     }
 
     public Double getPeriodOne() {

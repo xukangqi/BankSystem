@@ -1,20 +1,20 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.bank.mapper.BankLoadMapper" >
-  <resultMap id="BaseResultMap" type="com.bank.pojo.BankLoad" >
+<mapper namespace="com.bank.mapper.BankLoanMapper" >
+  <resultMap id="BaseResultMap" type="com.bank.pojo.BankLoan" >
     <id column="trans_id" property="transId" jdbcType="BIGINT" />
     <result column="cust_id" property="custId" jdbcType="VARCHAR" />
     <result column="account" property="account" jdbcType="VARCHAR" />
     <result column="trans_date" property="transDate" jdbcType="VARCHAR" />
-    <result column="load_amount" property="loadAmount" jdbcType="DOUBLE" />
+    <result column="loan_amount" property="loanAmount" jdbcType="DOUBLE" />
     <result column="ins_count" property="insCount" jdbcType="SMALLINT" />
-    <result column="load_interest" property="loadInterest" jdbcType="DOUBLE" />
-    <result column="load_amount_sum" property="loadAmountSum" jdbcType="DOUBLE" />
+    <result column="loan_interest" property="loanInterest" jdbcType="DOUBLE" />
+    <result column="loan_amount_sum" property="loanAmountSum" jdbcType="DOUBLE" />
     <result column="expiration_date" property="expirationDate" jdbcType="VARCHAR" />
     <result column="recovered_amount" property="recoveredAmount" jdbcType="DOUBLE" />
-    <result column="is_finished" property="isFinished" jdbcType="BIT" />
+    <result column="loan_status" property="loanStatus" jdbcType="VARCHAR" />
     <result column="reviewer_id" property="reviewerId" jdbcType="VARCHAR" />
-    <result column="load_type_name" property="loadTypeName" jdbcType="VARCHAR" />
+    <result column="loan_type_name" property="loanTypeName" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Example_Where_Clause" >
     <where >
@@ -75,16 +75,16 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    trans_id, cust_id, account, trans_date, load_amount, ins_count, load_interest, load_amount_sum, 
-    expiration_date, recovered_amount, is_finished, reviewer_id, load_type_name
+    trans_id, cust_id, account, trans_date, loan_amount, ins_count, loan_interest, loan_amount_sum, 
+    expiration_date, recovered_amount, loan_status, reviewer_id, loan_type_name
   </sql>
-  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.bank.pojo.BankLoadExample" >
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.bank.pojo.BankLoanExample" >
     select
     <if test="distinct" >
       distinct
     </if>
     <include refid="Base_Column_List" />
-    from bank_load
+    from bank_loan
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
@@ -95,33 +95,33 @@
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
     select 
     <include refid="Base_Column_List" />
-    from bank_load
+    from bank_loan
     where trans_id = #{transId,jdbcType=BIGINT}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
-    delete from bank_load
+    delete from bank_loan
     where trans_id = #{transId,jdbcType=BIGINT}
   </delete>
-  <delete id="deleteByExample" parameterType="com.bank.pojo.BankLoadExample" >
-    delete from bank_load
+  <delete id="deleteByExample" parameterType="com.bank.pojo.BankLoanExample" >
+    delete from bank_loan
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.bank.pojo.BankLoad" >
-    insert into bank_load (trans_id, cust_id, account, 
-      trans_date, load_amount, ins_count, 
-      load_interest, load_amount_sum, expiration_date, 
-      recovered_amount, is_finished, reviewer_id, 
-      load_type_name)
+  <insert id="insert" parameterType="com.bank.pojo.BankLoan" >
+    insert into bank_loan (trans_id, cust_id, account, 
+      trans_date, loan_amount, ins_count, 
+      loan_interest, loan_amount_sum, expiration_date, 
+      recovered_amount, loan_status, reviewer_id, 
+      loan_type_name)
     values (#{transId,jdbcType=BIGINT}, #{custId,jdbcType=VARCHAR}, #{account,jdbcType=VARCHAR}, 
-      #{transDate,jdbcType=VARCHAR}, #{loadAmount,jdbcType=DOUBLE}, #{insCount,jdbcType=SMALLINT}, 
-      #{loadInterest,jdbcType=DOUBLE}, #{loadAmountSum,jdbcType=DOUBLE}, #{expirationDate,jdbcType=VARCHAR}, 
-      #{recoveredAmount,jdbcType=DOUBLE}, #{isFinished,jdbcType=BIT}, #{reviewerId,jdbcType=VARCHAR}, 
-      #{loadTypeName,jdbcType=VARCHAR})
+      #{transDate,jdbcType=VARCHAR}, #{loanAmount,jdbcType=DOUBLE}, #{insCount,jdbcType=SMALLINT}, 
+      #{loanInterest,jdbcType=DOUBLE}, #{loanAmountSum,jdbcType=DOUBLE}, #{expirationDate,jdbcType=VARCHAR}, 
+      #{recoveredAmount,jdbcType=DOUBLE}, #{loanStatus,jdbcType=VARCHAR}, #{reviewerId,jdbcType=VARCHAR}, 
+      #{loanTypeName,jdbcType=VARCHAR})
   </insert>
-  <insert id="insertSelective" parameterType="com.bank.pojo.BankLoad" >
-    insert into bank_load
+  <insert id="insertSelective" parameterType="com.bank.pojo.BankLoan" >
+    insert into bank_loan
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="transId != null" >
         trans_id,
@@ -135,17 +135,17 @@
       <if test="transDate != null" >
         trans_date,
       </if>
-      <if test="loadAmount != null" >
-        load_amount,
+      <if test="loanAmount != null" >
+        loan_amount,
       </if>
       <if test="insCount != null" >
         ins_count,
       </if>
-      <if test="loadInterest != null" >
-        load_interest,
+      <if test="loanInterest != null" >
+        loan_interest,
       </if>
-      <if test="loadAmountSum != null" >
-        load_amount_sum,
+      <if test="loanAmountSum != null" >
+        loan_amount_sum,
       </if>
       <if test="expirationDate != null" >
         expiration_date,
@@ -153,14 +153,14 @@
       <if test="recoveredAmount != null" >
         recovered_amount,
       </if>
-      <if test="isFinished != null" >
-        is_finished,
+      <if test="loanStatus != null" >
+        loan_status,
       </if>
       <if test="reviewerId != null" >
         reviewer_id,
       </if>
-      <if test="loadTypeName != null" >
-        load_type_name,
+      <if test="loanTypeName != null" >
+        loan_type_name,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
@@ -176,17 +176,17 @@
       <if test="transDate != null" >
         #{transDate,jdbcType=VARCHAR},
       </if>
-      <if test="loadAmount != null" >
-        #{loadAmount,jdbcType=DOUBLE},
+      <if test="loanAmount != null" >
+        #{loanAmount,jdbcType=DOUBLE},
       </if>
       <if test="insCount != null" >
         #{insCount,jdbcType=SMALLINT},
       </if>
-      <if test="loadInterest != null" >
-        #{loadInterest,jdbcType=DOUBLE},
+      <if test="loanInterest != null" >
+        #{loanInterest,jdbcType=DOUBLE},
       </if>
-      <if test="loadAmountSum != null" >
-        #{loadAmountSum,jdbcType=DOUBLE},
+      <if test="loanAmountSum != null" >
+        #{loanAmountSum,jdbcType=DOUBLE},
       </if>
       <if test="expirationDate != null" >
         #{expirationDate,jdbcType=VARCHAR},
@@ -194,25 +194,25 @@
       <if test="recoveredAmount != null" >
         #{recoveredAmount,jdbcType=DOUBLE},
       </if>
-      <if test="isFinished != null" >
-        #{isFinished,jdbcType=BIT},
+      <if test="loanStatus != null" >
+        #{loanStatus,jdbcType=VARCHAR},
       </if>
       <if test="reviewerId != null" >
         #{reviewerId,jdbcType=VARCHAR},
       </if>
-      <if test="loadTypeName != null" >
-        #{loadTypeName,jdbcType=VARCHAR},
+      <if test="loanTypeName != null" >
+        #{loanTypeName,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.bank.pojo.BankLoadExample" resultType="java.lang.Integer" >
-    select count(*) from bank_load
+  <select id="countByExample" parameterType="com.bank.pojo.BankLoanExample" resultType="java.lang.Integer" >
+    select count(*) from bank_loan
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
   </select>
   <update id="updateByExampleSelective" parameterType="map" >
-    update bank_load
+    update bank_loan
     <set >
       <if test="record.transId != null" >
         trans_id = #{record.transId,jdbcType=BIGINT},
@@ -226,17 +226,17 @@
       <if test="record.transDate != null" >
         trans_date = #{record.transDate,jdbcType=VARCHAR},
       </if>
-      <if test="record.loadAmount != null" >
-        load_amount = #{record.loadAmount,jdbcType=DOUBLE},
+      <if test="record.loanAmount != null" >
+        loan_amount = #{record.loanAmount,jdbcType=DOUBLE},
       </if>
       <if test="record.insCount != null" >
         ins_count = #{record.insCount,jdbcType=SMALLINT},
       </if>
-      <if test="record.loadInterest != null" >
-        load_interest = #{record.loadInterest,jdbcType=DOUBLE},
+      <if test="record.loanInterest != null" >
+        loan_interest = #{record.loanInterest,jdbcType=DOUBLE},
       </if>
-      <if test="record.loadAmountSum != null" >
-        load_amount_sum = #{record.loadAmountSum,jdbcType=DOUBLE},
+      <if test="record.loanAmountSum != null" >
+        loan_amount_sum = #{record.loanAmountSum,jdbcType=DOUBLE},
       </if>
       <if test="record.expirationDate != null" >
         expiration_date = #{record.expirationDate,jdbcType=VARCHAR},
@@ -244,14 +244,14 @@
       <if test="record.recoveredAmount != null" >
         recovered_amount = #{record.recoveredAmount,jdbcType=DOUBLE},
       </if>
-      <if test="record.isFinished != null" >
-        is_finished = #{record.isFinished,jdbcType=BIT},
+      <if test="record.loanStatus != null" >
+        loan_status = #{record.loanStatus,jdbcType=VARCHAR},
       </if>
       <if test="record.reviewerId != null" >
         reviewer_id = #{record.reviewerId,jdbcType=VARCHAR},
       </if>
-      <if test="record.loadTypeName != null" >
-        load_type_name = #{record.loadTypeName,jdbcType=VARCHAR},
+      <if test="record.loanTypeName != null" >
+        loan_type_name = #{record.loanTypeName,jdbcType=VARCHAR},
       </if>
     </set>
     <if test="_parameter != null" >
@@ -259,26 +259,26 @@
     </if>
   </update>
   <update id="updateByExample" parameterType="map" >
-    update bank_load
+    update bank_loan
     set trans_id = #{record.transId,jdbcType=BIGINT},
       cust_id = #{record.custId,jdbcType=VARCHAR},
       account = #{record.account,jdbcType=VARCHAR},
       trans_date = #{record.transDate,jdbcType=VARCHAR},
-      load_amount = #{record.loadAmount,jdbcType=DOUBLE},
+      loan_amount = #{record.loanAmount,jdbcType=DOUBLE},
       ins_count = #{record.insCount,jdbcType=SMALLINT},
-      load_interest = #{record.loadInterest,jdbcType=DOUBLE},
-      load_amount_sum = #{record.loadAmountSum,jdbcType=DOUBLE},
+      loan_interest = #{record.loanInterest,jdbcType=DOUBLE},
+      loan_amount_sum = #{record.loanAmountSum,jdbcType=DOUBLE},
       expiration_date = #{record.expirationDate,jdbcType=VARCHAR},
       recovered_amount = #{record.recoveredAmount,jdbcType=DOUBLE},
-      is_finished = #{record.isFinished,jdbcType=BIT},
+      loan_status = #{record.loanStatus,jdbcType=VARCHAR},
       reviewer_id = #{record.reviewerId,jdbcType=VARCHAR},
-      load_type_name = #{record.loadTypeName,jdbcType=VARCHAR}
+      loan_type_name = #{record.loanTypeName,jdbcType=VARCHAR}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.bank.pojo.BankLoad" >
-    update bank_load
+  <update id="updateByPrimaryKeySelective" parameterType="com.bank.pojo.BankLoan" >
+    update bank_loan
     <set >
       <if test="custId != null" >
         cust_id = #{custId,jdbcType=VARCHAR},
@@ -289,17 +289,17 @@
       <if test="transDate != null" >
         trans_date = #{transDate,jdbcType=VARCHAR},
       </if>
-      <if test="loadAmount != null" >
-        load_amount = #{loadAmount,jdbcType=DOUBLE},
+      <if test="loanAmount != null" >
+        loan_amount = #{loanAmount,jdbcType=DOUBLE},
       </if>
       <if test="insCount != null" >
         ins_count = #{insCount,jdbcType=SMALLINT},
       </if>
-      <if test="loadInterest != null" >
-        load_interest = #{loadInterest,jdbcType=DOUBLE},
+      <if test="loanInterest != null" >
+        loan_interest = #{loanInterest,jdbcType=DOUBLE},
       </if>
-      <if test="loadAmountSum != null" >
-        load_amount_sum = #{loadAmountSum,jdbcType=DOUBLE},
+      <if test="loanAmountSum != null" >
+        loan_amount_sum = #{loanAmountSum,jdbcType=DOUBLE},
       </if>
       <if test="expirationDate != null" >
         expiration_date = #{expirationDate,jdbcType=VARCHAR},
@@ -307,32 +307,32 @@
       <if test="recoveredAmount != null" >
         recovered_amount = #{recoveredAmount,jdbcType=DOUBLE},
       </if>
-      <if test="isFinished != null" >
-        is_finished = #{isFinished,jdbcType=BIT},
+      <if test="loanStatus != null" >
+        loan_status = #{loanStatus,jdbcType=VARCHAR},
       </if>
       <if test="reviewerId != null" >
         reviewer_id = #{reviewerId,jdbcType=VARCHAR},
       </if>
-      <if test="loadTypeName != null" >
-        load_type_name = #{loadTypeName,jdbcType=VARCHAR},
+      <if test="loanTypeName != null" >
+        loan_type_name = #{loanTypeName,jdbcType=VARCHAR},
       </if>
     </set>
     where trans_id = #{transId,jdbcType=BIGINT}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.bank.pojo.BankLoad" >
-    update bank_load
+  <update id="updateByPrimaryKey" parameterType="com.bank.pojo.BankLoan" >
+    update bank_loan
     set cust_id = #{custId,jdbcType=VARCHAR},
       account = #{account,jdbcType=VARCHAR},
       trans_date = #{transDate,jdbcType=VARCHAR},
-      load_amount = #{loadAmount,jdbcType=DOUBLE},
+      loan_amount = #{loanAmount,jdbcType=DOUBLE},
       ins_count = #{insCount,jdbcType=SMALLINT},
-      load_interest = #{loadInterest,jdbcType=DOUBLE},
-      load_amount_sum = #{loadAmountSum,jdbcType=DOUBLE},
+      loan_interest = #{loanInterest,jdbcType=DOUBLE},
+      loan_amount_sum = #{loanAmountSum,jdbcType=DOUBLE},
       expiration_date = #{expirationDate,jdbcType=VARCHAR},
       recovered_amount = #{recoveredAmount,jdbcType=DOUBLE},
-      is_finished = #{isFinished,jdbcType=BIT},
+      loan_status = #{loanStatus,jdbcType=VARCHAR},
       reviewer_id = #{reviewerId,jdbcType=VARCHAR},
-      load_type_name = #{loadTypeName,jdbcType=VARCHAR}
+      loan_type_name = #{loanTypeName,jdbcType=VARCHAR}
     where trans_id = #{transId,jdbcType=BIGINT}
   </update>
 </mapper>
