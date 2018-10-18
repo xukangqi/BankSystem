@@ -3,14 +3,14 @@ package com.bank.pojo;
 import java.util.ArrayList;
 import java.util.List;
 
-public class BankLoadTypeExample {
+public class BankLoanTypeExample {
     protected String orderByClause;
 
     protected boolean distinct;
 
     protected List<Criteria> oredCriteria;
 
-    public BankLoadTypeExample() {
+    public BankLoanTypeExample() {
         oredCriteria = new ArrayList<Criteria>();
     }
 
@@ -104,73 +104,73 @@ public class BankLoadTypeExample {
             criteria.add(new Criterion(condition, value1, value2));
         }
 
-        public Criteria andLoadTypeNameIsNull() {
-            addCriterion("load_type_name is null");
+        public Criteria andLoanTypeNameIsNull() {
+            addCriterion("loan_type_name is null");
             return (Criteria) this;
         }
 
-        public Criteria andLoadTypeNameIsNotNull() {
-            addCriterion("load_type_name is not null");
+        public Criteria andLoanTypeNameIsNotNull() {
+            addCriterion("loan_type_name is not null");
             return (Criteria) this;
         }
 
-        public Criteria andLoadTypeNameEqualTo(String value) {
-            addCriterion("load_type_name =", value, "loadTypeName");
+        public Criteria andLoanTypeNameEqualTo(String value) {
+            addCriterion("loan_type_name =", value, "loanTypeName");
             return (Criteria) this;
         }
 
-        public Criteria andLoadTypeNameNotEqualTo(String value) {
-            addCriterion("load_type_name <>", value, "loadTypeName");
+        public Criteria andLoanTypeNameNotEqualTo(String value) {
+            addCriterion("loan_type_name <>", value, "loanTypeName");
             return (Criteria) this;
         }
 
-        public Criteria andLoadTypeNameGreaterThan(String value) {
-            addCriterion("load_type_name >", value, "loadTypeName");
+        public Criteria andLoanTypeNameGreaterThan(String value) {
+            addCriterion("loan_type_name >", value, "loanTypeName");
             return (Criteria) this;
         }
 
-        public Criteria andLoadTypeNameGreaterThanOrEqualTo(String value) {
-            addCriterion("load_type_name >=", value, "loadTypeName");
+        public Criteria andLoanTypeNameGreaterThanOrEqualTo(String value) {
+            addCriterion("loan_type_name >=", value, "loanTypeName");
             return (Criteria) this;
         }
 
-        public Criteria andLoadTypeNameLessThan(String value) {
-            addCriterion("load_type_name <", value, "loadTypeName");
+        public Criteria andLoanTypeNameLessThan(String value) {
+            addCriterion("loan_type_name <", value, "loanTypeName");
             return (Criteria) this;
         }
 
-        public Criteria andLoadTypeNameLessThanOrEqualTo(String value) {
-            addCriterion("load_type_name <=", value, "loadTypeName");
+        public Criteria andLoanTypeNameLessThanOrEqualTo(String value) {
+            addCriterion("loan_type_name <=", value, "loanTypeName");
             return (Criteria) this;
         }
 
-        public Criteria andLoadTypeNameLike(String value) {
-            addCriterion("load_type_name like", value, "loadTypeName");
+        public Criteria andLoanTypeNameLike(String value) {
+            addCriterion("loan_type_name like", value, "loanTypeName");
             return (Criteria) this;
         }
 
-        public Criteria andLoadTypeNameNotLike(String value) {
-            addCriterion("load_type_name not like", value, "loadTypeName");
+        public Criteria andLoanTypeNameNotLike(String value) {
+            addCriterion("loan_type_name not like", value, "loanTypeName");
             return (Criteria) this;
         }
 
-        public Criteria andLoadTypeNameIn(List<String> values) {
-            addCriterion("load_type_name in", values, "loadTypeName");
+        public Criteria andLoanTypeNameIn(List<String> values) {
+            addCriterion("loan_type_name in", values, "loanTypeName");
             return (Criteria) this;
         }
 
-        public Criteria andLoadTypeNameNotIn(List<String> values) {
-            addCriterion("load_type_name not in", values, "loadTypeName");
+        public Criteria andLoanTypeNameNotIn(List<String> values) {
+            addCriterion("loan_type_name not in", values, "loanTypeName");
             return (Criteria) this;
         }
 
-        public Criteria andLoadTypeNameBetween(String value1, String value2) {
-            addCriterion("load_type_name between", value1, value2, "loadTypeName");
+        public Criteria andLoanTypeNameBetween(String value1, String value2) {
+            addCriterion("loan_type_name between", value1, value2, "loanTypeName");
             return (Criteria) this;
         }
 
-        public Criteria andLoadTypeNameNotBetween(String value1, String value2) {
-            addCriterion("load_type_name not between", value1, value2, "loadTypeName");
+        public Criteria andLoanTypeNameNotBetween(String value1, String value2) {
+            addCriterion("loan_type_name not between", value1, value2, "loanTypeName");
             return (Criteria) this;
         }
 

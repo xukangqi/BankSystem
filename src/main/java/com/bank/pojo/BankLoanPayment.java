@@ -1,6 +1,6 @@
 package com.bank.pojo;
 
-public class BankLoadPayment {
+public class BankLoanPayment {
     private Long paymentId;
 
     private Long transId;

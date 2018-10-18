@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.bank.mapper.BankLoadTypeMapper" >
-  <resultMap id="BaseResultMap" type="com.bank.pojo.BankLoadType" >
-    <id column="load_type_name" property="loadTypeName" jdbcType="VARCHAR" />
+<mapper namespace="com.bank.mapper.BankLoanTypeMapper" >
+  <resultMap id="BaseResultMap" type="com.bank.pojo.BankLoanType" >
+    <id column="loan_type_name" property="loanTypeName" jdbcType="VARCHAR" />
     <result column="period_one" property="periodOne" jdbcType="DOUBLE" />
     <result column="period_two" property="periodTwo" jdbcType="DOUBLE" />
     <result column="period_three" property="periodThree" jdbcType="DOUBLE" />
@@ -66,15 +66,15 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    load_type_name, period_one, period_two, period_three
+    loan_type_name, period_one, period_two, period_three
   </sql>
-  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.bank.pojo.BankLoadTypeExample" >
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.bank.pojo.BankLoanTypeExample" >
     select
     <if test="distinct" >
       distinct
     </if>
     <include refid="Base_Column_List" />
-    from bank_load_type
+    from bank_loan_type
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
@@ -85,30 +85,30 @@
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
     select 
     <include refid="Base_Column_List" />
-    from bank_load_type
-    where load_type_name = #{loadTypeName,jdbcType=VARCHAR}
+    from bank_loan_type
+    where loan_type_name = #{loanTypeName,jdbcType=VARCHAR}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
-    delete from bank_load_type
-    where load_type_name = #{loadTypeName,jdbcType=VARCHAR}
+    delete from bank_loan_type
+    where loan_type_name = #{loanTypeName,jdbcType=VARCHAR}
   </delete>
-  <delete id="deleteByExample" parameterType="com.bank.pojo.BankLoadTypeExample" >
-    delete from bank_load_type
+  <delete id="deleteByExample" parameterType="com.bank.pojo.BankLoanTypeExample" >
+    delete from bank_loan_type
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.bank.pojo.BankLoadType" >
-    insert into bank_load_type (load_type_name, period_one, period_two, 
+  <insert id="insert" parameterType="com.bank.pojo.BankLoanType" >
+    insert into bank_loan_type (loan_type_name, period_one, period_two, 
       period_three)
-    values (#{loadTypeName,jdbcType=VARCHAR}, #{periodOne,jdbcType=DOUBLE}, #{periodTwo,jdbcType=DOUBLE}, 
+    values (#{loanTypeName,jdbcType=VARCHAR}, #{periodOne,jdbcType=DOUBLE}, #{periodTwo,jdbcType=DOUBLE}, 
       #{periodThree,jdbcType=DOUBLE})
   </insert>
-  <insert id="insertSelective" parameterType="com.bank.pojo.BankLoadType" >
-    insert into bank_load_type
+  <insert id="insertSelective" parameterType="com.bank.pojo.BankLoanType" >
+    insert into bank_loan_type
     <trim prefix="(" suffix=")" suffixOverrides="," >
-      <if test="loadTypeName != null" >
-        load_type_name,
+      <if test="loanTypeName != null" >
+        loan_type_name,
       </if>
       <if test="periodOne != null" >
         period_one,
@@ -121,8 +121,8 @@
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
-      <if test="loadTypeName != null" >
-        #{loadTypeName,jdbcType=VARCHAR},
+      <if test="loanTypeName != null" >
+        #{loanTypeName,jdbcType=VARCHAR},
       </if>
       <if test="periodOne != null" >
         #{periodOne,jdbcType=DOUBLE},
@@ -135,17 +135,17 @@
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.bank.pojo.BankLoadTypeExample" resultType="java.lang.Integer" >
-    select count(*) from bank_load_type
+  <select id="countByExample" parameterType="com.bank.pojo.BankLoanTypeExample" resultType="java.lang.Integer" >
+    select count(*) from bank_loan_type
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
   </select>
   <update id="updateByExampleSelective" parameterType="map" >
-    update bank_load_type
+    update bank_loan_type
     <set >
-      <if test="record.loadTypeName != null" >
-        load_type_name = #{record.loadTypeName,jdbcType=VARCHAR},
+      <if test="record.loanTypeName != null" >
+        loan_type_name = #{record.loanTypeName,jdbcType=VARCHAR},
       </if>
       <if test="record.periodOne != null" >
         period_one = #{record.periodOne,jdbcType=DOUBLE},
@@ -162,8 +162,8 @@
     </if>
   </update>
   <update id="updateByExample" parameterType="map" >
-    update bank_load_type
-    set load_type_name = #{record.loadTypeName,jdbcType=VARCHAR},
+    update bank_loan_type
+    set loan_type_name = #{record.loanTypeName,jdbcType=VARCHAR},
       period_one = #{record.periodOne,jdbcType=DOUBLE},
       period_two = #{record.periodTwo,jdbcType=DOUBLE},
       period_three = #{record.periodThree,jdbcType=DOUBLE}
@@ -171,8 +171,8 @@
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.bank.pojo.BankLoadType" >
-    update bank_load_type
+  <update id="updateByPrimaryKeySelective" parameterType="com.bank.pojo.BankLoanType" >
+    update bank_loan_type
     <set >
       <if test="periodOne != null" >
         period_one = #{periodOne,jdbcType=DOUBLE},
@@ -184,13 +184,13 @@
         period_three = #{periodThree,jdbcType=DOUBLE},
       </if>
     </set>
-    where load_type_name = #{loadTypeName,jdbcType=VARCHAR}
+    where loan_type_name = #{loanTypeName,jdbcType=VARCHAR}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.bank.pojo.BankLoadType" >
-    update bank_load_type
+  <update id="updateByPrimaryKey" parameterType="com.bank.pojo.BankLoanType" >
+    update bank_loan_type
     set period_one = #{periodOne,jdbcType=DOUBLE},
       period_two = #{periodTwo,jdbcType=DOUBLE},
       period_three = #{periodThree,jdbcType=DOUBLE}
-    where load_type_name = #{loadTypeName,jdbcType=VARCHAR}
+    where loan_type_name = #{loanTypeName,jdbcType=VARCHAR}
   </update>
 </mapper>

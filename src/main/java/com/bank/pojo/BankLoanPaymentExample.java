@@ -3,14 +3,14 @@ package com.bank.pojo;
 import java.util.ArrayList;
 import java.util.List;
 
-public class BankLoadPaymentExample {
+public class BankLoanPaymentExample {
     protected String orderByClause;
 
     protected boolean distinct;
 
     protected List<Criteria> oredCriteria;
 
-    public BankLoadPaymentExample() {
+    public BankLoanPaymentExample() {
         oredCriteria = new ArrayList<Criteria>();
     }
 
