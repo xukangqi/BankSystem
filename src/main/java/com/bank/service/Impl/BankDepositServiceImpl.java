@@ -2,7 +2,9 @@ package com.bank.service.Impl;
 
 import com.bank.mapper.BankDepositeMapper;
 import com.bank.pojo.BankDeposite;
+import com.bank.pojo.BankDepositeExample;
 import com.bank.service.BankDepositService;
+import com.bank.utils.BankResult;
 import com.bank.utils.SnowFlake;
 import net.sf.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,13 +27,10 @@ public class BankDepositServiceImpl implements BankDepositService {
     private BankDepositeMapper bankDepositeMapper;
 
     @Override
-    public JSONObject insert(BankDeposite bankDeposite) {
-        JSONObject jsonObject = new JSONObject();
+    public BankResult insert(BankDeposite bankDeposite) {
+
         if(bankDeposite == null){
-            jsonObject.put("result", "fail");
-            jsonObject.put("message", "参数错误");
-            jsonObject.put("data", "");
-            return jsonObject;
+            return BankResult.build(400, "参数错误");
         }
 
         if(snowFlake == null){
@@ -40,24 +39,35 @@ public class BankDepositServiceImpl implements BankDepositService {
 
         bankDeposite.setDepositeId(snowFlake.nextId());
         bankDepositeMapper.insert(bankDeposite);
-        jsonObject.put("result", "success");
-        jsonObject.put("message", "参数错误");
-        jsonObject.put("data", "");
-        return null;
+        return BankResult.build(200, "新增成功");
     }
 
     @Override
-    public JSONObject update(BankDeposite bankDeposite) {
-        return null;
+    public BankResult update(BankDeposite bankDeposite) {
+
+        if(bankDeposite == null){
+            return BankResult.build(400, "参数错误");
+        }
+        bankDepositeMapper.updateByPrimaryKeySelective(bankDeposite);
+        return BankResult.build(200, "更新成功");
     }
 
     @Override
-    public JSONObject delete(List<Integer> depositeIds) {
-        return null;
+    public BankResult delete(List<Long> depositeIds) {
+
+        if(depositeIds == null || depositeIds.size() == 0){
+            return BankResult.build(400, "参数错误");
+        }
+
+        BankDepositeExample bankDepositeExample = new BankDepositeExample();
+        bankDepositeExample.createCriteria().andDepositeIdIn(depositeIds);
+        bankDepositeMapper.deleteByExample(bankDepositeExample);
+        return BankResult.build(200, "删除成功");
     }
 
     @Override
-    public JSONObject getByPage(String keys, Integer pageStart, Integer pageSize) {
+    public BankResult getByPage(String keys, Integer pageStart, Integer pageSize) {
+
         return null;
     }
 }
