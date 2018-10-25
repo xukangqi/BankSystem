@@ -1,6 +1,7 @@
 package com.bank.controller;
 
 import com.bank.pojo.BankUser;
+import com.bank.service.LoanService;
 import com.bank.service.TestService;
 import com.bank.utils.BankResult;
 import net.sf.json.JSONObject;
@@ -18,6 +19,9 @@ public class TestController {
     @Autowired
     private TestService testService;
 
+    @Autowired
+    private LoanService loanService;
+
     //请求格式 /user/hello
     @RequestMapping(value = "/hello",method = RequestMethod.GET)
     @ResponseBody
@@ -25,6 +29,7 @@ public class TestController {
         System.out.println("get request");
         testService.test1();
         return "success";
+
     }
 
     //请求格式 /user/hello/1
@@ -33,7 +38,7 @@ public class TestController {
     public BankResult hello(@PathVariable("id")int id){
         JSONObject jsonObject=new JSONObject();
         //service层操作
-
+//      BankUser bankUser=new BankUser();
 
         //返回结果
         return  BankResult.ok();

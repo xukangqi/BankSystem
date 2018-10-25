@@ -88,7 +88,7 @@ CREATE TABLE `bank_withdraw` (
   `cust_id` varchar(16) DEFAULT NULL,
   `account` varchar(20) NOT NULL,
   `withdraw_money` double DEFAULT NULL,
-  `wirhdraw_date` varchar(20) DEFAULT NULL,
+  `withdraw_date` varchar(20) DEFAULT NULL,
   `arrive_time` varchar(20) DEFAULT NULL,
   `reviewer_id` varchar(16) DEFAULT NULL,
   PRIMARY KEY (`withdraw_id`),

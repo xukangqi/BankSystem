@@ -1,0 +1,306 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.bank.mapper.BankDepositRateMapper" >
+  <resultMap id="BaseResultMap" type="com.bank.pojo.BankDepositRate" >
+    <id column="update_date" property="updateDate" jdbcType="VARCHAR" />
+    <result column="current_rate" property="currentRate" jdbcType="DOUBLE" />
+    <result column="zczq_tm_rate" property="zczqTmRate" jdbcType="DOUBLE" />
+    <result column="zczq_hy_rate" property="zczqHyRate" jdbcType="DOUBLE" />
+    <result column="zczq_oy_rate" property="zczqOyRate" jdbcType="DOUBLE" />
+    <result column="zczq_twy_rate" property="zczqTwyRate" jdbcType="DOUBLE" />
+    <result column="zczq_ty_rate" property="zczqTyRate" jdbcType="DOUBLE" />
+    <result column="zczq_fy_rate" property="zczqFyRate" jdbcType="DOUBLE" />
+    <result column="other_oy_rate" property="otherOyRate" jdbcType="DOUBLE" />
+    <result column="other_ty_rate" property="otherTyRate" jdbcType="DOUBLE" />
+    <result column="other_fy_rate" property="otherFyRate" jdbcType="DOUBLE" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    update_date, current_rate, zczq_tm_rate, zczq_hy_rate, zczq_oy_rate, zczq_twy_rate, 
+    zczq_ty_rate, zczq_fy_rate, other_oy_rate, other_ty_rate, other_fy_rate
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.bank.pojo.BankDepositRateExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from bank_deposit_rate
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from bank_deposit_rate
+    where update_date = #{updateDate,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from bank_deposit_rate
+    where update_date = #{updateDate,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.bank.pojo.BankDepositRateExample" >
+    delete from bank_deposit_rate
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.bank.pojo.BankDepositRate" >
+    insert into bank_deposit_rate (update_date, current_rate, zczq_tm_rate, 
+      zczq_hy_rate, zczq_oy_rate, zczq_twy_rate, 
+      zczq_ty_rate, zczq_fy_rate, other_oy_rate, 
+      other_ty_rate, other_fy_rate)
+    values (#{updateDate,jdbcType=VARCHAR}, #{currentRate,jdbcType=DOUBLE}, #{zczqTmRate,jdbcType=DOUBLE}, 
+      #{zczqHyRate,jdbcType=DOUBLE}, #{zczqOyRate,jdbcType=DOUBLE}, #{zczqTwyRate,jdbcType=DOUBLE}, 
+      #{zczqTyRate,jdbcType=DOUBLE}, #{zczqFyRate,jdbcType=DOUBLE}, #{otherOyRate,jdbcType=DOUBLE}, 
+      #{otherTyRate,jdbcType=DOUBLE}, #{otherFyRate,jdbcType=DOUBLE})
+  </insert>
+  <insert id="insertSelective" parameterType="com.bank.pojo.BankDepositRate" >
+    insert into bank_deposit_rate
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="updateDate != null" >
+        update_date,
+      </if>
+      <if test="currentRate != null" >
+        current_rate,
+      </if>
+      <if test="zczqTmRate != null" >
+        zczq_tm_rate,
+      </if>
+      <if test="zczqHyRate != null" >
+        zczq_hy_rate,
+      </if>
+      <if test="zczqOyRate != null" >
+        zczq_oy_rate,
+      </if>
+      <if test="zczqTwyRate != null" >
+        zczq_twy_rate,
+      </if>
+      <if test="zczqTyRate != null" >
+        zczq_ty_rate,
+      </if>
+      <if test="zczqFyRate != null" >
+        zczq_fy_rate,
+      </if>
+      <if test="otherOyRate != null" >
+        other_oy_rate,
+      </if>
+      <if test="otherTyRate != null" >
+        other_ty_rate,
+      </if>
+      <if test="otherFyRate != null" >
+        other_fy_rate,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="updateDate != null" >
+        #{updateDate,jdbcType=VARCHAR},
+      </if>
+      <if test="currentRate != null" >
+        #{currentRate,jdbcType=DOUBLE},
+      </if>
+      <if test="zczqTmRate != null" >
+        #{zczqTmRate,jdbcType=DOUBLE},
+      </if>
+      <if test="zczqHyRate != null" >
+        #{zczqHyRate,jdbcType=DOUBLE},
+      </if>
+      <if test="zczqOyRate != null" >
+        #{zczqOyRate,jdbcType=DOUBLE},
+      </if>
+      <if test="zczqTwyRate != null" >
+        #{zczqTwyRate,jdbcType=DOUBLE},
+      </if>
+      <if test="zczqTyRate != null" >
+        #{zczqTyRate,jdbcType=DOUBLE},
+      </if>
+      <if test="zczqFyRate != null" >
+        #{zczqFyRate,jdbcType=DOUBLE},
+      </if>
+      <if test="otherOyRate != null" >
+        #{otherOyRate,jdbcType=DOUBLE},
+      </if>
+      <if test="otherTyRate != null" >
+        #{otherTyRate,jdbcType=DOUBLE},
+      </if>
+      <if test="otherFyRate != null" >
+        #{otherFyRate,jdbcType=DOUBLE},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.bank.pojo.BankDepositRateExample" resultType="java.lang.Integer" >
+    select count(*) from bank_deposit_rate
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update bank_deposit_rate
+    <set >
+      <if test="record.updateDate != null" >
+        update_date = #{record.updateDate,jdbcType=VARCHAR},
+      </if>
+      <if test="record.currentRate != null" >
+        current_rate = #{record.currentRate,jdbcType=DOUBLE},
+      </if>
+      <if test="record.zczqTmRate != null" >
+        zczq_tm_rate = #{record.zczqTmRate,jdbcType=DOUBLE},
+      </if>
+      <if test="record.zczqHyRate != null" >
+        zczq_hy_rate = #{record.zczqHyRate,jdbcType=DOUBLE},
+      </if>
+      <if test="record.zczqOyRate != null" >
+        zczq_oy_rate = #{record.zczqOyRate,jdbcType=DOUBLE},
+      </if>
+      <if test="record.zczqTwyRate != null" >
+        zczq_twy_rate = #{record.zczqTwyRate,jdbcType=DOUBLE},
+      </if>
+      <if test="record.zczqTyRate != null" >
+        zczq_ty_rate = #{record.zczqTyRate,jdbcType=DOUBLE},
+      </if>
+      <if test="record.zczqFyRate != null" >
+        zczq_fy_rate = #{record.zczqFyRate,jdbcType=DOUBLE},
+      </if>
+      <if test="record.otherOyRate != null" >
+        other_oy_rate = #{record.otherOyRate,jdbcType=DOUBLE},
+      </if>
+      <if test="record.otherTyRate != null" >
+        other_ty_rate = #{record.otherTyRate,jdbcType=DOUBLE},
+      </if>
+      <if test="record.otherFyRate != null" >
+        other_fy_rate = #{record.otherFyRate,jdbcType=DOUBLE},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update bank_deposit_rate
+    set update_date = #{record.updateDate,jdbcType=VARCHAR},
+      current_rate = #{record.currentRate,jdbcType=DOUBLE},
+      zczq_tm_rate = #{record.zczqTmRate,jdbcType=DOUBLE},
+      zczq_hy_rate = #{record.zczqHyRate,jdbcType=DOUBLE},
+      zczq_oy_rate = #{record.zczqOyRate,jdbcType=DOUBLE},
+      zczq_twy_rate = #{record.zczqTwyRate,jdbcType=DOUBLE},
+      zczq_ty_rate = #{record.zczqTyRate,jdbcType=DOUBLE},
+      zczq_fy_rate = #{record.zczqFyRate,jdbcType=DOUBLE},
+      other_oy_rate = #{record.otherOyRate,jdbcType=DOUBLE},
+      other_ty_rate = #{record.otherTyRate,jdbcType=DOUBLE},
+      other_fy_rate = #{record.otherFyRate,jdbcType=DOUBLE}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.bank.pojo.BankDepositRate" >
+    update bank_deposit_rate
+    <set >
+      <if test="currentRate != null" >
+        current_rate = #{currentRate,jdbcType=DOUBLE},
+      </if>
+      <if test="zczqTmRate != null" >
+        zczq_tm_rate = #{zczqTmRate,jdbcType=DOUBLE},
+      </if>
+      <if test="zczqHyRate != null" >
+        zczq_hy_rate = #{zczqHyRate,jdbcType=DOUBLE},
+      </if>
+      <if test="zczqOyRate != null" >
+        zczq_oy_rate = #{zczqOyRate,jdbcType=DOUBLE},
+      </if>
+      <if test="zczqTwyRate != null" >
+        zczq_twy_rate = #{zczqTwyRate,jdbcType=DOUBLE},
+      </if>
+      <if test="zczqTyRate != null" >
+        zczq_ty_rate = #{zczqTyRate,jdbcType=DOUBLE},
+      </if>
+      <if test="zczqFyRate != null" >
+        zczq_fy_rate = #{zczqFyRate,jdbcType=DOUBLE},
+      </if>
+      <if test="otherOyRate != null" >
+        other_oy_rate = #{otherOyRate,jdbcType=DOUBLE},
+      </if>
+      <if test="otherTyRate != null" >
+        other_ty_rate = #{otherTyRate,jdbcType=DOUBLE},
+      </if>
+      <if test="otherFyRate != null" >
+        other_fy_rate = #{otherFyRate,jdbcType=DOUBLE},
+      </if>
+    </set>
+    where update_date = #{updateDate,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.bank.pojo.BankDepositRate" >
+    update bank_deposit_rate
+    set current_rate = #{currentRate,jdbcType=DOUBLE},
+      zczq_tm_rate = #{zczqTmRate,jdbcType=DOUBLE},
+      zczq_hy_rate = #{zczqHyRate,jdbcType=DOUBLE},
+      zczq_oy_rate = #{zczqOyRate,jdbcType=DOUBLE},
+      zczq_twy_rate = #{zczqTwyRate,jdbcType=DOUBLE},
+      zczq_ty_rate = #{zczqTyRate,jdbcType=DOUBLE},
+      zczq_fy_rate = #{zczqFyRate,jdbcType=DOUBLE},
+      other_oy_rate = #{otherOyRate,jdbcType=DOUBLE},
+      other_ty_rate = #{otherTyRate,jdbcType=DOUBLE},
+      other_fy_rate = #{otherFyRate,jdbcType=DOUBLE}
+    where update_date = #{updateDate,jdbcType=VARCHAR}
+  </update>
+</mapper>
