@@ -1,9 +1,6 @@
 package com.bank.service.Impl;
 
-import com.bank.mapper.BankAccountMapper;
-import com.bank.mapper.BankCustomerMapper;
-import com.bank.mapper.BankFundLogMapper;
-import com.bank.mapper.BankFundProductMapper;
+import com.bank.mapper.*;
 import com.bank.pojo.*;
 import com.bank.service.FundService;
 import com.bank.utils.BankResult;
@@ -24,6 +21,8 @@ public class FundServiceImpl implements FundService {
     private BankCustomerMapper bankCustomerMapper;
     @Autowired
     private BankAccountMapper bankAccountMapper;
+    @Autowired
+    private BankFundHoldMapper bankFundHoldMapper;
 
     private long datacenterId = 6L;  //数据中心
     private long machineId ;     //机器标识
@@ -71,11 +70,27 @@ public class FundServiceImpl implements FundService {
         SnowFlake snowFlake = new SnowFlake(datacenterId, machineId);
         long fundTxId = snowFlake.nextId();
 
+        // TODO: 此处有可能会要求修改基金产品表
+        // 找到对应的基金产品
         BankFundProductExample bankFundProductExample = new BankFundProductExample();
         BankFundProductExample.Criteria criteria = bankFundProductExample.createCriteria();
         criteria.andFundIdEqualTo(fundId);
         List<BankFundProduct> bankFundProductList = bankFundProductMapper.selectByExample(bankFundProductExample);
+        // 找到该基金产品最新的产品记录
+        BankFundProduct bankFundProduct;
+        if (!bankFundProductList.isEmpty()) {
+            bankFundProduct = bankFundProductList.get(0);
+            for (BankFundProduct bfp : bankFundProductList) {
+                if (Long.parseLong(bfp.getPurchaseDate()) >  Long.parseLong(bankFundProduct.getPurchaseDate())) {
+                    bankFundProduct = bfp;
+                }
+            }
+        }
+        else {
+            return BankResult.build(200, "Request Failed", "Fund product not exist!");
+        }
 
+        // 创建交易记录
         BankFundLog bankFundLog = new BankFundLog();
         bankFundLog.setFundTxId(fundTxId);
         bankFundLog.setCustId(custId);
@@ -83,13 +98,33 @@ public class FundServiceImpl implements FundService {
         bankFundLog.setFundId(fundId);
         bankFundLog.setType(type);
         bankFundLog.setAmount(amount);
-        // TODO:填写份额计算公式
-        double share = 1000;
+        double share = (amount - amount * bankFundProduct.getPurchaseRate()) / bankFundProduct.getNetAssetValue();
         bankFundLog.setShare(share);
         bankFundLog.setTxDate(String.valueOf(System.currentTimeMillis()));
         bankFundLog.setReviewId("Carrie");
-
         bankFundLogMapper.insert(bankFundLog);
+
+        // 修改账户余额
+        bankAccount.setBalances(bankAccount.getBalances() - amount);
+        bankAccountMapper.updateByPrimaryKey(bankAccount);
+
+        // 修改持有份额
+        BankFundHoldKey bankFundHoldKey = new BankFundHoldKey();
+        bankFundHoldKey.setAccount(account);
+        bankFundHoldKey.setFundId(fundId);
+        BankFundHold bankFundHold = bankFundHoldMapper.selectByPrimaryKey(bankFundHoldKey);
+        if (bankFundHold != null) {
+            bankFundHold.setShare(bankFundHold.getShare() + share);
+            bankFundHoldMapper.updateByPrimaryKey(bankFundHold);
+        } else {
+            bankFundHold = new BankFundHold();
+            bankFundHold.setCustId(custId);
+            bankFundHold.setAccount(account);
+            bankFundHold.setShare(share);
+            bankFundHold.setFundId(fundId);
+            bankFundHoldMapper.insert(bankFundHold);
+        }
+
         return BankResult.ok();
     }
 }
