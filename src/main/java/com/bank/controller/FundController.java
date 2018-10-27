@@ -45,9 +45,9 @@ public class FundController {
     @ResponseBody
     public BankResult createFundTx(String custId, String account, String fundId, String type, double amount) {
         // service层操作
-        long fundTxId = fundService.createFundTx(custId, account, fundId, type, amount);
+        BankResult bankResult = fundService.createFundTx(custId, account, fundId, type, amount);
 
-        return BankResult.ok(fundTxId);
+        return bankResult;
     }
 
 }
