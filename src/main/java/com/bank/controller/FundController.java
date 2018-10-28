@@ -1,6 +1,8 @@
 package com.bank.controller;
 
 
+import com.bank.pojo.BankFundHold;
+import com.bank.pojo.BankFundLog;
 import com.bank.pojo.BankFundProduct;
 import com.bank.service.FundService;
 import com.bank.utils.BankResult;
@@ -21,7 +23,7 @@ public class FundController {
     @Autowired
     private FundService fundService;
 
-    @RequestMapping(value = "/fund/create",method = RequestMethod.POST)
+    @RequestMapping(value = "/fund/create/product",method = RequestMethod.POST)
     @ResponseBody
     public BankResult createFundProduct(@RequestParam(value = "type")String type,
                                         @RequestParam(value = "purchase_rate")double purchase_rate,
@@ -32,7 +34,31 @@ public class FundController {
         return BankResult.ok(fundId);
     }
 
-    @RequestMapping(value = "/fund/query",method = RequestMethod.POST)
+    @RequestMapping(value = "/fund/create/tx/purchase",method = RequestMethod.POST)
+    @ResponseBody
+    public BankResult createFundPurchaseTx(@RequestParam(value = "cust_id")String custId,
+                                           @RequestParam(value = "account")String account,
+                                           @RequestParam(value = "fund_id")String fundId,
+                                           @RequestParam(value = "type")String type,
+                                           @RequestParam(value = "amount")double amount) {
+        // service层操作
+        BankResult bankResult = fundService.createFundPurchaseTx(custId, account, fundId, type, amount);
+
+        return bankResult;
+    }
+
+    @RequestMapping(value = "/fund/create/tx/redemption",method = RequestMethod.POST)
+    @ResponseBody
+    public BankResult createFundRedemptionTx(@RequestParam(value = "account")String account,
+                                             @RequestParam(value = "fund_id")String fundId,
+                                             @RequestParam(value = "share")double share) {
+        // service层操作
+        BankResult bankResult = fundService.createFundRedemptionTx(account, fundId, share);
+
+        return BankResult.ok();
+    }
+
+    @RequestMapping(value = "/fund/query/product",method = RequestMethod.GET)
     @ResponseBody
     public BankResult getFundProducts() {
         // service层操作
@@ -41,13 +67,23 @@ public class FundController {
         return BankResult.ok(bankFundProductList);
     }
 
-    @RequestMapping(value = "/fund/tx",method = RequestMethod.POST)
+    @RequestMapping(value = "/fund/query/tx",method = RequestMethod.GET)
     @ResponseBody
-    public BankResult createFundTx(String custId, String account, String fundId, String type, double amount) {
+    public BankResult getFundLogs() {
         // service层操作
-        BankResult bankResult = fundService.createFundTx(custId, account, fundId, type, amount);
+        List<BankFundLog> bankFundLogList = fundService.getFundLogs();
 
-        return bankResult;
+        return BankResult.ok(bankFundLogList);
     }
+
+    @RequestMapping(value = "/fund/query/hold",method = RequestMethod.GET)
+    @ResponseBody
+    public BankResult getFundHolds() {
+        // service层操作
+        List<BankFundHold> bankFundHoldList = fundService.getFundHolds();
+
+        return BankResult.ok(bankFundHoldList);
+    }
+
 
 }

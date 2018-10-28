@@ -45,16 +45,7 @@ public class FundServiceImpl implements FundService {
     }
 
     @Override
-    public List<BankFundProduct> getFundProducts() {
-        BankFundProductExample bankFundProductExample = new BankFundProductExample();
-        BankFundProductExample.Criteria criteria = bankFundProductExample.createCriteria();
-        criteria.andFundIdIsNotNull();
-        List<BankFundProduct> bankFundProductList = bankFundProductMapper.selectByExample(bankFundProductExample);
-        return bankFundProductList;
-    }
-
-    @Override
-    public BankResult createFundTx(String custId, String account, String fundId, String type, double amount) {
+    public BankResult createFundPurchaseTx(String custId, String account, String fundId, String type, double amount) {
         machineId = 2L;
 
         BankCustomer bankCustomer = bankCustomerMapper.selectByPrimaryKey(custId);
@@ -66,9 +57,6 @@ public class FundServiceImpl implements FundService {
         if (!bankAccount.getCustId().equals(custId)) return BankResult.build(200, "Request Failed", "Account not correspond to customer!");
 
         if (bankAccount.getBalances() < amount) return BankResult.build(200, "Request Failed", "Insufficient balance!");
-
-        SnowFlake snowFlake = new SnowFlake(datacenterId, machineId);
-        long fundTxId = snowFlake.nextId();
 
         // TODO: 此处有可能会要求修改基金产品表
         // 找到对应的基金产品
@@ -89,6 +77,9 @@ public class FundServiceImpl implements FundService {
         else {
             return BankResult.build(200, "Request Failed", "Fund product not exist!");
         }
+
+        SnowFlake snowFlake = new SnowFlake(datacenterId, machineId);
+        long fundTxId = snowFlake.nextId();
 
         // 创建交易记录
         BankFundLog bankFundLog = new BankFundLog();
@@ -127,4 +118,82 @@ public class FundServiceImpl implements FundService {
 
         return BankResult.ok();
     }
+
+    @Override
+    public BankResult createFundRedemptionTx(String account, String fundId, double share) {
+        machineId = 2L;
+
+        // TODO: 添加一些条件判断
+
+
+
+        SnowFlake snowFlake = new SnowFlake(datacenterId, machineId);
+        long fundTxId = snowFlake.nextId();
+
+        BankAccount bankAccount = bankAccountMapper.selectByPrimaryKey(account);
+
+        // TODO: 此处有可能会要求修改基金产品表
+        // 找到对应的基金产品
+        BankFundProductExample bankFundProductExample = new BankFundProductExample();
+        BankFundProductExample.Criteria criteria = bankFundProductExample.createCriteria();
+        criteria.andFundIdEqualTo(fundId);
+        List<BankFundProduct> bankFundProductList = bankFundProductMapper.selectByExample(bankFundProductExample);
+        // 找到该基金产品最新的产品记录
+        BankFundProduct bankFundProduct;
+        if (!bankFundProductList.isEmpty()) {
+            bankFundProduct = bankFundProductList.get(0);
+            for (BankFundProduct bfp : bankFundProductList) {
+                if (Long.parseLong(bfp.getPurchaseDate()) >  Long.parseLong(bankFundProduct.getPurchaseDate())) {
+                    bankFundProduct = bfp;
+                }
+            }
+        }
+        else {
+            return BankResult.build(200, "Request Failed", "Fund product not exist!");
+        }
+
+        double amount = share * bankFundProduct.getNetAssetValue();
+
+        // 创建交易记录
+        BankFundLog bankFundLog = new BankFundLog();
+        bankFundLog.setFundTxId(fundTxId);
+        bankFundLog.setCustId(bankAccount.getCustId());
+        bankFundLog.setAccount(account);
+        bankFundLog.setFundId(fundId);
+        bankFundLog.setType("赎回");
+        bankFundLog.setAmount(amount);
+        bankFundLog.setShare(share);
+        bankFundLog.setTxDate(String.valueOf(System.currentTimeMillis()));
+        bankFundLog.setReviewId("Carrie");
+
+        return BankResult.ok();
+    }
+
+    @Override
+    public List<BankFundProduct> getFundProducts() {
+        BankFundProductExample bankFundProductExample = new BankFundProductExample();
+        BankFundProductExample.Criteria criteria = bankFundProductExample.createCriteria();
+        criteria.andFundIdIsNotNull();
+        List<BankFundProduct> bankFundProductList = bankFundProductMapper.selectByExample(bankFundProductExample);
+        return bankFundProductList;
+    }
+
+    @Override
+    public List<BankFundLog> getFundLogs() {
+        BankFundLogExample bankFundLogExample = new BankFundLogExample();
+        BankFundLogExample.Criteria criteria = bankFundLogExample.createCriteria();
+        criteria.andFundTxIdIsNull();
+        List<BankFundLog> bankFundLogList = bankFundLogMapper.selectByExample(bankFundLogExample);
+        return bankFundLogList;
+    }
+
+    @Override
+    public List<BankFundHold> getFundHolds() {
+        BankFundHoldExample bankFundHoldExample = new BankFundHoldExample();
+        BankFundHoldExample.Criteria criteria = bankFundHoldExample.createCriteria();
+        criteria.andAccountIsNotNull();
+        List<BankFundHold> bankFundHoldList = bankFundHoldMapper.selectByExample(bankFundHoldExample);
+        return bankFundHoldList;
+    }
+
 }
