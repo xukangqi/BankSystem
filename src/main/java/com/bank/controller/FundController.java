@@ -10,13 +10,13 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
-@RequestMapping("/user")
+@RequestMapping("/user/fund")
 public class FundController {
 
     @Autowired
     private FundService fundService;
 
-    @RequestMapping(value = "/fund/create/product",method = RequestMethod.POST)
+    @RequestMapping(value = "/create/product",method = RequestMethod.POST)
     @ResponseBody
     public BankResult createFundProduct(@RequestParam(value = "type")String type,
                                         @RequestParam(value = "purchase_rate")double purchase_rate,
@@ -27,7 +27,7 @@ public class FundController {
         return bankResult;
     }
 
-    @RequestMapping(value = "/fund/create/tx/purchase",method = RequestMethod.POST)
+    @RequestMapping(value = "/create/tx/purchase",method = RequestMethod.POST)
     @ResponseBody
     public BankResult createFundPurchaseTx(@RequestParam(value = "cust_id")String custId,
                                            @RequestParam(value = "account")String account,
@@ -39,7 +39,7 @@ public class FundController {
         return bankResult;
     }
 
-    @RequestMapping(value = "/fund/create/tx/redemption",method = RequestMethod.POST)
+    @RequestMapping(value = "/create/tx/redemption",method = RequestMethod.POST)
     @ResponseBody
     public BankResult createFundRedemptionTx(@RequestParam(value = "account")String account,
                                              @RequestParam(value = "fund_id")String fundId,
@@ -50,7 +50,7 @@ public class FundController {
         return bankResult;
     }
 
-    @RequestMapping(value = "/fund/query/product",method = RequestMethod.GET)
+    @RequestMapping(value = "/query/product",method = RequestMethod.GET)
     @ResponseBody
     public BankResult getFundProducts() {
         // service层操作
@@ -59,7 +59,7 @@ public class FundController {
         return bankResult;
     }
 
-    @RequestMapping(value = "/fund/query/tx",method = RequestMethod.GET)
+    @RequestMapping(value = "/query/tx",method = RequestMethod.GET)
     @ResponseBody
     public BankResult getFundLogs() {
         // service层操作
@@ -68,7 +68,7 @@ public class FundController {
         return bankResult;
     }
 
-    @RequestMapping(value = "/fund/query/hold",method = RequestMethod.GET)
+    @RequestMapping(value = "/query/hold",method = RequestMethod.GET)
     @ResponseBody
     public BankResult getFundHolds() {
         // service层操作
