@@ -26,7 +26,7 @@ public class TransferServiceImpl implements TransferService {
     @Override
     public BankResult createTransfer(String transferOutAccount, String transferInAccount, double amount) {
         machineId = 1L;
-        BankTransferLog bankTransferLog = new BankTransferLog();
+
 
         BankAccount outAccount = bankAccountMapper.selectByPrimaryKey(transferOutAccount);
         BankAccount inAccount = bankAccountMapper.selectByPrimaryKey(transferInAccount);
@@ -40,6 +40,8 @@ public class TransferServiceImpl implements TransferService {
 
         SnowFlake snowFlake = new SnowFlake(datacenterId, machineId);
         long transferId = snowFlake.nextId();
+
+        BankTransferLog bankTransferLog = new BankTransferLog();
 
         bankTransferLog.setTransferId(transferId);
         bankTransferLog.setTransferOutAccount(transferOutAccount);
