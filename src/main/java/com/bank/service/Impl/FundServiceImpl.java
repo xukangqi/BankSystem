@@ -28,7 +28,7 @@ public class FundServiceImpl implements FundService {
     private long machineId ;     //机器标识
 
     @Override
-    public String createFundProduct(String type, double purchase_rate, double net_asset_value, double redemption_rate) {
+    public BankResult createFundProduct(String type, double purchase_rate, double net_asset_value, double redemption_rate) {
         machineId = 1L;
         SnowFlake snowFlake = new SnowFlake(datacenterId,machineId);
         String snowFlakeId = String.valueOf(snowFlake.nextId());
@@ -41,11 +41,11 @@ public class FundServiceImpl implements FundService {
         bankFundProduct.setRedemptionRate(redemption_rate);
         bankFundProduct.setPurchaseDate(String.valueOf(System.currentTimeMillis()));
         bankFundProductMapper.insert(bankFundProduct);
-        return fundId;
+        return BankResult.ok(fundId);
     }
 
     @Override
-    public BankResult createFundPurchaseTx(String custId, String account, String fundId, String type, double amount) {
+    public BankResult createFundPurchaseTx(String custId, String account, String fundId, double amount) {
         machineId = 2L;
 
         BankCustomer bankCustomer = bankCustomerMapper.selectByPrimaryKey(custId);
@@ -57,6 +57,9 @@ public class FundServiceImpl implements FundService {
         if (!bankAccount.getCustId().equals(custId)) return BankResult.build(200, "Request Failed", "Account not correspond to customer!");
 
         if (bankAccount.getBalances() < amount) return BankResult.build(200, "Request Failed", "Insufficient balance!");
+
+        // TODO: 核对密码
+
 
         // TODO: 此处有可能会要求修改基金产品表
         // 找到对应的基金产品
@@ -87,7 +90,7 @@ public class FundServiceImpl implements FundService {
         bankFundLog.setCustId(custId);
         bankFundLog.setAccount(account);
         bankFundLog.setFundId(fundId);
-        bankFundLog.setType(type);
+        bankFundLog.setType("purchase");
         bankFundLog.setAmount(amount);
         double share = (amount - amount * bankFundProduct.getPurchaseRate()) / bankFundProduct.getNetAssetValue();
         bankFundLog.setShare(share);
@@ -116,21 +119,25 @@ public class FundServiceImpl implements FundService {
             bankFundHoldMapper.insert(bankFundHold);
         }
 
-        return BankResult.ok();
+        return BankResult.ok(bankFundLog.getFundTxId());
     }
 
     @Override
     public BankResult createFundRedemptionTx(String account, String fundId, double share) {
         machineId = 2L;
 
-        // TODO: 添加一些条件判断
+        BankAccount bankAccount = bankAccountMapper.selectByPrimaryKey(account);
+        BankFundHoldKey bankFundHoldKey = new BankFundHoldKey();
+        bankFundHoldKey.setFundId(fundId);
+        bankFundHoldKey.setAccount(account);
+        BankFundHold bankFundHold = bankFundHoldMapper.selectByPrimaryKey(bankFundHoldKey);
 
+        // TODO: 添加一些条件判断
+        if (bankFundHold.getShare() < share) return BankResult.build(200, "Request Failed", "Insufficient share");
 
 
         SnowFlake snowFlake = new SnowFlake(datacenterId, machineId);
         long fundTxId = snowFlake.nextId();
-
-        BankAccount bankAccount = bankAccountMapper.selectByPrimaryKey(account);
 
         // TODO: 此处有可能会要求修改基金产品表
         // 找到对应的基金产品
@@ -160,40 +167,47 @@ public class FundServiceImpl implements FundService {
         bankFundLog.setCustId(bankAccount.getCustId());
         bankFundLog.setAccount(account);
         bankFundLog.setFundId(fundId);
-        bankFundLog.setType("赎回");
+        bankFundLog.setType("redemption");
         bankFundLog.setAmount(amount);
         bankFundLog.setShare(share);
         bankFundLog.setTxDate(String.valueOf(System.currentTimeMillis()));
         bankFundLog.setReviewId("Carrie");
 
-        return BankResult.ok();
+        bankFundHold.setShare(bankFundHold.getShare() - share);
+        bankAccount.setBalances(bankAccount.getBalances() + amount  * (1 - bankFundProduct.getRedemptionRate()));
+
+        bankFundLogMapper.insert(bankFundLog);
+        bankFundHoldMapper.updateByPrimaryKey(bankFundHold);
+        bankAccountMapper.updateByPrimaryKey(bankAccount);
+
+        return BankResult.ok(bankFundLog.getFundTxId());
     }
 
     @Override
-    public List<BankFundProduct> getFundProducts() {
+    public BankResult getFundProducts() {
         BankFundProductExample bankFundProductExample = new BankFundProductExample();
         BankFundProductExample.Criteria criteria = bankFundProductExample.createCriteria();
         criteria.andFundIdIsNotNull();
         List<BankFundProduct> bankFundProductList = bankFundProductMapper.selectByExample(bankFundProductExample);
-        return bankFundProductList;
+        return BankResult.ok(bankFundProductList);
     }
 
     @Override
-    public List<BankFundLog> getFundLogs() {
+    public BankResult getFundLogs() {
         BankFundLogExample bankFundLogExample = new BankFundLogExample();
         BankFundLogExample.Criteria criteria = bankFundLogExample.createCriteria();
-        criteria.andFundTxIdIsNull();
+        criteria.andFundTxIdIsNotNull();
         List<BankFundLog> bankFundLogList = bankFundLogMapper.selectByExample(bankFundLogExample);
-        return bankFundLogList;
+        return BankResult.ok(bankFundLogList);
     }
 
     @Override
-    public List<BankFundHold> getFundHolds() {
+    public BankResult getFundHolds() {
         BankFundHoldExample bankFundHoldExample = new BankFundHoldExample();
         BankFundHoldExample.Criteria criteria = bankFundHoldExample.createCriteria();
         criteria.andAccountIsNotNull();
         List<BankFundHold> bankFundHoldList = bankFundHoldMapper.selectByExample(bankFundHoldExample);
-        return bankFundHoldList;
+        return BankResult.ok(bankFundHoldList);
     }
 
 }
