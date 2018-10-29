@@ -45,7 +45,7 @@ public class FundServiceImpl implements FundService {
     }
 
     @Override
-    public BankResult createFundPurchaseTx(String custId, String account, String fundId, double amount) {
+    public BankResult createFundPurchaseTx(String custId, String account, String fundId, double amount, String passowrd) {
         machineId = 2L;
 
         BankCustomer bankCustomer = bankCustomerMapper.selectByPrimaryKey(custId);
@@ -58,8 +58,7 @@ public class FundServiceImpl implements FundService {
 
         if (bankAccount.getBalances() < amount) return BankResult.build(200, "Request Failed", "Insufficient balance!");
 
-        // TODO: 核对密码
-
+        if (bankCustomer.getPassword().equals(passowrd)) return BankResult.build(200, "Request Failed", "Wrong password!");
 
         // TODO: 此处有可能会要求修改基金产品表
         // 找到对应的基金产品

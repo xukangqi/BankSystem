@@ -32,9 +32,10 @@ public class FundController {
     public BankResult createFundPurchaseTx(@RequestParam(value = "cust_id")String custId,
                                            @RequestParam(value = "account")String account,
                                            @RequestParam(value = "fund_id")String fundId,
-                                           @RequestParam(value = "amount")double amount) {
+                                           @RequestParam(value = "amount")double amount,
+                                           @RequestParam(value = "password")String password) {
         // service层操作
-        BankResult bankResult = fundService.createFundPurchaseTx(custId, account, fundId, amount);
+        BankResult bankResult = fundService.createFundPurchaseTx(custId, account, fundId, amount, password);
 
         return bankResult;
     }
