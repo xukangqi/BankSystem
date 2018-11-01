@@ -21,6 +21,8 @@ public class BankDeposit {
 
     private String reviewerId;
 
+    private String depositFlag;
+
     public Long getDepositId() {
         return depositId;
     }
@@ -99,5 +101,13 @@ public class BankDeposit {
 
     public void setReviewerId(String reviewerId) {
         this.reviewerId = reviewerId == null ? null : reviewerId.trim();
+    }
+
+    public String getDepositFlag() {
+        return depositFlag;
+    }
+
+    public void setDepositFlag(String depositFlag) {
+        this.depositFlag = depositFlag == null ? null : depositFlag.trim();
     }
 }

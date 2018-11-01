@@ -433,6 +433,76 @@ public class BankRemitLogExample {
             addCriterion("remit_generate_date not between", value1, value2, "remitGenerateDate");
             return (Criteria) this;
         }
+
+        public Criteria andRemitArriveDateIsNull() {
+            addCriterion("remit_arrive_date is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andRemitArriveDateIsNotNull() {
+            addCriterion("remit_arrive_date is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andRemitArriveDateEqualTo(String value) {
+            addCriterion("remit_arrive_date =", value, "remitArriveDate");
+            return (Criteria) this;
+        }
+
+        public Criteria andRemitArriveDateNotEqualTo(String value) {
+            addCriterion("remit_arrive_date <>", value, "remitArriveDate");
+            return (Criteria) this;
+        }
+
+        public Criteria andRemitArriveDateGreaterThan(String value) {
+            addCriterion("remit_arrive_date >", value, "remitArriveDate");
+            return (Criteria) this;
+        }
+
+        public Criteria andRemitArriveDateGreaterThanOrEqualTo(String value) {
+            addCriterion("remit_arrive_date >=", value, "remitArriveDate");
+            return (Criteria) this;
+        }
+
+        public Criteria andRemitArriveDateLessThan(String value) {
+            addCriterion("remit_arrive_date <", value, "remitArriveDate");
+            return (Criteria) this;
+        }
+
+        public Criteria andRemitArriveDateLessThanOrEqualTo(String value) {
+            addCriterion("remit_arrive_date <=", value, "remitArriveDate");
+            return (Criteria) this;
+        }
+
+        public Criteria andRemitArriveDateLike(String value) {
+            addCriterion("remit_arrive_date like", value, "remitArriveDate");
+            return (Criteria) this;
+        }
+
+        public Criteria andRemitArriveDateNotLike(String value) {
+            addCriterion("remit_arrive_date not like", value, "remitArriveDate");
+            return (Criteria) this;
+        }
+
+        public Criteria andRemitArriveDateIn(List<String> values) {
+            addCriterion("remit_arrive_date in", values, "remitArriveDate");
+            return (Criteria) this;
+        }
+
+        public Criteria andRemitArriveDateNotIn(List<String> values) {
+            addCriterion("remit_arrive_date not in", values, "remitArriveDate");
+            return (Criteria) this;
+        }
+
+        public Criteria andRemitArriveDateBetween(String value1, String value2) {
+            addCriterion("remit_arrive_date between", value1, value2, "remitArriveDate");
+            return (Criteria) this;
+        }
+
+        public Criteria andRemitArriveDateNotBetween(String value1, String value2) {
+            addCriterion("remit_arrive_date not between", value1, value2, "remitArriveDate");
+            return (Criteria) this;
+        }
     }
 
     public static class Criteria extends GeneratedCriteria {

@@ -12,6 +12,7 @@
     <result column="deposit_duration" property="depositDuration" jdbcType="VARCHAR" />
     <result column="transfer_way" property="transferWay" jdbcType="VARCHAR" />
     <result column="reviewer_id" property="reviewerId" jdbcType="VARCHAR" />
+    <result column="deposit_flag" property="depositFlag" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Example_Where_Clause" >
     <where >
@@ -73,7 +74,7 @@
   </sql>
   <sql id="Base_Column_List" >
     deposit_id, cust_id, account, deposit_type, deposit_money, deposit_rate, deposit_date, 
-    deposit_duration, transfer_way, reviewer_id
+    deposit_duration, transfer_way, reviewer_id, deposit_flag
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.bank.pojo.BankDepositExample" >
     select
@@ -109,11 +110,11 @@
     insert into bank_deposit (deposit_id, cust_id, account, 
       deposit_type, deposit_money, deposit_rate, 
       deposit_date, deposit_duration, transfer_way, 
-      reviewer_id)
+      reviewer_id, deposit_flag)
     values (#{depositId,jdbcType=BIGINT}, #{custId,jdbcType=VARCHAR}, #{account,jdbcType=VARCHAR}, 
       #{depositType,jdbcType=VARCHAR}, #{depositMoney,jdbcType=DOUBLE}, #{depositRate,jdbcType=DOUBLE}, 
       #{depositDate,jdbcType=VARCHAR}, #{depositDuration,jdbcType=VARCHAR}, #{transferWay,jdbcType=VARCHAR}, 
-      #{reviewerId,jdbcType=VARCHAR})
+      #{reviewerId,jdbcType=VARCHAR}, #{depositFlag,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.bank.pojo.BankDeposit" >
     insert into bank_deposit
@@ -148,6 +149,9 @@
       <if test="reviewerId != null" >
         reviewer_id,
       </if>
+      <if test="depositFlag != null" >
+        deposit_flag,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="depositId != null" >
@@ -179,6 +183,9 @@
       </if>
       <if test="reviewerId != null" >
         #{reviewerId,jdbcType=VARCHAR},
+      </if>
+      <if test="depositFlag != null" >
+        #{depositFlag,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -221,6 +228,9 @@
       <if test="record.reviewerId != null" >
         reviewer_id = #{record.reviewerId,jdbcType=VARCHAR},
       </if>
+      <if test="record.depositFlag != null" >
+        deposit_flag = #{record.depositFlag,jdbcType=VARCHAR},
+      </if>
     </set>
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
@@ -237,7 +247,8 @@
       deposit_date = #{record.depositDate,jdbcType=VARCHAR},
       deposit_duration = #{record.depositDuration,jdbcType=VARCHAR},
       transfer_way = #{record.transferWay,jdbcType=VARCHAR},
-      reviewer_id = #{record.reviewerId,jdbcType=VARCHAR}
+      reviewer_id = #{record.reviewerId,jdbcType=VARCHAR},
+      deposit_flag = #{record.depositFlag,jdbcType=VARCHAR}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -272,6 +283,9 @@
       <if test="reviewerId != null" >
         reviewer_id = #{reviewerId,jdbcType=VARCHAR},
       </if>
+      <if test="depositFlag != null" >
+        deposit_flag = #{depositFlag,jdbcType=VARCHAR},
+      </if>
     </set>
     where deposit_id = #{depositId,jdbcType=BIGINT}
   </update>
@@ -285,7 +299,8 @@
       deposit_date = #{depositDate,jdbcType=VARCHAR},
       deposit_duration = #{depositDuration,jdbcType=VARCHAR},
       transfer_way = #{transferWay,jdbcType=VARCHAR},
-      reviewer_id = #{reviewerId,jdbcType=VARCHAR}
+      reviewer_id = #{reviewerId,jdbcType=VARCHAR},
+      deposit_flag = #{depositFlag,jdbcType=VARCHAR}
     where deposit_id = #{depositId,jdbcType=BIGINT}
   </update>
 </mapper>
