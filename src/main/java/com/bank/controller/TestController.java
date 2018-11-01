@@ -1,7 +1,6 @@
 package com.bank.controller;
 
 import com.bank.pojo.BankUser;
-import com.bank.service.LoanService;
 import com.bank.service.TestService;
 import com.bank.utils.BankResult;
 import net.sf.json.JSONObject;
@@ -19,17 +18,14 @@ public class TestController {
     @Autowired
     private TestService testService;
 
-    @Autowired
-    private LoanService loanService;
 
     //请求格式 /user/hello
     @RequestMapping(value = "/hello",method = RequestMethod.GET)
     @ResponseBody
-    public String sayHello(){
+    public BankResult sayHello(){
         System.out.println("get request");
-        testService.test1();
-        return "success";
-
+//        testService.test1();
+        return BankResult.ok("你好");
     }
 
     //请求格式 /user/hello/1

@@ -6,6 +6,7 @@
     <result column="period_one" property="periodOne" jdbcType="DOUBLE" />
     <result column="period_two" property="periodTwo" jdbcType="DOUBLE" />
     <result column="period_three" property="periodThree" jdbcType="DOUBLE" />
+    <result column="fine_rate" property="fineRate" jdbcType="DOUBLE" />
   </resultMap>
   <sql id="Example_Where_Clause" >
     <where >
@@ -66,7 +67,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    loan_type_name, period_one, period_two, period_three
+    loan_type_name, period_one, period_two, period_three, fine_rate
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.bank.pojo.BankLoanTypeExample" >
     select
@@ -100,9 +101,9 @@
   </delete>
   <insert id="insert" parameterType="com.bank.pojo.BankLoanType" >
     insert into bank_loan_type (loan_type_name, period_one, period_two, 
-      period_three)
+      period_three, fine_rate)
     values (#{loanTypeName,jdbcType=VARCHAR}, #{periodOne,jdbcType=DOUBLE}, #{periodTwo,jdbcType=DOUBLE}, 
-      #{periodThree,jdbcType=DOUBLE})
+      #{periodThree,jdbcType=DOUBLE}, #{fineRate,jdbcType=DOUBLE})
   </insert>
   <insert id="insertSelective" parameterType="com.bank.pojo.BankLoanType" >
     insert into bank_loan_type
@@ -119,6 +120,9 @@
       <if test="periodThree != null" >
         period_three,
       </if>
+      <if test="fineRate != null" >
+        fine_rate,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="loanTypeName != null" >
@@ -132,6 +136,9 @@
       </if>
       <if test="periodThree != null" >
         #{periodThree,jdbcType=DOUBLE},
+      </if>
+      <if test="fineRate != null" >
+        #{fineRate,jdbcType=DOUBLE},
       </if>
     </trim>
   </insert>
@@ -156,6 +163,9 @@
       <if test="record.periodThree != null" >
         period_three = #{record.periodThree,jdbcType=DOUBLE},
       </if>
+      <if test="record.fineRate != null" >
+        fine_rate = #{record.fineRate,jdbcType=DOUBLE},
+      </if>
     </set>
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
@@ -166,7 +176,8 @@
     set loan_type_name = #{record.loanTypeName,jdbcType=VARCHAR},
       period_one = #{record.periodOne,jdbcType=DOUBLE},
       period_two = #{record.periodTwo,jdbcType=DOUBLE},
-      period_three = #{record.periodThree,jdbcType=DOUBLE}
+      period_three = #{record.periodThree,jdbcType=DOUBLE},
+      fine_rate = #{record.fineRate,jdbcType=DOUBLE}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -183,6 +194,9 @@
       <if test="periodThree != null" >
         period_three = #{periodThree,jdbcType=DOUBLE},
       </if>
+      <if test="fineRate != null" >
+        fine_rate = #{fineRate,jdbcType=DOUBLE},
+      </if>
     </set>
     where loan_type_name = #{loanTypeName,jdbcType=VARCHAR}
   </update>
@@ -190,7 +204,8 @@
     update bank_loan_type
     set period_one = #{periodOne,jdbcType=DOUBLE},
       period_two = #{periodTwo,jdbcType=DOUBLE},
-      period_three = #{periodThree,jdbcType=DOUBLE}
+      period_three = #{periodThree,jdbcType=DOUBLE},
+      fine_rate = #{fineRate,jdbcType=DOUBLE}
     where loan_type_name = #{loanTypeName,jdbcType=VARCHAR}
   </update>
 </mapper>

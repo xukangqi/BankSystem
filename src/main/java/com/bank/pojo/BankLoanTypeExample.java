@@ -353,6 +353,66 @@ public class BankLoanTypeExample {
             addCriterion("period_three not between", value1, value2, "periodThree");
             return (Criteria) this;
         }
+
+        public Criteria andFineRateIsNull() {
+            addCriterion("fine_rate is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andFineRateIsNotNull() {
+            addCriterion("fine_rate is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andFineRateEqualTo(Double value) {
+            addCriterion("fine_rate =", value, "fineRate");
+            return (Criteria) this;
+        }
+
+        public Criteria andFineRateNotEqualTo(Double value) {
+            addCriterion("fine_rate <>", value, "fineRate");
+            return (Criteria) this;
+        }
+
+        public Criteria andFineRateGreaterThan(Double value) {
+            addCriterion("fine_rate >", value, "fineRate");
+            return (Criteria) this;
+        }
+
+        public Criteria andFineRateGreaterThanOrEqualTo(Double value) {
+            addCriterion("fine_rate >=", value, "fineRate");
+            return (Criteria) this;
+        }
+
+        public Criteria andFineRateLessThan(Double value) {
+            addCriterion("fine_rate <", value, "fineRate");
+            return (Criteria) this;
+        }
+
+        public Criteria andFineRateLessThanOrEqualTo(Double value) {
+            addCriterion("fine_rate <=", value, "fineRate");
+            return (Criteria) this;
+        }
+
+        public Criteria andFineRateIn(List<Double> values) {
+            addCriterion("fine_rate in", values, "fineRate");
+            return (Criteria) this;
+        }
+
+        public Criteria andFineRateNotIn(List<Double> values) {
+            addCriterion("fine_rate not in", values, "fineRate");
+            return (Criteria) this;
+        }
+
+        public Criteria andFineRateBetween(Double value1, Double value2) {
+            addCriterion("fine_rate between", value1, value2, "fineRate");
+            return (Criteria) this;
+        }
+
+        public Criteria andFineRateNotBetween(Double value1, Double value2) {
+            addCriterion("fine_rate not between", value1, value2, "fineRate");
+            return (Criteria) this;
+        }
     }
 
     public static class Criteria extends GeneratedCriteria {

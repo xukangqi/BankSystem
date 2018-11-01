@@ -773,6 +773,76 @@ public class BankDepositExample {
             addCriterion("reviewer_id not between", value1, value2, "reviewerId");
             return (Criteria) this;
         }
+
+        public Criteria andDepositFlagIsNull() {
+            addCriterion("deposit_flag is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andDepositFlagIsNotNull() {
+            addCriterion("deposit_flag is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andDepositFlagEqualTo(String value) {
+            addCriterion("deposit_flag =", value, "depositFlag");
+            return (Criteria) this;
+        }
+
+        public Criteria andDepositFlagNotEqualTo(String value) {
+            addCriterion("deposit_flag <>", value, "depositFlag");
+            return (Criteria) this;
+        }
+
+        public Criteria andDepositFlagGreaterThan(String value) {
+            addCriterion("deposit_flag >", value, "depositFlag");
+            return (Criteria) this;
+        }
+
+        public Criteria andDepositFlagGreaterThanOrEqualTo(String value) {
+            addCriterion("deposit_flag >=", value, "depositFlag");
+            return (Criteria) this;
+        }
+
+        public Criteria andDepositFlagLessThan(String value) {
+            addCriterion("deposit_flag <", value, "depositFlag");
+            return (Criteria) this;
+        }
+
+        public Criteria andDepositFlagLessThanOrEqualTo(String value) {
+            addCriterion("deposit_flag <=", value, "depositFlag");
+            return (Criteria) this;
+        }
+
+        public Criteria andDepositFlagLike(String value) {
+            addCriterion("deposit_flag like", value, "depositFlag");
+            return (Criteria) this;
+        }
+
+        public Criteria andDepositFlagNotLike(String value) {
+            addCriterion("deposit_flag not like", value, "depositFlag");
+            return (Criteria) this;
+        }
+
+        public Criteria andDepositFlagIn(List<String> values) {
+            addCriterion("deposit_flag in", values, "depositFlag");
+            return (Criteria) this;
+        }
+
+        public Criteria andDepositFlagNotIn(List<String> values) {
+            addCriterion("deposit_flag not in", values, "depositFlag");
+            return (Criteria) this;
+        }
+
+        public Criteria andDepositFlagBetween(String value1, String value2) {
+            addCriterion("deposit_flag between", value1, value2, "depositFlag");
+            return (Criteria) this;
+        }
+
+        public Criteria andDepositFlagNotBetween(String value1, String value2) {
+            addCriterion("deposit_flag not between", value1, value2, "depositFlag");
+            return (Criteria) this;
+        }
     }
 
     public static class Criteria extends GeneratedCriteria {

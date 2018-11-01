@@ -9,6 +9,8 @@ public class BankLoanType {
 
     private Double periodThree;
 
+    private Double fineRate;
+
     public String getLoanTypeName() {
         return loanTypeName;
     }
@@ -39,5 +41,13 @@ public class BankLoanType {
 
     public void setPeriodThree(Double periodThree) {
         this.periodThree = periodThree;
+    }
+
+    public Double getFineRate() {
+        return fineRate;
+    }
+
+    public void setFineRate(Double fineRate) {
+        this.fineRate = fineRate;
     }
 }
