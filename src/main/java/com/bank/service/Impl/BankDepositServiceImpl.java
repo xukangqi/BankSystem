@@ -14,6 +14,7 @@ import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -124,5 +125,12 @@ public class BankDepositServiceImpl implements BankDepositService {
             conditionMap.put("reviewerId", jKeys.getString("reviewerId"));
         }
         return conditionMap;
+    }
+
+    private Date addDate(Date date, long day) {
+        long time = date.getTime(); // 得到指定日期的毫秒数
+        day = day * 24 * 60 * 60 * 1000; // 要加上的天数转换成毫秒数
+        time += day; // 相加得到新的毫秒数
+        return new Date(time); // 将毫秒数转换成日期
     }
 }
