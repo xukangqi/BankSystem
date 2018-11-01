@@ -1,19 +1,23 @@
 package com.bank.service;
 
-import com.bank.pojo.BankDeposite;
+import com.bank.pojo.BankDeposit;
 import com.bank.utils.BankResult;
-import net.sf.json.JSONObject;
 
 import java.util.List;
+import java.util.Map;
 
 public interface BankDepositService {
 
-    BankResult insert(BankDeposite bankDeposite);
+    BankResult insert(BankDeposit bankDeposit);
 
-    BankResult update(BankDeposite bankDeposite);
+    BankResult update(BankDeposit bankDeposit);
 
-    BankResult delete(List<Long> depositeIds);
+    BankResult delete(List<Long> depositIds);
 
-    BankResult getByPage(String keys, Integer pageStart, Integer pageSize);
+    Map<String, Object> getByPage(String keys, Integer pageStart, Integer pageSize);
+
+//    List<BankDeposit> getAllBankDeposit();
+
+    BankResult getBankDepositFromAccount(String account);
 
 }

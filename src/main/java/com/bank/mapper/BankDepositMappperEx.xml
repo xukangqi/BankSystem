@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.bank.mapper.BankDepositMapperEx">
+    <resultMap id="BaseResultMap" type="com.bank.pojo.BankDeposit" >
+        <id column="deposit_id" property="depositId" jdbcType="BIGINT" />
+        <result column="cust_id" property="custId" jdbcType="VARCHAR" />
+        <result column="account" property="account" jdbcType="VARCHAR" />
+        <result column="deposit_type" property="depositType" jdbcType="VARCHAR" />
+        <result column="deposit_money" property="depositMoney" jdbcType="DOUBLE" />
+        <result column="deposit_rate" property="depositRate" jdbcType="DOUBLE" />
+        <result column="deposit_date" property="depositDate" jdbcType="VARCHAR" />
+        <result column="deposit_duration" property="depositDuration" jdbcType="VARCHAR" />
+        <result column="transfer_way" property="transferWay" jdbcType="VARCHAR" />
+        <result column="reviewer_id" property="reviewerId" jdbcType="VARCHAR" />
+    </resultMap>
+
+    <select id="getByPage" parameterType="java.util.HashMap" resultMap="BaseResultMap">
+        SELECT *
+        FROM bank_deposit
+        <where>
+            <if test="conditionMap != null">
+                <if test="conditionMap.containsKey('custId')">
+                    cust_id = #{custId, jdbcType=VARCHAR}
+                </if>
+                <if test="conditionMap.containsKey('account')">
+                    AND account = #{account, jdbcType=VARCHAR}
+                </if>
+                <if test="conditionMap.containsKey('depositType')">
+                    AND deposit_type = #{depositType, jdbcType=VARCHAR}
+                </if>
+                <if test="conditionMap.containsKey('reviewerId')">
+                    AND reviewer_id = #{reviewerId, jdbcType=VARCHAR}
+                </if>
+            </if>
+        </where>
+        ORDER BY deposit_date DESC
+        <if test="start != null and length != null">
+            LIMIT #{start}, #{length}
+        </if>
+    </select>
+
+    <select id="getCountByPage" parameterType="java.util.HashMap" resultType="int">
+        SELECT COUNT(*)
+        FROM bank_deposit
+        <where>
+            <if test="conditionMap != null">
+                <if test="conditionMap.containsKey('custId')">
+                    cust_id = #{custId, jdbcType=VARCHAR}
+                </if>
+                <if test="conditionMap.containsKey('account')">
+                    AND account = #{account, jdbcType=VARCHAR}
+                </if>
+                <if test="conditionMap.containsKey('depositType')">
+                    AND deposit_type = #{depositType, jdbcType=VARCHAR}
+                </if>
+                <if test="conditionMap.containsKey('reviewerId')">
+                    AND reviewer_id = #{reviewerId, jdbcType=VARCHAR}
+                </if>
+            </if>
+        </where>
+    </select>
+</mapper>
