@@ -9,7 +9,7 @@ public class BankWithdraw {
 
     private Double withdrawMoney;
 
-    private String wirhdrawDate;
+    private String withdrawDate;
 
     private String arriveTime;
 
@@ -47,12 +47,12 @@ public class BankWithdraw {
         this.withdrawMoney = withdrawMoney;
     }
 
-    public String getWirhdrawDate() {
-        return wirhdrawDate;
+    public String getWithdrawDate() {
+        return withdrawDate;
     }
 
-    public void setWirhdrawDate(String wirhdrawDate) {
-        this.wirhdrawDate = wirhdrawDate == null ? null : wirhdrawDate.trim();
+    public void setWithdrawDate(String withdrawDate) {
+        this.withdrawDate = withdrawDate == null ? null : withdrawDate.trim();
     }
 
     public String getArriveTime() {

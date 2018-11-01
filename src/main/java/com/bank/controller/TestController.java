@@ -18,13 +18,14 @@ public class TestController {
     @Autowired
     private TestService testService;
 
+
     //请求格式 /user/hello
     @RequestMapping(value = "/hello",method = RequestMethod.GET)
     @ResponseBody
-    public String sayHello(){
+    public BankResult sayHello(){
         System.out.println("get request");
-        testService.test1();
-        return "success";
+//        testService.test1();
+        return BankResult.ok("你好");
     }
 
     //请求格式 /user/hello/1
@@ -33,7 +34,7 @@ public class TestController {
     public BankResult hello(@PathVariable("id")int id){
         JSONObject jsonObject=new JSONObject();
         //service层操作
-
+//      BankUser bankUser=new BankUser();
 
         //返回结果
         return  BankResult.ok();

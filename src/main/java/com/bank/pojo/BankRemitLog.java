@@ -11,6 +11,8 @@ public class BankRemitLog {
 
     private String remitGenerateDate;
 
+    private String remitArriveDate;
+
     public Long getRemitId() {
         return remitId;
     }
@@ -49,5 +51,13 @@ public class BankRemitLog {
 
     public void setRemitGenerateDate(String remitGenerateDate) {
         this.remitGenerateDate = remitGenerateDate == null ? null : remitGenerateDate.trim();
+    }
+
+    public String getRemitArriveDate() {
+        return remitArriveDate;
+    }
+
+    public void setRemitArriveDate(String remitArriveDate) {
+        this.remitArriveDate = remitArriveDate == null ? null : remitArriveDate.trim();
     }
 }

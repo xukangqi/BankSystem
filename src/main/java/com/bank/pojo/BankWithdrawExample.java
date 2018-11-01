@@ -364,73 +364,73 @@ public class BankWithdrawExample {
             return (Criteria) this;
         }
 
-        public Criteria andWirhdrawDateIsNull() {
-            addCriterion("wirhdraw_date is null");
+        public Criteria andWithdrawDateIsNull() {
+            addCriterion("withdraw_date is null");
             return (Criteria) this;
         }
 
-        public Criteria andWirhdrawDateIsNotNull() {
-            addCriterion("wirhdraw_date is not null");
+        public Criteria andWithdrawDateIsNotNull() {
+            addCriterion("withdraw_date is not null");
             return (Criteria) this;
         }
 
-        public Criteria andWirhdrawDateEqualTo(String value) {
-            addCriterion("wirhdraw_date =", value, "wirhdrawDate");
+        public Criteria andWithdrawDateEqualTo(String value) {
+            addCriterion("withdraw_date =", value, "withdrawDate");
             return (Criteria) this;
         }
 
-        public Criteria andWirhdrawDateNotEqualTo(String value) {
-            addCriterion("wirhdraw_date <>", value, "wirhdrawDate");
+        public Criteria andWithdrawDateNotEqualTo(String value) {
+            addCriterion("withdraw_date <>", value, "withdrawDate");
             return (Criteria) this;
         }
 
-        public Criteria andWirhdrawDateGreaterThan(String value) {
-            addCriterion("wirhdraw_date >", value, "wirhdrawDate");
+        public Criteria andWithdrawDateGreaterThan(String value) {
+            addCriterion("withdraw_date >", value, "withdrawDate");
             return (Criteria) this;
         }
 
-        public Criteria andWirhdrawDateGreaterThanOrEqualTo(String value) {
-            addCriterion("wirhdraw_date >=", value, "wirhdrawDate");
+        public Criteria andWithdrawDateGreaterThanOrEqualTo(String value) {
+            addCriterion("withdraw_date >=", value, "withdrawDate");
             return (Criteria) this;
         }
 
-        public Criteria andWirhdrawDateLessThan(String value) {
-            addCriterion("wirhdraw_date <", value, "wirhdrawDate");
+        public Criteria andWithdrawDateLessThan(String value) {
+            addCriterion("withdraw_date <", value, "withdrawDate");
             return (Criteria) this;
         }
 
-        public Criteria andWirhdrawDateLessThanOrEqualTo(String value) {
-            addCriterion("wirhdraw_date <=", value, "wirhdrawDate");
+        public Criteria andWithdrawDateLessThanOrEqualTo(String value) {
+            addCriterion("withdraw_date <=", value, "withdrawDate");
             return (Criteria) this;
         }
 
-        public Criteria andWirhdrawDateLike(String value) {
-            addCriterion("wirhdraw_date like", value, "wirhdrawDate");
+        public Criteria andWithdrawDateLike(String value) {
+            addCriterion("withdraw_date like", value, "withdrawDate");
             return (Criteria) this;
         }
 
-        public Criteria andWirhdrawDateNotLike(String value) {
-            addCriterion("wirhdraw_date not like", value, "wirhdrawDate");
+        public Criteria andWithdrawDateNotLike(String value) {
+            addCriterion("withdraw_date not like", value, "withdrawDate");
             return (Criteria) this;
         }
 
-        public Criteria andWirhdrawDateIn(List<String> values) {
-            addCriterion("wirhdraw_date in", values, "wirhdrawDate");
+        public Criteria andWithdrawDateIn(List<String> values) {
+            addCriterion("withdraw_date in", values, "withdrawDate");
             return (Criteria) this;
         }
 
-        public Criteria andWirhdrawDateNotIn(List<String> values) {
-            addCriterion("wirhdraw_date not in", values, "wirhdrawDate");
+        public Criteria andWithdrawDateNotIn(List<String> values) {
+            addCriterion("withdraw_date not in", values, "withdrawDate");
             return (Criteria) this;
         }
 
-        public Criteria andWirhdrawDateBetween(String value1, String value2) {
-            addCriterion("wirhdraw_date between", value1, value2, "wirhdrawDate");
+        public Criteria andWithdrawDateBetween(String value1, String value2) {
+            addCriterion("withdraw_date between", value1, value2, "withdrawDate");
             return (Criteria) this;
         }
 
-        public Criteria andWirhdrawDateNotBetween(String value1, String value2) {
-            addCriterion("wirhdraw_date not between", value1, value2, "wirhdrawDate");
+        public Criteria andWithdrawDateNotBetween(String value1, String value2) {
+            addCriterion("withdraw_date not between", value1, value2, "withdrawDate");
             return (Criteria) this;
         }
 

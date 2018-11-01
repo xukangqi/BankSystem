@@ -2,8 +2,9 @@ package com.bank.mapper;
 
 import com.bank.pojo.BankDepositRate;
 import com.bank.pojo.BankDepositRateExample;
-import java.util.List;
 import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 public interface BankDepositRateMapper {
     int countByExample(BankDepositRateExample example);
