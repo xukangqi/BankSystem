@@ -36,8 +36,9 @@ public class CustomerServiceImpl implements ICustomerService {
     @Override
     public String add(BankCustomer customer) {
         SnowFlake snowFlake = new SnowFlake(2, 3);
+        // 雪花算法生成唯一客户id
         String cust_id = String.valueOf(snowFlake.nextId());
-        //customer.setCustId(cust_id);
+        customer.setCustId(cust_id);
         String pw = MD5.string2MD5(customer.getPassword());
         customer.setPassword(pw);
         bankCustomerMapper.insert(customer);

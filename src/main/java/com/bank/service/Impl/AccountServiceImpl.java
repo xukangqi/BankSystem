@@ -7,6 +7,7 @@ import com.bank.pojo.BankCustomer;
 import com.bank.service.IAccountService;
 import com.bank.service.ICustomerService;
 import com.bank.utils.BankNumberUtil;
+import com.bank.utils.MD5;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -36,6 +37,8 @@ public class AccountServiceImpl implements IAccountService {
             account.setAccount(account_id);
             account.setCustId(customer.getCustId());
             account.setOpenDate(String.valueOf(System.currentTimeMillis()));
+            String pw = MD5.string2MD5(account.getPassword());
+            account.setPassword(pw);
             bankAccountMapper.insert(account);
             System.out.println("账户插入成功");
             return true;
@@ -50,7 +53,9 @@ public class AccountServiceImpl implements IAccountService {
             System.out.println("该账户不存在");
             return false;
         } else {
-            account.setAccountStatus("deleted");
+            // 1:正常；2:冻结；3:销户
+            account.setAccountStatus("3");
+            account.setCancelDate(String.valueOf(System.currentTimeMillis()));
             bankAccountMapper.updateByPrimaryKeySelective(account);
             System.out.println("账户删除成功");
             return true;
