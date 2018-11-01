@@ -3,14 +3,14 @@ package com.bank.pojo;
 import java.util.ArrayList;
 import java.util.List;
 
-public class BankDepositeExample {
+public class BankDepositExample {
     protected String orderByClause;
 
     protected boolean distinct;
 
     protected List<Criteria> oredCriteria;
 
-    public BankDepositeExample() {
+    public BankDepositExample() {
         oredCriteria = new ArrayList<Criteria>();
     }
 
@@ -104,63 +104,63 @@ public class BankDepositeExample {
             criteria.add(new Criterion(condition, value1, value2));
         }
 
-        public Criteria andDepositeIdIsNull() {
-            addCriterion("deposite_id is null");
+        public Criteria andDepositIdIsNull() {
+            addCriterion("deposit_id is null");
             return (Criteria) this;
         }
 
-        public Criteria andDepositeIdIsNotNull() {
-            addCriterion("deposite_id is not null");
+        public Criteria andDepositIdIsNotNull() {
+            addCriterion("deposit_id is not null");
             return (Criteria) this;
         }
 
-        public Criteria andDepositeIdEqualTo(Long value) {
-            addCriterion("deposite_id =", value, "depositeId");
+        public Criteria andDepositIdEqualTo(Long value) {
+            addCriterion("deposit_id =", value, "depositId");
             return (Criteria) this;
         }
 
-        public Criteria andDepositeIdNotEqualTo(Long value) {
-            addCriterion("deposite_id <>", value, "depositeId");
+        public Criteria andDepositIdNotEqualTo(Long value) {
+            addCriterion("deposit_id <>", value, "depositId");
             return (Criteria) this;
         }
 
-        public Criteria andDepositeIdGreaterThan(Long value) {
-            addCriterion("deposite_id >", value, "depositeId");
+        public Criteria andDepositIdGreaterThan(Long value) {
+            addCriterion("deposit_id >", value, "depositId");
             return (Criteria) this;
         }
 
-        public Criteria andDepositeIdGreaterThanOrEqualTo(Long value) {
-            addCriterion("deposite_id >=", value, "depositeId");
+        public Criteria andDepositIdGreaterThanOrEqualTo(Long value) {
+            addCriterion("deposit_id >=", value, "depositId");
             return (Criteria) this;
         }
 
-        public Criteria andDepositeIdLessThan(Long value) {
-            addCriterion("deposite_id <", value, "depositeId");
+        public Criteria andDepositIdLessThan(Long value) {
+            addCriterion("deposit_id <", value, "depositId");
             return (Criteria) this;
         }
 
-        public Criteria andDepositeIdLessThanOrEqualTo(Long value) {
-            addCriterion("deposite_id <=", value, "depositeId");
+        public Criteria andDepositIdLessThanOrEqualTo(Long value) {
+            addCriterion("deposit_id <=", value, "depositId");
             return (Criteria) this;
         }
 
-        public Criteria andDepositeIdIn(List<Long> values) {
-            addCriterion("deposite_id in", values, "depositeId");
+        public Criteria andDepositIdIn(List<Long> values) {
+            addCriterion("deposit_id in", values, "depositId");
             return (Criteria) this;
         }
 
-        public Criteria andDepositeIdNotIn(List<Long> values) {
-            addCriterion("deposite_id not in", values, "depositeId");
+        public Criteria andDepositIdNotIn(List<Long> values) {
+            addCriterion("deposit_id not in", values, "depositId");
             return (Criteria) this;
         }
 
-        public Criteria andDepositeIdBetween(Long value1, Long value2) {
-            addCriterion("deposite_id between", value1, value2, "depositeId");
+        public Criteria andDepositIdBetween(Long value1, Long value2) {
+            addCriterion("deposit_id between", value1, value2, "depositId");
             return (Criteria) this;
         }
 
-        public Criteria andDepositeIdNotBetween(Long value1, Long value2) {
-            addCriterion("deposite_id not between", value1, value2, "depositeId");
+        public Criteria andDepositIdNotBetween(Long value1, Long value2) {
+            addCriterion("deposit_id not between", value1, value2, "depositId");
             return (Criteria) this;
         }
 
@@ -304,333 +304,333 @@ public class BankDepositeExample {
             return (Criteria) this;
         }
 
-        public Criteria andDepositeTypeIsNull() {
-            addCriterion("deposite_type is null");
+        public Criteria andDepositTypeIsNull() {
+            addCriterion("deposit_type is null");
             return (Criteria) this;
         }
 
-        public Criteria andDepositeTypeIsNotNull() {
-            addCriterion("deposite_type is not null");
+        public Criteria andDepositTypeIsNotNull() {
+            addCriterion("deposit_type is not null");
             return (Criteria) this;
         }
 
-        public Criteria andDepositeTypeEqualTo(String value) {
-            addCriterion("deposite_type =", value, "depositeType");
+        public Criteria andDepositTypeEqualTo(String value) {
+            addCriterion("deposit_type =", value, "depositType");
             return (Criteria) this;
         }
 
-        public Criteria andDepositeTypeNotEqualTo(String value) {
-            addCriterion("deposite_type <>", value, "depositeType");
+        public Criteria andDepositTypeNotEqualTo(String value) {
+            addCriterion("deposit_type <>", value, "depositType");
             return (Criteria) this;
         }
 
-        public Criteria andDepositeTypeGreaterThan(String value) {
-            addCriterion("deposite_type >", value, "depositeType");
+        public Criteria andDepositTypeGreaterThan(String value) {
+            addCriterion("deposit_type >", value, "depositType");
             return (Criteria) this;
         }
 
-        public Criteria andDepositeTypeGreaterThanOrEqualTo(String value) {
-            addCriterion("deposite_type >=", value, "depositeType");
+        public Criteria andDepositTypeGreaterThanOrEqualTo(String value) {
+            addCriterion("deposit_type >=", value, "depositType");
             return (Criteria) this;
         }
 
-        public Criteria andDepositeTypeLessThan(String value) {
-            addCriterion("deposite_type <", value, "depositeType");
+        public Criteria andDepositTypeLessThan(String value) {
+            addCriterion("deposit_type <", value, "depositType");
             return (Criteria) this;
         }
 
-        public Criteria andDepositeTypeLessThanOrEqualTo(String value) {
-            addCriterion("deposite_type <=", value, "depositeType");
+        public Criteria andDepositTypeLessThanOrEqualTo(String value) {
+            addCriterion("deposit_type <=", value, "depositType");
             return (Criteria) this;
         }
 
-        public Criteria andDepositeTypeLike(String value) {
-            addCriterion("deposite_type like", value, "depositeType");
+        public Criteria andDepositTypeLike(String value) {
+            addCriterion("deposit_type like", value, "depositType");
             return (Criteria) this;
         }
 
-        public Criteria andDepositeTypeNotLike(String value) {
-            addCriterion("deposite_type not like", value, "depositeType");
+        public Criteria andDepositTypeNotLike(String value) {
+            addCriterion("deposit_type not like", value, "depositType");
             return (Criteria) this;
         }
 
-        public Criteria andDepositeTypeIn(List<String> values) {
-            addCriterion("deposite_type in", values, "depositeType");
+        public Criteria andDepositTypeIn(List<String> values) {
+            addCriterion("deposit_type in", values, "depositType");
             return (Criteria) this;
         }
 
-        public Criteria andDepositeTypeNotIn(List<String> values) {
-            addCriterion("deposite_type not in", values, "depositeType");
+        public Criteria andDepositTypeNotIn(List<String> values) {
+            addCriterion("deposit_type not in", values, "depositType");
             return (Criteria) this;
         }
 
-        public Criteria andDepositeTypeBetween(String value1, String value2) {
-            addCriterion("deposite_type between", value1, value2, "depositeType");
+        public Criteria andDepositTypeBetween(String value1, String value2) {
+            addCriterion("deposit_type between", value1, value2, "depositType");
             return (Criteria) this;
         }
 
-        public Criteria andDepositeTypeNotBetween(String value1, String value2) {
-            addCriterion("deposite_type not between", value1, value2, "depositeType");
+        public Criteria andDepositTypeNotBetween(String value1, String value2) {
+            addCriterion("deposit_type not between", value1, value2, "depositType");
             return (Criteria) this;
         }
 
-        public Criteria andDepositeMoneyIsNull() {
-            addCriterion("deposite_money is null");
+        public Criteria andDepositMoneyIsNull() {
+            addCriterion("deposit_money is null");
             return (Criteria) this;
         }
 
-        public Criteria andDepositeMoneyIsNotNull() {
-            addCriterion("deposite_money is not null");
+        public Criteria andDepositMoneyIsNotNull() {
+            addCriterion("deposit_money is not null");
             return (Criteria) this;
         }
 
-        public Criteria andDepositeMoneyEqualTo(Double value) {
-            addCriterion("deposite_money =", value, "depositeMoney");
+        public Criteria andDepositMoneyEqualTo(Double value) {
+            addCriterion("deposit_money =", value, "depositMoney");
             return (Criteria) this;
         }
 
-        public Criteria andDepositeMoneyNotEqualTo(Double value) {
-            addCriterion("deposite_money <>", value, "depositeMoney");
+        public Criteria andDepositMoneyNotEqualTo(Double value) {
+            addCriterion("deposit_money <>", value, "depositMoney");
             return (Criteria) this;
         }
 
-        public Criteria andDepositeMoneyGreaterThan(Double value) {
-            addCriterion("deposite_money >", value, "depositeMoney");
+        public Criteria andDepositMoneyGreaterThan(Double value) {
+            addCriterion("deposit_money >", value, "depositMoney");
             return (Criteria) this;
         }
 
-        public Criteria andDepositeMoneyGreaterThanOrEqualTo(Double value) {
-            addCriterion("deposite_money >=", value, "depositeMoney");
+        public Criteria andDepositMoneyGreaterThanOrEqualTo(Double value) {
+            addCriterion("deposit_money >=", value, "depositMoney");
             return (Criteria) this;
         }
 
-        public Criteria andDepositeMoneyLessThan(Double value) {
-            addCriterion("deposite_money <", value, "depositeMoney");
+        public Criteria andDepositMoneyLessThan(Double value) {
+            addCriterion("deposit_money <", value, "depositMoney");
             return (Criteria) this;
         }
 
-        public Criteria andDepositeMoneyLessThanOrEqualTo(Double value) {
-            addCriterion("deposite_money <=", value, "depositeMoney");
+        public Criteria andDepositMoneyLessThanOrEqualTo(Double value) {
+            addCriterion("deposit_money <=", value, "depositMoney");
             return (Criteria) this;
         }
 
-        public Criteria andDepositeMoneyIn(List<Double> values) {
-            addCriterion("deposite_money in", values, "depositeMoney");
+        public Criteria andDepositMoneyIn(List<Double> values) {
+            addCriterion("deposit_money in", values, "depositMoney");
             return (Criteria) this;
         }
 
-        public Criteria andDepositeMoneyNotIn(List<Double> values) {
-            addCriterion("deposite_money not in", values, "depositeMoney");
+        public Criteria andDepositMoneyNotIn(List<Double> values) {
+            addCriterion("deposit_money not in", values, "depositMoney");
             return (Criteria) this;
         }
 
-        public Criteria andDepositeMoneyBetween(Double value1, Double value2) {
-            addCriterion("deposite_money between", value1, value2, "depositeMoney");
+        public Criteria andDepositMoneyBetween(Double value1, Double value2) {
+            addCriterion("deposit_money between", value1, value2, "depositMoney");
             return (Criteria) this;
         }
 
-        public Criteria andDepositeMoneyNotBetween(Double value1, Double value2) {
-            addCriterion("deposite_money not between", value1, value2, "depositeMoney");
+        public Criteria andDepositMoneyNotBetween(Double value1, Double value2) {
+            addCriterion("deposit_money not between", value1, value2, "depositMoney");
             return (Criteria) this;
         }
 
-        public Criteria andDepositeRateIsNull() {
-            addCriterion("deposite_rate is null");
+        public Criteria andDepositRateIsNull() {
+            addCriterion("deposit_rate is null");
             return (Criteria) this;
         }
 
-        public Criteria andDepositeRateIsNotNull() {
-            addCriterion("deposite_rate is not null");
+        public Criteria andDepositRateIsNotNull() {
+            addCriterion("deposit_rate is not null");
             return (Criteria) this;
         }
 
-        public Criteria andDepositeRateEqualTo(Double value) {
-            addCriterion("deposite_rate =", value, "depositeRate");
+        public Criteria andDepositRateEqualTo(Double value) {
+            addCriterion("deposit_rate =", value, "depositRate");
             return (Criteria) this;
         }
 
-        public Criteria andDepositeRateNotEqualTo(Double value) {
-            addCriterion("deposite_rate <>", value, "depositeRate");
+        public Criteria andDepositRateNotEqualTo(Double value) {
+            addCriterion("deposit_rate <>", value, "depositRate");
             return (Criteria) this;
         }
 
-        public Criteria andDepositeRateGreaterThan(Double value) {
-            addCriterion("deposite_rate >", value, "depositeRate");
+        public Criteria andDepositRateGreaterThan(Double value) {
+            addCriterion("deposit_rate >", value, "depositRate");
             return (Criteria) this;
         }
 
-        public Criteria andDepositeRateGreaterThanOrEqualTo(Double value) {
-            addCriterion("deposite_rate >=", value, "depositeRate");
+        public Criteria andDepositRateGreaterThanOrEqualTo(Double value) {
+            addCriterion("deposit_rate >=", value, "depositRate");
             return (Criteria) this;
         }
 
-        public Criteria andDepositeRateLessThan(Double value) {
-            addCriterion("deposite_rate <", value, "depositeRate");
+        public Criteria andDepositRateLessThan(Double value) {
+            addCriterion("deposit_rate <", value, "depositRate");
             return (Criteria) this;
         }
 
-        public Criteria andDepositeRateLessThanOrEqualTo(Double value) {
-            addCriterion("deposite_rate <=", value, "depositeRate");
+        public Criteria andDepositRateLessThanOrEqualTo(Double value) {
+            addCriterion("deposit_rate <=", value, "depositRate");
             return (Criteria) this;
         }
 
-        public Criteria andDepositeRateIn(List<Double> values) {
-            addCriterion("deposite_rate in", values, "depositeRate");
+        public Criteria andDepositRateIn(List<Double> values) {
+            addCriterion("deposit_rate in", values, "depositRate");
             return (Criteria) this;
         }
 
-        public Criteria andDepositeRateNotIn(List<Double> values) {
-            addCriterion("deposite_rate not in", values, "depositeRate");
+        public Criteria andDepositRateNotIn(List<Double> values) {
+            addCriterion("deposit_rate not in", values, "depositRate");
             return (Criteria) this;
         }
 
-        public Criteria andDepositeRateBetween(Double value1, Double value2) {
-            addCriterion("deposite_rate between", value1, value2, "depositeRate");
+        public Criteria andDepositRateBetween(Double value1, Double value2) {
+            addCriterion("deposit_rate between", value1, value2, "depositRate");
             return (Criteria) this;
         }
 
-        public Criteria andDepositeRateNotBetween(Double value1, Double value2) {
-            addCriterion("deposite_rate not between", value1, value2, "depositeRate");
+        public Criteria andDepositRateNotBetween(Double value1, Double value2) {
+            addCriterion("deposit_rate not between", value1, value2, "depositRate");
             return (Criteria) this;
         }
 
-        public Criteria andDepositeDateIsNull() {
-            addCriterion("deposite_date is null");
+        public Criteria andDepositDateIsNull() {
+            addCriterion("deposit_date is null");
             return (Criteria) this;
         }
 
-        public Criteria andDepositeDateIsNotNull() {
-            addCriterion("deposite_date is not null");
+        public Criteria andDepositDateIsNotNull() {
+            addCriterion("deposit_date is not null");
             return (Criteria) this;
         }
 
-        public Criteria andDepositeDateEqualTo(String value) {
-            addCriterion("deposite_date =", value, "depositeDate");
+        public Criteria andDepositDateEqualTo(String value) {
+            addCriterion("deposit_date =", value, "depositDate");
             return (Criteria) this;
         }
 
-        public Criteria andDepositeDateNotEqualTo(String value) {
-            addCriterion("deposite_date <>", value, "depositeDate");
+        public Criteria andDepositDateNotEqualTo(String value) {
+            addCriterion("deposit_date <>", value, "depositDate");
             return (Criteria) this;
         }
 
-        public Criteria andDepositeDateGreaterThan(String value) {
-            addCriterion("deposite_date >", value, "depositeDate");
+        public Criteria andDepositDateGreaterThan(String value) {
+            addCriterion("deposit_date >", value, "depositDate");
             return (Criteria) this;
         }
 
-        public Criteria andDepositeDateGreaterThanOrEqualTo(String value) {
-            addCriterion("deposite_date >=", value, "depositeDate");
+        public Criteria andDepositDateGreaterThanOrEqualTo(String value) {
+            addCriterion("deposit_date >=", value, "depositDate");
             return (Criteria) this;
         }
 
-        public Criteria andDepositeDateLessThan(String value) {
-            addCriterion("deposite_date <", value, "depositeDate");
+        public Criteria andDepositDateLessThan(String value) {
+            addCriterion("deposit_date <", value, "depositDate");
             return (Criteria) this;
         }
 
-        public Criteria andDepositeDateLessThanOrEqualTo(String value) {
-            addCriterion("deposite_date <=", value, "depositeDate");
+        public Criteria andDepositDateLessThanOrEqualTo(String value) {
+            addCriterion("deposit_date <=", value, "depositDate");
             return (Criteria) this;
         }
 
-        public Criteria andDepositeDateLike(String value) {
-            addCriterion("deposite_date like", value, "depositeDate");
+        public Criteria andDepositDateLike(String value) {
+            addCriterion("deposit_date like", value, "depositDate");
             return (Criteria) this;
         }
 
-        public Criteria andDepositeDateNotLike(String value) {
-            addCriterion("deposite_date not like", value, "depositeDate");
+        public Criteria andDepositDateNotLike(String value) {
+            addCriterion("deposit_date not like", value, "depositDate");
             return (Criteria) this;
         }
 
-        public Criteria andDepositeDateIn(List<String> values) {
-            addCriterion("deposite_date in", values, "depositeDate");
+        public Criteria andDepositDateIn(List<String> values) {
+            addCriterion("deposit_date in", values, "depositDate");
             return (Criteria) this;
         }
 
-        public Criteria andDepositeDateNotIn(List<String> values) {
-            addCriterion("deposite_date not in", values, "depositeDate");
+        public Criteria andDepositDateNotIn(List<String> values) {
+            addCriterion("deposit_date not in", values, "depositDate");
             return (Criteria) this;
         }
 
-        public Criteria andDepositeDateBetween(String value1, String value2) {
-            addCriterion("deposite_date between", value1, value2, "depositeDate");
+        public Criteria andDepositDateBetween(String value1, String value2) {
+            addCriterion("deposit_date between", value1, value2, "depositDate");
             return (Criteria) this;
         }
 
-        public Criteria andDepositeDateNotBetween(String value1, String value2) {
-            addCriterion("deposite_date not between", value1, value2, "depositeDate");
+        public Criteria andDepositDateNotBetween(String value1, String value2) {
+            addCriterion("deposit_date not between", value1, value2, "depositDate");
             return (Criteria) this;
         }
 
-        public Criteria andDepositeDurationIsNull() {
-            addCriterion("deposite_duration is null");
+        public Criteria andDepositDurationIsNull() {
+            addCriterion("deposit_duration is null");
             return (Criteria) this;
         }
 
-        public Criteria andDepositeDurationIsNotNull() {
-            addCriterion("deposite_duration is not null");
+        public Criteria andDepositDurationIsNotNull() {
+            addCriterion("deposit_duration is not null");
             return (Criteria) this;
         }
 
-        public Criteria andDepositeDurationEqualTo(String value) {
-            addCriterion("deposite_duration =", value, "depositeDuration");
+        public Criteria andDepositDurationEqualTo(String value) {
+            addCriterion("deposit_duration =", value, "depositDuration");
             return (Criteria) this;
         }
 
-        public Criteria andDepositeDurationNotEqualTo(String value) {
-            addCriterion("deposite_duration <>", value, "depositeDuration");
+        public Criteria andDepositDurationNotEqualTo(String value) {
+            addCriterion("deposit_duration <>", value, "depositDuration");
             return (Criteria) this;
         }
 
-        public Criteria andDepositeDurationGreaterThan(String value) {
-            addCriterion("deposite_duration >", value, "depositeDuration");
+        public Criteria andDepositDurationGreaterThan(String value) {
+            addCriterion("deposit_duration >", value, "depositDuration");
             return (Criteria) this;
         }
 
-        public Criteria andDepositeDurationGreaterThanOrEqualTo(String value) {
-            addCriterion("deposite_duration >=", value, "depositeDuration");
+        public Criteria andDepositDurationGreaterThanOrEqualTo(String value) {
+            addCriterion("deposit_duration >=", value, "depositDuration");
             return (Criteria) this;
         }
 
-        public Criteria andDepositeDurationLessThan(String value) {
-            addCriterion("deposite_duration <", value, "depositeDuration");
+        public Criteria andDepositDurationLessThan(String value) {
+            addCriterion("deposit_duration <", value, "depositDuration");
             return (Criteria) this;
         }
 
-        public Criteria andDepositeDurationLessThanOrEqualTo(String value) {
-            addCriterion("deposite_duration <=", value, "depositeDuration");
+        public Criteria andDepositDurationLessThanOrEqualTo(String value) {
+            addCriterion("deposit_duration <=", value, "depositDuration");
             return (Criteria) this;
         }
 
-        public Criteria andDepositeDurationLike(String value) {
-            addCriterion("deposite_duration like", value, "depositeDuration");
+        public Criteria andDepositDurationLike(String value) {
+            addCriterion("deposit_duration like", value, "depositDuration");
             return (Criteria) this;
         }
 
-        public Criteria andDepositeDurationNotLike(String value) {
-            addCriterion("deposite_duration not like", value, "depositeDuration");
+        public Criteria andDepositDurationNotLike(String value) {
+            addCriterion("deposit_duration not like", value, "depositDuration");
             return (Criteria) this;
         }
 
-        public Criteria andDepositeDurationIn(List<String> values) {
-            addCriterion("deposite_duration in", values, "depositeDuration");
+        public Criteria andDepositDurationIn(List<String> values) {
+            addCriterion("deposit_duration in", values, "depositDuration");
             return (Criteria) this;
         }
 
-        public Criteria andDepositeDurationNotIn(List<String> values) {
-            addCriterion("deposite_duration not in", values, "depositeDuration");
+        public Criteria andDepositDurationNotIn(List<String> values) {
+            addCriterion("deposit_duration not in", values, "depositDuration");
             return (Criteria) this;
         }
 
-        public Criteria andDepositeDurationBetween(String value1, String value2) {
-            addCriterion("deposite_duration between", value1, value2, "depositeDuration");
+        public Criteria andDepositDurationBetween(String value1, String value2) {
+            addCriterion("deposit_duration between", value1, value2, "depositDuration");
             return (Criteria) this;
         }
 
-        public Criteria andDepositeDurationNotBetween(String value1, String value2) {
-            addCriterion("deposite_duration not between", value1, value2, "depositeDuration");
+        public Criteria andDepositDurationNotBetween(String value1, String value2) {
+            addCriterion("deposit_duration not between", value1, value2, "depositDuration");
             return (Criteria) this;
         }
 
@@ -771,6 +771,76 @@ public class BankDepositeExample {
 
         public Criteria andReviewerIdNotBetween(String value1, String value2) {
             addCriterion("reviewer_id not between", value1, value2, "reviewerId");
+            return (Criteria) this;
+        }
+
+        public Criteria andDepositFlagIsNull() {
+            addCriterion("deposit_flag is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andDepositFlagIsNotNull() {
+            addCriterion("deposit_flag is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andDepositFlagEqualTo(String value) {
+            addCriterion("deposit_flag =", value, "depositFlag");
+            return (Criteria) this;
+        }
+
+        public Criteria andDepositFlagNotEqualTo(String value) {
+            addCriterion("deposit_flag <>", value, "depositFlag");
+            return (Criteria) this;
+        }
+
+        public Criteria andDepositFlagGreaterThan(String value) {
+            addCriterion("deposit_flag >", value, "depositFlag");
+            return (Criteria) this;
+        }
+
+        public Criteria andDepositFlagGreaterThanOrEqualTo(String value) {
+            addCriterion("deposit_flag >=", value, "depositFlag");
+            return (Criteria) this;
+        }
+
+        public Criteria andDepositFlagLessThan(String value) {
+            addCriterion("deposit_flag <", value, "depositFlag");
+            return (Criteria) this;
+        }
+
+        public Criteria andDepositFlagLessThanOrEqualTo(String value) {
+            addCriterion("deposit_flag <=", value, "depositFlag");
+            return (Criteria) this;
+        }
+
+        public Criteria andDepositFlagLike(String value) {
+            addCriterion("deposit_flag like", value, "depositFlag");
+            return (Criteria) this;
+        }
+
+        public Criteria andDepositFlagNotLike(String value) {
+            addCriterion("deposit_flag not like", value, "depositFlag");
+            return (Criteria) this;
+        }
+
+        public Criteria andDepositFlagIn(List<String> values) {
+            addCriterion("deposit_flag in", values, "depositFlag");
+            return (Criteria) this;
+        }
+
+        public Criteria andDepositFlagNotIn(List<String> values) {
+            addCriterion("deposit_flag not in", values, "depositFlag");
+            return (Criteria) this;
+        }
+
+        public Criteria andDepositFlagBetween(String value1, String value2) {
+            addCriterion("deposit_flag between", value1, value2, "depositFlag");
+            return (Criteria) this;
+        }
+
+        public Criteria andDepositFlagNotBetween(String value1, String value2) {
+            addCriterion("deposit_flag not between", value1, value2, "depositFlag");
             return (Criteria) this;
         }
     }

@@ -1,12 +1,16 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.bank.mapper.BankLoadPaymentMapper" >
-  <resultMap id="BaseResultMap" type="com.bank.pojo.BankLoadPayment" >
+<mapper namespace="com.bank.mapper.BankLoanPaymentMapper" >
+  <resultMap id="BaseResultMap" type="com.bank.pojo.BankLoanPayment" >
     <id column="payment_id" property="paymentId" jdbcType="BIGINT" />
     <result column="trans_id" property="transId" jdbcType="BIGINT" />
     <result column="ins_num" property="insNum" jdbcType="SMALLINT" />
     <result column="payment_amount" property="paymentAmount" jdbcType="DOUBLE" />
     <result column="payment_date" property="paymentDate" jdbcType="VARCHAR" />
+    <result column="is_finished" property="isFinished" jdbcType="VARCHAR" />
+    <result column="fine_rate" property="fineRate" jdbcType="DOUBLE" />
+    <result column="all_payment_amount" property="allPaymentAmount" jdbcType="DOUBLE" />
+    <result column="reimbursement" property="reimbursement" jdbcType="DOUBLE" />
   </resultMap>
   <sql id="Example_Where_Clause" >
     <where >
@@ -67,15 +71,16 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    payment_id, trans_id, ins_num, payment_amount, payment_date
+    payment_id, trans_id, ins_num, payment_amount, payment_date, is_finished, fine_rate, 
+    all_payment_amount, reimbursement
   </sql>
-  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.bank.pojo.BankLoadPaymentExample" >
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.bank.pojo.BankLoanPaymentExample" >
     select
     <if test="distinct" >
       distinct
     </if>
     <include refid="Base_Column_List" />
-    from bank_load_payment
+    from bank_loan_payment
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
@@ -86,27 +91,31 @@
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
     select 
     <include refid="Base_Column_List" />
-    from bank_load_payment
+    from bank_loan_payment
     where payment_id = #{paymentId,jdbcType=BIGINT}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
-    delete from bank_load_payment
+    delete from bank_loan_payment
     where payment_id = #{paymentId,jdbcType=BIGINT}
   </delete>
-  <delete id="deleteByExample" parameterType="com.bank.pojo.BankLoadPaymentExample" >
-    delete from bank_load_payment
+  <delete id="deleteByExample" parameterType="com.bank.pojo.BankLoanPaymentExample" >
+    delete from bank_loan_payment
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.bank.pojo.BankLoadPayment" >
-    insert into bank_load_payment (payment_id, trans_id, ins_num, 
-      payment_amount, payment_date)
+  <insert id="insert" parameterType="com.bank.pojo.BankLoanPayment" >
+    insert into bank_loan_payment (payment_id, trans_id, ins_num, 
+      payment_amount, payment_date, is_finished, 
+      fine_rate, all_payment_amount, reimbursement
+      )
     values (#{paymentId,jdbcType=BIGINT}, #{transId,jdbcType=BIGINT}, #{insNum,jdbcType=SMALLINT}, 
-      #{paymentAmount,jdbcType=DOUBLE}, #{paymentDate,jdbcType=VARCHAR})
+      #{paymentAmount,jdbcType=DOUBLE}, #{paymentDate,jdbcType=VARCHAR}, #{isFinished,jdbcType=VARCHAR}, 
+      #{fineRate,jdbcType=DOUBLE}, #{allPaymentAmount,jdbcType=DOUBLE}, #{reimbursement,jdbcType=DOUBLE}
+      )
   </insert>
-  <insert id="insertSelective" parameterType="com.bank.pojo.BankLoadPayment" >
-    insert into bank_load_payment
+  <insert id="insertSelective" parameterType="com.bank.pojo.BankLoanPayment" >
+    insert into bank_loan_payment
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="paymentId != null" >
         payment_id,
@@ -122,6 +131,18 @@
       </if>
       <if test="paymentDate != null" >
         payment_date,
+      </if>
+      <if test="isFinished != null" >
+        is_finished,
+      </if>
+      <if test="fineRate != null" >
+        fine_rate,
+      </if>
+      <if test="allPaymentAmount != null" >
+        all_payment_amount,
+      </if>
+      <if test="reimbursement != null" >
+        reimbursement,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
@@ -140,16 +161,28 @@
       <if test="paymentDate != null" >
         #{paymentDate,jdbcType=VARCHAR},
       </if>
+      <if test="isFinished != null" >
+        #{isFinished,jdbcType=VARCHAR},
+      </if>
+      <if test="fineRate != null" >
+        #{fineRate,jdbcType=DOUBLE},
+      </if>
+      <if test="allPaymentAmount != null" >
+        #{allPaymentAmount,jdbcType=DOUBLE},
+      </if>
+      <if test="reimbursement != null" >
+        #{reimbursement,jdbcType=DOUBLE},
+      </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.bank.pojo.BankLoadPaymentExample" resultType="java.lang.Integer" >
-    select count(*) from bank_load_payment
+  <select id="countByExample" parameterType="com.bank.pojo.BankLoanPaymentExample" resultType="java.lang.Integer" >
+    select count(*) from bank_loan_payment
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
   </select>
   <update id="updateByExampleSelective" parameterType="map" >
-    update bank_load_payment
+    update bank_loan_payment
     <set >
       <if test="record.paymentId != null" >
         payment_id = #{record.paymentId,jdbcType=BIGINT},
@@ -166,24 +199,40 @@
       <if test="record.paymentDate != null" >
         payment_date = #{record.paymentDate,jdbcType=VARCHAR},
       </if>
+      <if test="record.isFinished != null" >
+        is_finished = #{record.isFinished,jdbcType=VARCHAR},
+      </if>
+      <if test="record.fineRate != null" >
+        fine_rate = #{record.fineRate,jdbcType=DOUBLE},
+      </if>
+      <if test="record.allPaymentAmount != null" >
+        all_payment_amount = #{record.allPaymentAmount,jdbcType=DOUBLE},
+      </if>
+      <if test="record.reimbursement != null" >
+        reimbursement = #{record.reimbursement,jdbcType=DOUBLE},
+      </if>
     </set>
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
   <update id="updateByExample" parameterType="map" >
-    update bank_load_payment
+    update bank_loan_payment
     set payment_id = #{record.paymentId,jdbcType=BIGINT},
       trans_id = #{record.transId,jdbcType=BIGINT},
       ins_num = #{record.insNum,jdbcType=SMALLINT},
       payment_amount = #{record.paymentAmount,jdbcType=DOUBLE},
-      payment_date = #{record.paymentDate,jdbcType=VARCHAR}
+      payment_date = #{record.paymentDate,jdbcType=VARCHAR},
+      is_finished = #{record.isFinished,jdbcType=VARCHAR},
+      fine_rate = #{record.fineRate,jdbcType=DOUBLE},
+      all_payment_amount = #{record.allPaymentAmount,jdbcType=DOUBLE},
+      reimbursement = #{record.reimbursement,jdbcType=DOUBLE}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.bank.pojo.BankLoadPayment" >
-    update bank_load_payment
+  <update id="updateByPrimaryKeySelective" parameterType="com.bank.pojo.BankLoanPayment" >
+    update bank_loan_payment
     <set >
       <if test="transId != null" >
         trans_id = #{transId,jdbcType=BIGINT},
@@ -197,15 +246,31 @@
       <if test="paymentDate != null" >
         payment_date = #{paymentDate,jdbcType=VARCHAR},
       </if>
+      <if test="isFinished != null" >
+        is_finished = #{isFinished,jdbcType=VARCHAR},
+      </if>
+      <if test="fineRate != null" >
+        fine_rate = #{fineRate,jdbcType=DOUBLE},
+      </if>
+      <if test="allPaymentAmount != null" >
+        all_payment_amount = #{allPaymentAmount,jdbcType=DOUBLE},
+      </if>
+      <if test="reimbursement != null" >
+        reimbursement = #{reimbursement,jdbcType=DOUBLE},
+      </if>
     </set>
     where payment_id = #{paymentId,jdbcType=BIGINT}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.bank.pojo.BankLoadPayment" >
-    update bank_load_payment
+  <update id="updateByPrimaryKey" parameterType="com.bank.pojo.BankLoanPayment" >
+    update bank_loan_payment
     set trans_id = #{transId,jdbcType=BIGINT},
       ins_num = #{insNum,jdbcType=SMALLINT},
       payment_amount = #{paymentAmount,jdbcType=DOUBLE},
-      payment_date = #{paymentDate,jdbcType=VARCHAR}
+      payment_date = #{paymentDate,jdbcType=VARCHAR},
+      is_finished = #{isFinished,jdbcType=VARCHAR},
+      fine_rate = #{fineRate,jdbcType=DOUBLE},
+      all_payment_amount = #{allPaymentAmount,jdbcType=DOUBLE},
+      reimbursement = #{reimbursement,jdbcType=DOUBLE}
     where payment_id = #{paymentId,jdbcType=BIGINT}
   </update>
 </mapper>

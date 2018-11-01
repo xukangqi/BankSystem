@@ -3,14 +3,14 @@ package com.bank.pojo;
 import java.util.ArrayList;
 import java.util.List;
 
-public class BankDepositeRateExample {
+public class BankDepositRateExample {
     protected String orderByClause;
 
     protected boolean distinct;
 
     protected List<Criteria> oredCriteria;
 
-    public BankDepositeRateExample() {
+    public BankDepositRateExample() {
         oredCriteria = new ArrayList<Criteria>();
     }
 
@@ -594,543 +594,183 @@ public class BankDepositeRateExample {
             return (Criteria) this;
         }
 
-        public Criteria andLczqOyRateIsNull() {
-            addCriterion("lczq_oy_rate is null");
+        public Criteria andOtherOyRateIsNull() {
+            addCriterion("other_oy_rate is null");
             return (Criteria) this;
         }
 
-        public Criteria andLczqOyRateIsNotNull() {
-            addCriterion("lczq_oy_rate is not null");
+        public Criteria andOtherOyRateIsNotNull() {
+            addCriterion("other_oy_rate is not null");
             return (Criteria) this;
         }
 
-        public Criteria andLczqOyRateEqualTo(Double value) {
-            addCriterion("lczq_oy_rate =", value, "lczqOyRate");
+        public Criteria andOtherOyRateEqualTo(Double value) {
+            addCriterion("other_oy_rate =", value, "otherOyRate");
             return (Criteria) this;
         }
 
-        public Criteria andLczqOyRateNotEqualTo(Double value) {
-            addCriterion("lczq_oy_rate <>", value, "lczqOyRate");
+        public Criteria andOtherOyRateNotEqualTo(Double value) {
+            addCriterion("other_oy_rate <>", value, "otherOyRate");
             return (Criteria) this;
         }
 
-        public Criteria andLczqOyRateGreaterThan(Double value) {
-            addCriterion("lczq_oy_rate >", value, "lczqOyRate");
+        public Criteria andOtherOyRateGreaterThan(Double value) {
+            addCriterion("other_oy_rate >", value, "otherOyRate");
             return (Criteria) this;
         }
 
-        public Criteria andLczqOyRateGreaterThanOrEqualTo(Double value) {
-            addCriterion("lczq_oy_rate >=", value, "lczqOyRate");
+        public Criteria andOtherOyRateGreaterThanOrEqualTo(Double value) {
+            addCriterion("other_oy_rate >=", value, "otherOyRate");
             return (Criteria) this;
         }
 
-        public Criteria andLczqOyRateLessThan(Double value) {
-            addCriterion("lczq_oy_rate <", value, "lczqOyRate");
+        public Criteria andOtherOyRateLessThan(Double value) {
+            addCriterion("other_oy_rate <", value, "otherOyRate");
             return (Criteria) this;
         }
 
-        public Criteria andLczqOyRateLessThanOrEqualTo(Double value) {
-            addCriterion("lczq_oy_rate <=", value, "lczqOyRate");
+        public Criteria andOtherOyRateLessThanOrEqualTo(Double value) {
+            addCriterion("other_oy_rate <=", value, "otherOyRate");
             return (Criteria) this;
         }
 
-        public Criteria andLczqOyRateIn(List<Double> values) {
-            addCriterion("lczq_oy_rate in", values, "lczqOyRate");
+        public Criteria andOtherOyRateIn(List<Double> values) {
+            addCriterion("other_oy_rate in", values, "otherOyRate");
             return (Criteria) this;
         }
 
-        public Criteria andLczqOyRateNotIn(List<Double> values) {
-            addCriterion("lczq_oy_rate not in", values, "lczqOyRate");
+        public Criteria andOtherOyRateNotIn(List<Double> values) {
+            addCriterion("other_oy_rate not in", values, "otherOyRate");
             return (Criteria) this;
         }
 
-        public Criteria andLczqOyRateBetween(Double value1, Double value2) {
-            addCriterion("lczq_oy_rate between", value1, value2, "lczqOyRate");
+        public Criteria andOtherOyRateBetween(Double value1, Double value2) {
+            addCriterion("other_oy_rate between", value1, value2, "otherOyRate");
             return (Criteria) this;
         }
 
-        public Criteria andLczqOyRateNotBetween(Double value1, Double value2) {
-            addCriterion("lczq_oy_rate not between", value1, value2, "lczqOyRate");
+        public Criteria andOtherOyRateNotBetween(Double value1, Double value2) {
+            addCriterion("other_oy_rate not between", value1, value2, "otherOyRate");
             return (Criteria) this;
         }
 
-        public Criteria andLczqTyRateIsNull() {
-            addCriterion("lczq_ty_rate is null");
+        public Criteria andOtherTyRateIsNull() {
+            addCriterion("other_ty_rate is null");
             return (Criteria) this;
         }
 
-        public Criteria andLczqTyRateIsNotNull() {
-            addCriterion("lczq_ty_rate is not null");
+        public Criteria andOtherTyRateIsNotNull() {
+            addCriterion("other_ty_rate is not null");
             return (Criteria) this;
         }
 
-        public Criteria andLczqTyRateEqualTo(Double value) {
-            addCriterion("lczq_ty_rate =", value, "lczqTyRate");
+        public Criteria andOtherTyRateEqualTo(Double value) {
+            addCriterion("other_ty_rate =", value, "otherTyRate");
             return (Criteria) this;
         }
 
-        public Criteria andLczqTyRateNotEqualTo(Double value) {
-            addCriterion("lczq_ty_rate <>", value, "lczqTyRate");
+        public Criteria andOtherTyRateNotEqualTo(Double value) {
+            addCriterion("other_ty_rate <>", value, "otherTyRate");
             return (Criteria) this;
         }
 
-        public Criteria andLczqTyRateGreaterThan(Double value) {
-            addCriterion("lczq_ty_rate >", value, "lczqTyRate");
+        public Criteria andOtherTyRateGreaterThan(Double value) {
+            addCriterion("other_ty_rate >", value, "otherTyRate");
             return (Criteria) this;
         }
 
-        public Criteria andLczqTyRateGreaterThanOrEqualTo(Double value) {
-            addCriterion("lczq_ty_rate >=", value, "lczqTyRate");
+        public Criteria andOtherTyRateGreaterThanOrEqualTo(Double value) {
+            addCriterion("other_ty_rate >=", value, "otherTyRate");
             return (Criteria) this;
         }
 
-        public Criteria andLczqTyRateLessThan(Double value) {
-            addCriterion("lczq_ty_rate <", value, "lczqTyRate");
+        public Criteria andOtherTyRateLessThan(Double value) {
+            addCriterion("other_ty_rate <", value, "otherTyRate");
             return (Criteria) this;
         }
 
-        public Criteria andLczqTyRateLessThanOrEqualTo(Double value) {
-            addCriterion("lczq_ty_rate <=", value, "lczqTyRate");
+        public Criteria andOtherTyRateLessThanOrEqualTo(Double value) {
+            addCriterion("other_ty_rate <=", value, "otherTyRate");
             return (Criteria) this;
         }
 
-        public Criteria andLczqTyRateIn(List<Double> values) {
-            addCriterion("lczq_ty_rate in", values, "lczqTyRate");
+        public Criteria andOtherTyRateIn(List<Double> values) {
+            addCriterion("other_ty_rate in", values, "otherTyRate");
             return (Criteria) this;
         }
 
-        public Criteria andLczqTyRateNotIn(List<Double> values) {
-            addCriterion("lczq_ty_rate not in", values, "lczqTyRate");
+        public Criteria andOtherTyRateNotIn(List<Double> values) {
+            addCriterion("other_ty_rate not in", values, "otherTyRate");
             return (Criteria) this;
         }
 
-        public Criteria andLczqTyRateBetween(Double value1, Double value2) {
-            addCriterion("lczq_ty_rate between", value1, value2, "lczqTyRate");
+        public Criteria andOtherTyRateBetween(Double value1, Double value2) {
+            addCriterion("other_ty_rate between", value1, value2, "otherTyRate");
             return (Criteria) this;
         }
 
-        public Criteria andLczqTyRateNotBetween(Double value1, Double value2) {
-            addCriterion("lczq_ty_rate not between", value1, value2, "lczqTyRate");
+        public Criteria andOtherTyRateNotBetween(Double value1, Double value2) {
+            addCriterion("other_ty_rate not between", value1, value2, "otherTyRate");
             return (Criteria) this;
         }
 
-        public Criteria andLczqFyRateIsNull() {
-            addCriterion("lczq_fy_rate is null");
+        public Criteria andOtherFyRateIsNull() {
+            addCriterion("other_fy_rate is null");
             return (Criteria) this;
         }
 
-        public Criteria andLczqFyRateIsNotNull() {
-            addCriterion("lczq_fy_rate is not null");
+        public Criteria andOtherFyRateIsNotNull() {
+            addCriterion("other_fy_rate is not null");
             return (Criteria) this;
         }
 
-        public Criteria andLczqFyRateEqualTo(Double value) {
-            addCriterion("lczq_fy_rate =", value, "lczqFyRate");
+        public Criteria andOtherFyRateEqualTo(Double value) {
+            addCriterion("other_fy_rate =", value, "otherFyRate");
             return (Criteria) this;
         }
 
-        public Criteria andLczqFyRateNotEqualTo(Double value) {
-            addCriterion("lczq_fy_rate <>", value, "lczqFyRate");
+        public Criteria andOtherFyRateNotEqualTo(Double value) {
+            addCriterion("other_fy_rate <>", value, "otherFyRate");
             return (Criteria) this;
         }
 
-        public Criteria andLczqFyRateGreaterThan(Double value) {
-            addCriterion("lczq_fy_rate >", value, "lczqFyRate");
+        public Criteria andOtherFyRateGreaterThan(Double value) {
+            addCriterion("other_fy_rate >", value, "otherFyRate");
             return (Criteria) this;
         }
 
-        public Criteria andLczqFyRateGreaterThanOrEqualTo(Double value) {
-            addCriterion("lczq_fy_rate >=", value, "lczqFyRate");
+        public Criteria andOtherFyRateGreaterThanOrEqualTo(Double value) {
+            addCriterion("other_fy_rate >=", value, "otherFyRate");
             return (Criteria) this;
         }
 
-        public Criteria andLczqFyRateLessThan(Double value) {
-            addCriterion("lczq_fy_rate <", value, "lczqFyRate");
+        public Criteria andOtherFyRateLessThan(Double value) {
+            addCriterion("other_fy_rate <", value, "otherFyRate");
             return (Criteria) this;
         }
 
-        public Criteria andLczqFyRateLessThanOrEqualTo(Double value) {
-            addCriterion("lczq_fy_rate <=", value, "lczqFyRate");
+        public Criteria andOtherFyRateLessThanOrEqualTo(Double value) {
+            addCriterion("other_fy_rate <=", value, "otherFyRate");
             return (Criteria) this;
         }
 
-        public Criteria andLczqFyRateIn(List<Double> values) {
-            addCriterion("lczq_fy_rate in", values, "lczqFyRate");
+        public Criteria andOtherFyRateIn(List<Double> values) {
+            addCriterion("other_fy_rate in", values, "otherFyRate");
             return (Criteria) this;
         }
 
-        public Criteria andLczqFyRateNotIn(List<Double> values) {
-            addCriterion("lczq_fy_rate not in", values, "lczqFyRate");
+        public Criteria andOtherFyRateNotIn(List<Double> values) {
+            addCriterion("other_fy_rate not in", values, "otherFyRate");
             return (Criteria) this;
         }
 
-        public Criteria andLczqFyRateBetween(Double value1, Double value2) {
-            addCriterion("lczq_fy_rate between", value1, value2, "lczqFyRate");
+        public Criteria andOtherFyRateBetween(Double value1, Double value2) {
+            addCriterion("other_fy_rate between", value1, value2, "otherFyRate");
             return (Criteria) this;
         }
 
-        public Criteria andLczqFyRateNotBetween(Double value1, Double value2) {
-            addCriterion("lczq_fy_rate not between", value1, value2, "lczqFyRate");
-            return (Criteria) this;
-        }
-
-        public Criteria andZclqOyRateIsNull() {
-            addCriterion("zclq_oy_rate is null");
-            return (Criteria) this;
-        }
-
-        public Criteria andZclqOyRateIsNotNull() {
-            addCriterion("zclq_oy_rate is not null");
-            return (Criteria) this;
-        }
-
-        public Criteria andZclqOyRateEqualTo(Double value) {
-            addCriterion("zclq_oy_rate =", value, "zclqOyRate");
-            return (Criteria) this;
-        }
-
-        public Criteria andZclqOyRateNotEqualTo(Double value) {
-            addCriterion("zclq_oy_rate <>", value, "zclqOyRate");
-            return (Criteria) this;
-        }
-
-        public Criteria andZclqOyRateGreaterThan(Double value) {
-            addCriterion("zclq_oy_rate >", value, "zclqOyRate");
-            return (Criteria) this;
-        }
-
-        public Criteria andZclqOyRateGreaterThanOrEqualTo(Double value) {
-            addCriterion("zclq_oy_rate >=", value, "zclqOyRate");
-            return (Criteria) this;
-        }
-
-        public Criteria andZclqOyRateLessThan(Double value) {
-            addCriterion("zclq_oy_rate <", value, "zclqOyRate");
-            return (Criteria) this;
-        }
-
-        public Criteria andZclqOyRateLessThanOrEqualTo(Double value) {
-            addCriterion("zclq_oy_rate <=", value, "zclqOyRate");
-            return (Criteria) this;
-        }
-
-        public Criteria andZclqOyRateIn(List<Double> values) {
-            addCriterion("zclq_oy_rate in", values, "zclqOyRate");
-            return (Criteria) this;
-        }
-
-        public Criteria andZclqOyRateNotIn(List<Double> values) {
-            addCriterion("zclq_oy_rate not in", values, "zclqOyRate");
-            return (Criteria) this;
-        }
-
-        public Criteria andZclqOyRateBetween(Double value1, Double value2) {
-            addCriterion("zclq_oy_rate between", value1, value2, "zclqOyRate");
-            return (Criteria) this;
-        }
-
-        public Criteria andZclqOyRateNotBetween(Double value1, Double value2) {
-            addCriterion("zclq_oy_rate not between", value1, value2, "zclqOyRate");
-            return (Criteria) this;
-        }
-
-        public Criteria andZclqTyRateIsNull() {
-            addCriterion("zclq_ty_rate is null");
-            return (Criteria) this;
-        }
-
-        public Criteria andZclqTyRateIsNotNull() {
-            addCriterion("zclq_ty_rate is not null");
-            return (Criteria) this;
-        }
-
-        public Criteria andZclqTyRateEqualTo(Double value) {
-            addCriterion("zclq_ty_rate =", value, "zclqTyRate");
-            return (Criteria) this;
-        }
-
-        public Criteria andZclqTyRateNotEqualTo(Double value) {
-            addCriterion("zclq_ty_rate <>", value, "zclqTyRate");
-            return (Criteria) this;
-        }
-
-        public Criteria andZclqTyRateGreaterThan(Double value) {
-            addCriterion("zclq_ty_rate >", value, "zclqTyRate");
-            return (Criteria) this;
-        }
-
-        public Criteria andZclqTyRateGreaterThanOrEqualTo(Double value) {
-            addCriterion("zclq_ty_rate >=", value, "zclqTyRate");
-            return (Criteria) this;
-        }
-
-        public Criteria andZclqTyRateLessThan(Double value) {
-            addCriterion("zclq_ty_rate <", value, "zclqTyRate");
-            return (Criteria) this;
-        }
-
-        public Criteria andZclqTyRateLessThanOrEqualTo(Double value) {
-            addCriterion("zclq_ty_rate <=", value, "zclqTyRate");
-            return (Criteria) this;
-        }
-
-        public Criteria andZclqTyRateIn(List<Double> values) {
-            addCriterion("zclq_ty_rate in", values, "zclqTyRate");
-            return (Criteria) this;
-        }
-
-        public Criteria andZclqTyRateNotIn(List<Double> values) {
-            addCriterion("zclq_ty_rate not in", values, "zclqTyRate");
-            return (Criteria) this;
-        }
-
-        public Criteria andZclqTyRateBetween(Double value1, Double value2) {
-            addCriterion("zclq_ty_rate between", value1, value2, "zclqTyRate");
-            return (Criteria) this;
-        }
-
-        public Criteria andZclqTyRateNotBetween(Double value1, Double value2) {
-            addCriterion("zclq_ty_rate not between", value1, value2, "zclqTyRate");
-            return (Criteria) this;
-        }
-
-        public Criteria andZclqFyRateIsNull() {
-            addCriterion("zclq_fy_rate is null");
-            return (Criteria) this;
-        }
-
-        public Criteria andZclqFyRateIsNotNull() {
-            addCriterion("zclq_fy_rate is not null");
-            return (Criteria) this;
-        }
-
-        public Criteria andZclqFyRateEqualTo(Double value) {
-            addCriterion("zclq_fy_rate =", value, "zclqFyRate");
-            return (Criteria) this;
-        }
-
-        public Criteria andZclqFyRateNotEqualTo(Double value) {
-            addCriterion("zclq_fy_rate <>", value, "zclqFyRate");
-            return (Criteria) this;
-        }
-
-        public Criteria andZclqFyRateGreaterThan(Double value) {
-            addCriterion("zclq_fy_rate >", value, "zclqFyRate");
-            return (Criteria) this;
-        }
-
-        public Criteria andZclqFyRateGreaterThanOrEqualTo(Double value) {
-            addCriterion("zclq_fy_rate >=", value, "zclqFyRate");
-            return (Criteria) this;
-        }
-
-        public Criteria andZclqFyRateLessThan(Double value) {
-            addCriterion("zclq_fy_rate <", value, "zclqFyRate");
-            return (Criteria) this;
-        }
-
-        public Criteria andZclqFyRateLessThanOrEqualTo(Double value) {
-            addCriterion("zclq_fy_rate <=", value, "zclqFyRate");
-            return (Criteria) this;
-        }
-
-        public Criteria andZclqFyRateIn(List<Double> values) {
-            addCriterion("zclq_fy_rate in", values, "zclqFyRate");
-            return (Criteria) this;
-        }
-
-        public Criteria andZclqFyRateNotIn(List<Double> values) {
-            addCriterion("zclq_fy_rate not in", values, "zclqFyRate");
-            return (Criteria) this;
-        }
-
-        public Criteria andZclqFyRateBetween(Double value1, Double value2) {
-            addCriterion("zclq_fy_rate between", value1, value2, "zclqFyRate");
-            return (Criteria) this;
-        }
-
-        public Criteria andZclqFyRateNotBetween(Double value1, Double value2) {
-            addCriterion("zclq_fy_rate not between", value1, value2, "zclqFyRate");
-            return (Criteria) this;
-        }
-
-        public Criteria andCbqxOyRateIsNull() {
-            addCriterion("cbqx_oy_rate is null");
-            return (Criteria) this;
-        }
-
-        public Criteria andCbqxOyRateIsNotNull() {
-            addCriterion("cbqx_oy_rate is not null");
-            return (Criteria) this;
-        }
-
-        public Criteria andCbqxOyRateEqualTo(Double value) {
-            addCriterion("cbqx_oy_rate =", value, "cbqxOyRate");
-            return (Criteria) this;
-        }
-
-        public Criteria andCbqxOyRateNotEqualTo(Double value) {
-            addCriterion("cbqx_oy_rate <>", value, "cbqxOyRate");
-            return (Criteria) this;
-        }
-
-        public Criteria andCbqxOyRateGreaterThan(Double value) {
-            addCriterion("cbqx_oy_rate >", value, "cbqxOyRate");
-            return (Criteria) this;
-        }
-
-        public Criteria andCbqxOyRateGreaterThanOrEqualTo(Double value) {
-            addCriterion("cbqx_oy_rate >=", value, "cbqxOyRate");
-            return (Criteria) this;
-        }
-
-        public Criteria andCbqxOyRateLessThan(Double value) {
-            addCriterion("cbqx_oy_rate <", value, "cbqxOyRate");
-            return (Criteria) this;
-        }
-
-        public Criteria andCbqxOyRateLessThanOrEqualTo(Double value) {
-            addCriterion("cbqx_oy_rate <=", value, "cbqxOyRate");
-            return (Criteria) this;
-        }
-
-        public Criteria andCbqxOyRateIn(List<Double> values) {
-            addCriterion("cbqx_oy_rate in", values, "cbqxOyRate");
-            return (Criteria) this;
-        }
-
-        public Criteria andCbqxOyRateNotIn(List<Double> values) {
-            addCriterion("cbqx_oy_rate not in", values, "cbqxOyRate");
-            return (Criteria) this;
-        }
-
-        public Criteria andCbqxOyRateBetween(Double value1, Double value2) {
-            addCriterion("cbqx_oy_rate between", value1, value2, "cbqxOyRate");
-            return (Criteria) this;
-        }
-
-        public Criteria andCbqxOyRateNotBetween(Double value1, Double value2) {
-            addCriterion("cbqx_oy_rate not between", value1, value2, "cbqxOyRate");
-            return (Criteria) this;
-        }
-
-        public Criteria andCbqxTyRateIsNull() {
-            addCriterion("cbqx_ty_rate is null");
-            return (Criteria) this;
-        }
-
-        public Criteria andCbqxTyRateIsNotNull() {
-            addCriterion("cbqx_ty_rate is not null");
-            return (Criteria) this;
-        }
-
-        public Criteria andCbqxTyRateEqualTo(Double value) {
-            addCriterion("cbqx_ty_rate =", value, "cbqxTyRate");
-            return (Criteria) this;
-        }
-
-        public Criteria andCbqxTyRateNotEqualTo(Double value) {
-            addCriterion("cbqx_ty_rate <>", value, "cbqxTyRate");
-            return (Criteria) this;
-        }
-
-        public Criteria andCbqxTyRateGreaterThan(Double value) {
-            addCriterion("cbqx_ty_rate >", value, "cbqxTyRate");
-            return (Criteria) this;
-        }
-
-        public Criteria andCbqxTyRateGreaterThanOrEqualTo(Double value) {
-            addCriterion("cbqx_ty_rate >=", value, "cbqxTyRate");
-            return (Criteria) this;
-        }
-
-        public Criteria andCbqxTyRateLessThan(Double value) {
-            addCriterion("cbqx_ty_rate <", value, "cbqxTyRate");
-            return (Criteria) this;
-        }
-
-        public Criteria andCbqxTyRateLessThanOrEqualTo(Double value) {
-            addCriterion("cbqx_ty_rate <=", value, "cbqxTyRate");
-            return (Criteria) this;
-        }
-
-        public Criteria andCbqxTyRateIn(List<Double> values) {
-            addCriterion("cbqx_ty_rate in", values, "cbqxTyRate");
-            return (Criteria) this;
-        }
-
-        public Criteria andCbqxTyRateNotIn(List<Double> values) {
-            addCriterion("cbqx_ty_rate not in", values, "cbqxTyRate");
-            return (Criteria) this;
-        }
-
-        public Criteria andCbqxTyRateBetween(Double value1, Double value2) {
-            addCriterion("cbqx_ty_rate between", value1, value2, "cbqxTyRate");
-            return (Criteria) this;
-        }
-
-        public Criteria andCbqxTyRateNotBetween(Double value1, Double value2) {
-            addCriterion("cbqx_ty_rate not between", value1, value2, "cbqxTyRate");
-            return (Criteria) this;
-        }
-
-        public Criteria andCbqxFyRateIsNull() {
-            addCriterion("cbqx_fy_rate is null");
-            return (Criteria) this;
-        }
-
-        public Criteria andCbqxFyRateIsNotNull() {
-            addCriterion("cbqx_fy_rate is not null");
-            return (Criteria) this;
-        }
-
-        public Criteria andCbqxFyRateEqualTo(Double value) {
-            addCriterion("cbqx_fy_rate =", value, "cbqxFyRate");
-            return (Criteria) this;
-        }
-
-        public Criteria andCbqxFyRateNotEqualTo(Double value) {
-            addCriterion("cbqx_fy_rate <>", value, "cbqxFyRate");
-            return (Criteria) this;
-        }
-
-        public Criteria andCbqxFyRateGreaterThan(Double value) {
-            addCriterion("cbqx_fy_rate >", value, "cbqxFyRate");
-            return (Criteria) this;
-        }
-
-        public Criteria andCbqxFyRateGreaterThanOrEqualTo(Double value) {
-            addCriterion("cbqx_fy_rate >=", value, "cbqxFyRate");
-            return (Criteria) this;
-        }
-
-        public Criteria andCbqxFyRateLessThan(Double value) {
-            addCriterion("cbqx_fy_rate <", value, "cbqxFyRate");
-            return (Criteria) this;
-        }
-
-        public Criteria andCbqxFyRateLessThanOrEqualTo(Double value) {
-            addCriterion("cbqx_fy_rate <=", value, "cbqxFyRate");
-            return (Criteria) this;
-        }
-
-        public Criteria andCbqxFyRateIn(List<Double> values) {
-            addCriterion("cbqx_fy_rate in", values, "cbqxFyRate");
-            return (Criteria) this;
-        }
-
-        public Criteria andCbqxFyRateNotIn(List<Double> values) {
-            addCriterion("cbqx_fy_rate not in", values, "cbqxFyRate");
-            return (Criteria) this;
-        }
-
-        public Criteria andCbqxFyRateBetween(Double value1, Double value2) {
-            addCriterion("cbqx_fy_rate between", value1, value2, "cbqxFyRate");
-            return (Criteria) this;
-        }
-
-        public Criteria andCbqxFyRateNotBetween(Double value1, Double value2) {
-            addCriterion("cbqx_fy_rate not between", value1, value2, "cbqxFyRate");
+        public Criteria andOtherFyRateNotBetween(Double value1, Double value2) {
+            addCriterion("other_fy_rate not between", value1, value2, "otherFyRate");
             return (Criteria) this;
         }
     }

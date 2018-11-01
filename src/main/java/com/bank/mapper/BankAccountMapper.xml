@@ -12,6 +12,7 @@
     <result column="account_kind" property="accountKind" jdbcType="VARCHAR" />
     <result column="account_type" property="accountType" jdbcType="VARCHAR" />
     <result column="account_status" property="accountStatus" jdbcType="VARCHAR" />
+    <result column="password" property="password" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Example_Where_Clause" >
     <where >
@@ -73,7 +74,7 @@
   </sql>
   <sql id="Base_Column_List" >
     account, cust_id, deposit_bank, balances, blocked_balances, open_date, cancel_date, 
-    account_kind, account_type, account_status
+    account_kind, account_type, account_status, password
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.bank.pojo.BankAccountExample" >
     select
@@ -109,11 +110,11 @@
     insert into bank_account (account, cust_id, deposit_bank, 
       balances, blocked_balances, open_date, 
       cancel_date, account_kind, account_type, 
-      account_status)
+      account_status, password)
     values (#{account,jdbcType=VARCHAR}, #{custId,jdbcType=VARCHAR}, #{depositBank,jdbcType=VARCHAR}, 
       #{balances,jdbcType=DOUBLE}, #{blockedBalances,jdbcType=DOUBLE}, #{openDate,jdbcType=VARCHAR}, 
       #{cancelDate,jdbcType=VARCHAR}, #{accountKind,jdbcType=VARCHAR}, #{accountType,jdbcType=VARCHAR}, 
-      #{accountStatus,jdbcType=VARCHAR})
+      #{accountStatus,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.bank.pojo.BankAccount" >
     insert into bank_account
@@ -148,6 +149,9 @@
       <if test="accountStatus != null" >
         account_status,
       </if>
+      <if test="password != null" >
+        password,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="account != null" >
@@ -179,6 +183,9 @@
       </if>
       <if test="accountStatus != null" >
         #{accountStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null" >
+        #{password,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -221,6 +228,9 @@
       <if test="record.accountStatus != null" >
         account_status = #{record.accountStatus,jdbcType=VARCHAR},
       </if>
+      <if test="record.password != null" >
+        password = #{record.password,jdbcType=VARCHAR},
+      </if>
     </set>
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
@@ -237,7 +247,8 @@
       cancel_date = #{record.cancelDate,jdbcType=VARCHAR},
       account_kind = #{record.accountKind,jdbcType=VARCHAR},
       account_type = #{record.accountType,jdbcType=VARCHAR},
-      account_status = #{record.accountStatus,jdbcType=VARCHAR}
+      account_status = #{record.accountStatus,jdbcType=VARCHAR},
+      password = #{record.password,jdbcType=VARCHAR}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -272,6 +283,9 @@
       <if test="accountStatus != null" >
         account_status = #{accountStatus,jdbcType=VARCHAR},
       </if>
+      <if test="password != null" >
+        password = #{password,jdbcType=VARCHAR},
+      </if>
     </set>
     where account = #{account,jdbcType=VARCHAR}
   </update>
@@ -285,7 +299,8 @@
       cancel_date = #{cancelDate,jdbcType=VARCHAR},
       account_kind = #{accountKind,jdbcType=VARCHAR},
       account_type = #{accountType,jdbcType=VARCHAR},
-      account_status = #{accountStatus,jdbcType=VARCHAR}
+      account_status = #{accountStatus,jdbcType=VARCHAR},
+      password = #{password,jdbcType=VARCHAR}
     where account = #{account,jdbcType=VARCHAR}
   </update>
 </mapper>

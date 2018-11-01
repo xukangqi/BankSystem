@@ -21,6 +21,8 @@ public class BankAccount {
 
     private String accountStatus;
 
+    private String password;
+
     public String getAccount() {
         return account;
     }
@@ -99,5 +101,13 @@ public class BankAccount {
 
     public void setAccountStatus(String accountStatus) {
         this.accountStatus = accountStatus == null ? null : accountStatus.trim();
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password == null ? null : password.trim();
     }
 }

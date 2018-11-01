@@ -1,17 +1,18 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.bank.mapper.BankDepositeMapper" >
-  <resultMap id="BaseResultMap" type="com.bank.pojo.BankDeposite" >
-    <id column="deposite_id" property="depositeId" jdbcType="BIGINT" />
+<mapper namespace="com.bank.mapper.BankDepositMapper" >
+  <resultMap id="BaseResultMap" type="com.bank.pojo.BankDeposit" >
+    <id column="deposit_id" property="depositId" jdbcType="BIGINT" />
     <result column="cust_id" property="custId" jdbcType="VARCHAR" />
     <result column="account" property="account" jdbcType="VARCHAR" />
-    <result column="deposite_type" property="depositeType" jdbcType="VARCHAR" />
-    <result column="deposite_money" property="depositeMoney" jdbcType="DOUBLE" />
-    <result column="deposite_rate" property="depositeRate" jdbcType="DOUBLE" />
-    <result column="deposite_date" property="depositeDate" jdbcType="VARCHAR" />
-    <result column="deposite_duration" property="depositeDuration" jdbcType="VARCHAR" />
+    <result column="deposit_type" property="depositType" jdbcType="VARCHAR" />
+    <result column="deposit_money" property="depositMoney" jdbcType="DOUBLE" />
+    <result column="deposit_rate" property="depositRate" jdbcType="DOUBLE" />
+    <result column="deposit_date" property="depositDate" jdbcType="VARCHAR" />
+    <result column="deposit_duration" property="depositDuration" jdbcType="VARCHAR" />
     <result column="transfer_way" property="transferWay" jdbcType="VARCHAR" />
     <result column="reviewer_id" property="reviewerId" jdbcType="VARCHAR" />
+    <result column="deposit_flag" property="depositFlag" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Example_Where_Clause" >
     <where >
@@ -72,16 +73,16 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    deposite_id, cust_id, account, deposite_type, deposite_money, deposite_rate, deposite_date, 
-    deposite_duration, transfer_way, reviewer_id
+    deposit_id, cust_id, account, deposit_type, deposit_money, deposit_rate, deposit_date, 
+    deposit_duration, transfer_way, reviewer_id, deposit_flag
   </sql>
-  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.bank.pojo.BankDepositeExample" >
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.bank.pojo.BankDepositExample" >
     select
     <if test="distinct" >
       distinct
     </if>
     <include refid="Base_Column_List" />
-    from bank_deposite
+    from bank_deposit
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
@@ -92,34 +93,34 @@
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
     select 
     <include refid="Base_Column_List" />
-    from bank_deposite
-    where deposite_id = #{depositeId,jdbcType=BIGINT}
+    from bank_deposit
+    where deposit_id = #{depositId,jdbcType=BIGINT}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
-    delete from bank_deposite
-    where deposite_id = #{depositeId,jdbcType=BIGINT}
+    delete from bank_deposit
+    where deposit_id = #{depositId,jdbcType=BIGINT}
   </delete>
-  <delete id="deleteByExample" parameterType="com.bank.pojo.BankDepositeExample" >
-    delete from bank_deposite
+  <delete id="deleteByExample" parameterType="com.bank.pojo.BankDepositExample" >
+    delete from bank_deposit
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.bank.pojo.BankDeposite" >
-    insert into bank_deposite (deposite_id, cust_id, account, 
-      deposite_type, deposite_money, deposite_rate, 
-      deposite_date, deposite_duration, transfer_way, 
-      reviewer_id)
-    values (#{depositeId,jdbcType=BIGINT}, #{custId,jdbcType=VARCHAR}, #{account,jdbcType=VARCHAR}, 
-      #{depositeType,jdbcType=VARCHAR}, #{depositeMoney,jdbcType=DOUBLE}, #{depositeRate,jdbcType=DOUBLE}, 
-      #{depositeDate,jdbcType=VARCHAR}, #{depositeDuration,jdbcType=VARCHAR}, #{transferWay,jdbcType=VARCHAR}, 
-      #{reviewerId,jdbcType=VARCHAR})
+  <insert id="insert" parameterType="com.bank.pojo.BankDeposit" >
+    insert into bank_deposit (deposit_id, cust_id, account, 
+      deposit_type, deposit_money, deposit_rate, 
+      deposit_date, deposit_duration, transfer_way, 
+      reviewer_id, deposit_flag)
+    values (#{depositId,jdbcType=BIGINT}, #{custId,jdbcType=VARCHAR}, #{account,jdbcType=VARCHAR}, 
+      #{depositType,jdbcType=VARCHAR}, #{depositMoney,jdbcType=DOUBLE}, #{depositRate,jdbcType=DOUBLE}, 
+      #{depositDate,jdbcType=VARCHAR}, #{depositDuration,jdbcType=VARCHAR}, #{transferWay,jdbcType=VARCHAR}, 
+      #{reviewerId,jdbcType=VARCHAR}, #{depositFlag,jdbcType=VARCHAR})
   </insert>
-  <insert id="insertSelective" parameterType="com.bank.pojo.BankDeposite" >
-    insert into bank_deposite
+  <insert id="insertSelective" parameterType="com.bank.pojo.BankDeposit" >
+    insert into bank_deposit
     <trim prefix="(" suffix=")" suffixOverrides="," >
-      <if test="depositeId != null" >
-        deposite_id,
+      <if test="depositId != null" >
+        deposit_id,
       </if>
       <if test="custId != null" >
         cust_id,
@@ -127,20 +128,20 @@
       <if test="account != null" >
         account,
       </if>
-      <if test="depositeType != null" >
-        deposite_type,
+      <if test="depositType != null" >
+        deposit_type,
       </if>
-      <if test="depositeMoney != null" >
-        deposite_money,
+      <if test="depositMoney != null" >
+        deposit_money,
       </if>
-      <if test="depositeRate != null" >
-        deposite_rate,
+      <if test="depositRate != null" >
+        deposit_rate,
       </if>
-      <if test="depositeDate != null" >
-        deposite_date,
+      <if test="depositDate != null" >
+        deposit_date,
       </if>
-      <if test="depositeDuration != null" >
-        deposite_duration,
+      <if test="depositDuration != null" >
+        deposit_duration,
       </if>
       <if test="transferWay != null" >
         transfer_way,
@@ -148,10 +149,13 @@
       <if test="reviewerId != null" >
         reviewer_id,
       </if>
+      <if test="depositFlag != null" >
+        deposit_flag,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
-      <if test="depositeId != null" >
-        #{depositeId,jdbcType=BIGINT},
+      <if test="depositId != null" >
+        #{depositId,jdbcType=BIGINT},
       </if>
       <if test="custId != null" >
         #{custId,jdbcType=VARCHAR},
@@ -159,20 +163,20 @@
       <if test="account != null" >
         #{account,jdbcType=VARCHAR},
       </if>
-      <if test="depositeType != null" >
-        #{depositeType,jdbcType=VARCHAR},
+      <if test="depositType != null" >
+        #{depositType,jdbcType=VARCHAR},
       </if>
-      <if test="depositeMoney != null" >
-        #{depositeMoney,jdbcType=DOUBLE},
+      <if test="depositMoney != null" >
+        #{depositMoney,jdbcType=DOUBLE},
       </if>
-      <if test="depositeRate != null" >
-        #{depositeRate,jdbcType=DOUBLE},
+      <if test="depositRate != null" >
+        #{depositRate,jdbcType=DOUBLE},
       </if>
-      <if test="depositeDate != null" >
-        #{depositeDate,jdbcType=VARCHAR},
+      <if test="depositDate != null" >
+        #{depositDate,jdbcType=VARCHAR},
       </if>
-      <if test="depositeDuration != null" >
-        #{depositeDuration,jdbcType=VARCHAR},
+      <if test="depositDuration != null" >
+        #{depositDuration,jdbcType=VARCHAR},
       </if>
       <if test="transferWay != null" >
         #{transferWay,jdbcType=VARCHAR},
@@ -180,19 +184,22 @@
       <if test="reviewerId != null" >
         #{reviewerId,jdbcType=VARCHAR},
       </if>
+      <if test="depositFlag != null" >
+        #{depositFlag,jdbcType=VARCHAR},
+      </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.bank.pojo.BankDepositeExample" resultType="java.lang.Integer" >
-    select count(*) from bank_deposite
+  <select id="countByExample" parameterType="com.bank.pojo.BankDepositExample" resultType="java.lang.Integer" >
+    select count(*) from bank_deposit
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
   </select>
   <update id="updateByExampleSelective" parameterType="map" >
-    update bank_deposite
+    update bank_deposit
     <set >
-      <if test="record.depositeId != null" >
-        deposite_id = #{record.depositeId,jdbcType=BIGINT},
+      <if test="record.depositId != null" >
+        deposit_id = #{record.depositId,jdbcType=BIGINT},
       </if>
       <if test="record.custId != null" >
         cust_id = #{record.custId,jdbcType=VARCHAR},
@@ -200,20 +207,20 @@
       <if test="record.account != null" >
         account = #{record.account,jdbcType=VARCHAR},
       </if>
-      <if test="record.depositeType != null" >
-        deposite_type = #{record.depositeType,jdbcType=VARCHAR},
+      <if test="record.depositType != null" >
+        deposit_type = #{record.depositType,jdbcType=VARCHAR},
       </if>
-      <if test="record.depositeMoney != null" >
-        deposite_money = #{record.depositeMoney,jdbcType=DOUBLE},
+      <if test="record.depositMoney != null" >
+        deposit_money = #{record.depositMoney,jdbcType=DOUBLE},
       </if>
-      <if test="record.depositeRate != null" >
-        deposite_rate = #{record.depositeRate,jdbcType=DOUBLE},
+      <if test="record.depositRate != null" >
+        deposit_rate = #{record.depositRate,jdbcType=DOUBLE},
       </if>
-      <if test="record.depositeDate != null" >
-        deposite_date = #{record.depositeDate,jdbcType=VARCHAR},
+      <if test="record.depositDate != null" >
+        deposit_date = #{record.depositDate,jdbcType=VARCHAR},
       </if>
-      <if test="record.depositeDuration != null" >
-        deposite_duration = #{record.depositeDuration,jdbcType=VARCHAR},
+      <if test="record.depositDuration != null" >
+        deposit_duration = #{record.depositDuration,jdbcType=VARCHAR},
       </if>
       <if test="record.transferWay != null" >
         transfer_way = #{record.transferWay,jdbcType=VARCHAR},
@@ -221,29 +228,33 @@
       <if test="record.reviewerId != null" >
         reviewer_id = #{record.reviewerId,jdbcType=VARCHAR},
       </if>
+      <if test="record.depositFlag != null" >
+        deposit_flag = #{record.depositFlag,jdbcType=VARCHAR},
+      </if>
     </set>
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
   <update id="updateByExample" parameterType="map" >
-    update bank_deposite
-    set deposite_id = #{record.depositeId,jdbcType=BIGINT},
+    update bank_deposit
+    set deposit_id = #{record.depositId,jdbcType=BIGINT},
       cust_id = #{record.custId,jdbcType=VARCHAR},
       account = #{record.account,jdbcType=VARCHAR},
-      deposite_type = #{record.depositeType,jdbcType=VARCHAR},
-      deposite_money = #{record.depositeMoney,jdbcType=DOUBLE},
-      deposite_rate = #{record.depositeRate,jdbcType=DOUBLE},
-      deposite_date = #{record.depositeDate,jdbcType=VARCHAR},
-      deposite_duration = #{record.depositeDuration,jdbcType=VARCHAR},
+      deposit_type = #{record.depositType,jdbcType=VARCHAR},
+      deposit_money = #{record.depositMoney,jdbcType=DOUBLE},
+      deposit_rate = #{record.depositRate,jdbcType=DOUBLE},
+      deposit_date = #{record.depositDate,jdbcType=VARCHAR},
+      deposit_duration = #{record.depositDuration,jdbcType=VARCHAR},
       transfer_way = #{record.transferWay,jdbcType=VARCHAR},
-      reviewer_id = #{record.reviewerId,jdbcType=VARCHAR}
+      reviewer_id = #{record.reviewerId,jdbcType=VARCHAR},
+      deposit_flag = #{record.depositFlag,jdbcType=VARCHAR}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.bank.pojo.BankDeposite" >
-    update bank_deposite
+  <update id="updateByPrimaryKeySelective" parameterType="com.bank.pojo.BankDeposit" >
+    update bank_deposit
     <set >
       <if test="custId != null" >
         cust_id = #{custId,jdbcType=VARCHAR},
@@ -251,20 +262,20 @@
       <if test="account != null" >
         account = #{account,jdbcType=VARCHAR},
       </if>
-      <if test="depositeType != null" >
-        deposite_type = #{depositeType,jdbcType=VARCHAR},
+      <if test="depositType != null" >
+        deposit_type = #{depositType,jdbcType=VARCHAR},
       </if>
-      <if test="depositeMoney != null" >
-        deposite_money = #{depositeMoney,jdbcType=DOUBLE},
+      <if test="depositMoney != null" >
+        deposit_money = #{depositMoney,jdbcType=DOUBLE},
       </if>
-      <if test="depositeRate != null" >
-        deposite_rate = #{depositeRate,jdbcType=DOUBLE},
+      <if test="depositRate != null" >
+        deposit_rate = #{depositRate,jdbcType=DOUBLE},
       </if>
-      <if test="depositeDate != null" >
-        deposite_date = #{depositeDate,jdbcType=VARCHAR},
+      <if test="depositDate != null" >
+        deposit_date = #{depositDate,jdbcType=VARCHAR},
       </if>
-      <if test="depositeDuration != null" >
-        deposite_duration = #{depositeDuration,jdbcType=VARCHAR},
+      <if test="depositDuration != null" >
+        deposit_duration = #{depositDuration,jdbcType=VARCHAR},
       </if>
       <if test="transferWay != null" >
         transfer_way = #{transferWay,jdbcType=VARCHAR},
@@ -272,20 +283,24 @@
       <if test="reviewerId != null" >
         reviewer_id = #{reviewerId,jdbcType=VARCHAR},
       </if>
+      <if test="depositFlag != null" >
+        deposit_flag = #{depositFlag,jdbcType=VARCHAR},
+      </if>
     </set>
-    where deposite_id = #{depositeId,jdbcType=BIGINT}
+    where deposit_id = #{depositId,jdbcType=BIGINT}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.bank.pojo.BankDeposite" >
-    update bank_deposite
+  <update id="updateByPrimaryKey" parameterType="com.bank.pojo.BankDeposit" >
+    update bank_deposit
     set cust_id = #{custId,jdbcType=VARCHAR},
       account = #{account,jdbcType=VARCHAR},
-      deposite_type = #{depositeType,jdbcType=VARCHAR},
-      deposite_money = #{depositeMoney,jdbcType=DOUBLE},
-      deposite_rate = #{depositeRate,jdbcType=DOUBLE},
-      deposite_date = #{depositeDate,jdbcType=VARCHAR},
-      deposite_duration = #{depositeDuration,jdbcType=VARCHAR},
+      deposit_type = #{depositType,jdbcType=VARCHAR},
+      deposit_money = #{depositMoney,jdbcType=DOUBLE},
+      deposit_rate = #{depositRate,jdbcType=DOUBLE},
+      deposit_date = #{depositDate,jdbcType=VARCHAR},
+      deposit_duration = #{depositDuration,jdbcType=VARCHAR},
       transfer_way = #{transferWay,jdbcType=VARCHAR},
-      reviewer_id = #{reviewerId,jdbcType=VARCHAR}
-    where deposite_id = #{depositeId,jdbcType=BIGINT}
+      reviewer_id = #{reviewerId,jdbcType=VARCHAR},
+      deposit_flag = #{depositFlag,jdbcType=VARCHAR}
+    where deposit_id = #{depositId,jdbcType=BIGINT}
   </update>
 </mapper>

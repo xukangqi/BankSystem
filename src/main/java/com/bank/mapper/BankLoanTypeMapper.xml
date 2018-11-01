@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.bank.mapper.BankLoanTypeMapper" >
+  <resultMap id="BaseResultMap" type="com.bank.pojo.BankLoanType" >
+    <id column="loan_type_name" property="loanTypeName" jdbcType="VARCHAR" />
+    <result column="period_one" property="periodOne" jdbcType="DOUBLE" />
+    <result column="period_two" property="periodTwo" jdbcType="DOUBLE" />
+    <result column="period_three" property="periodThree" jdbcType="DOUBLE" />
+    <result column="fine_rate" property="fineRate" jdbcType="DOUBLE" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    loan_type_name, period_one, period_two, period_three, fine_rate
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.bank.pojo.BankLoanTypeExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from bank_loan_type
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from bank_loan_type
+    where loan_type_name = #{loanTypeName,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from bank_loan_type
+    where loan_type_name = #{loanTypeName,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.bank.pojo.BankLoanTypeExample" >
+    delete from bank_loan_type
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.bank.pojo.BankLoanType" >
+    insert into bank_loan_type (loan_type_name, period_one, period_two, 
+      period_three, fine_rate)
+    values (#{loanTypeName,jdbcType=VARCHAR}, #{periodOne,jdbcType=DOUBLE}, #{periodTwo,jdbcType=DOUBLE}, 
+      #{periodThree,jdbcType=DOUBLE}, #{fineRate,jdbcType=DOUBLE})
+  </insert>
+  <insert id="insertSelective" parameterType="com.bank.pojo.BankLoanType" >
+    insert into bank_loan_type
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="loanTypeName != null" >
+        loan_type_name,
+      </if>
+      <if test="periodOne != null" >
+        period_one,
+      </if>
+      <if test="periodTwo != null" >
+        period_two,
+      </if>
+      <if test="periodThree != null" >
+        period_three,
+      </if>
+      <if test="fineRate != null" >
+        fine_rate,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="loanTypeName != null" >
+        #{loanTypeName,jdbcType=VARCHAR},
+      </if>
+      <if test="periodOne != null" >
+        #{periodOne,jdbcType=DOUBLE},
+      </if>
+      <if test="periodTwo != null" >
+        #{periodTwo,jdbcType=DOUBLE},
+      </if>
+      <if test="periodThree != null" >
+        #{periodThree,jdbcType=DOUBLE},
+      </if>
+      <if test="fineRate != null" >
+        #{fineRate,jdbcType=DOUBLE},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.bank.pojo.BankLoanTypeExample" resultType="java.lang.Integer" >
+    select count(*) from bank_loan_type
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update bank_loan_type
+    <set >
+      <if test="record.loanTypeName != null" >
+        loan_type_name = #{record.loanTypeName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.periodOne != null" >
+        period_one = #{record.periodOne,jdbcType=DOUBLE},
+      </if>
+      <if test="record.periodTwo != null" >
+        period_two = #{record.periodTwo,jdbcType=DOUBLE},
+      </if>
+      <if test="record.periodThree != null" >
+        period_three = #{record.periodThree,jdbcType=DOUBLE},
+      </if>
+      <if test="record.fineRate != null" >
+        fine_rate = #{record.fineRate,jdbcType=DOUBLE},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update bank_loan_type
+    set loan_type_name = #{record.loanTypeName,jdbcType=VARCHAR},
+      period_one = #{record.periodOne,jdbcType=DOUBLE},
+      period_two = #{record.periodTwo,jdbcType=DOUBLE},
+      period_three = #{record.periodThree,jdbcType=DOUBLE},
+      fine_rate = #{record.fineRate,jdbcType=DOUBLE}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.bank.pojo.BankLoanType" >
+    update bank_loan_type
+    <set >
+      <if test="periodOne != null" >
+        period_one = #{periodOne,jdbcType=DOUBLE},
+      </if>
+      <if test="periodTwo != null" >
+        period_two = #{periodTwo,jdbcType=DOUBLE},
+      </if>
+      <if test="periodThree != null" >
+        period_three = #{periodThree,jdbcType=DOUBLE},
+      </if>
+      <if test="fineRate != null" >
+        fine_rate = #{fineRate,jdbcType=DOUBLE},
+      </if>
+    </set>
+    where loan_type_name = #{loanTypeName,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.bank.pojo.BankLoanType" >
+    update bank_loan_type
+    set period_one = #{periodOne,jdbcType=DOUBLE},
+      period_two = #{periodTwo,jdbcType=DOUBLE},
+      period_three = #{periodThree,jdbcType=DOUBLE},
+      fine_rate = #{fineRate,jdbcType=DOUBLE}
+    where loan_type_name = #{loanTypeName,jdbcType=VARCHAR}
+  </update>
+</mapper>

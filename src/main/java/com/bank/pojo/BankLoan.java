@@ -1,6 +1,6 @@
 package com.bank.pojo;
 
-public class BankLoad {
+public class BankLoan {
     private Long transId;
 
     private String custId;
@@ -9,23 +9,23 @@ public class BankLoad {
 
     private String transDate;
 
-    private Double loadAmount;
+    private Double loanAmount;
 
     private Short insCount;
 
-    private Double loadInterest;
+    private Double loanInterest;
 
-    private Double loadAmountSum;
+    private Double loanAmountSum;
 
     private String expirationDate;
 
     private Double recoveredAmount;
 
-    private Boolean isFinished;
+    private String loanStatus;
 
     private String reviewerId;
 
-    private String loadTypeName;
+    private String loanTypeName;
 
     public Long getTransId() {
         return transId;
@@ -59,12 +59,12 @@ public class BankLoad {
         this.transDate = transDate == null ? null : transDate.trim();
     }
 
-    public Double getLoadAmount() {
-        return loadAmount;
+    public Double getLoanAmount() {
+        return loanAmount;
     }
 
-    public void setLoadAmount(Double loadAmount) {
-        this.loadAmount = loadAmount;
+    public void setLoanAmount(Double loanAmount) {
+        this.loanAmount = loanAmount;
     }
 
     public Short getInsCount() {
@@ -75,20 +75,20 @@ public class BankLoad {
         this.insCount = insCount;
     }
 
-    public Double getLoadInterest() {
-        return loadInterest;
+    public Double getLoanInterest() {
+        return loanInterest;
     }
 
-    public void setLoadInterest(Double loadInterest) {
-        this.loadInterest = loadInterest;
+    public void setLoanInterest(Double loanInterest) {
+        this.loanInterest = loanInterest;
     }
 
-    public Double getLoadAmountSum() {
-        return loadAmountSum;
+    public Double getLoanAmountSum() {
+        return loanAmountSum;
     }
 
-    public void setLoadAmountSum(Double loadAmountSum) {
-        this.loadAmountSum = loadAmountSum;
+    public void setLoanAmountSum(Double loanAmountSum) {
+        this.loanAmountSum = loanAmountSum;
     }
 
     public String getExpirationDate() {
@@ -107,12 +107,12 @@ public class BankLoad {
         this.recoveredAmount = recoveredAmount;
     }
 
-    public Boolean getIsFinished() {
-        return isFinished;
+    public String getLoanStatus() {
+        return loanStatus;
     }
 
-    public void setIsFinished(Boolean isFinished) {
-        this.isFinished = isFinished;
+    public void setLoanStatus(String loanStatus) {
+        this.loanStatus = loanStatus == null ? null : loanStatus.trim();
     }
 
     public String getReviewerId() {
@@ -123,11 +123,11 @@ public class BankLoad {
         this.reviewerId = reviewerId == null ? null : reviewerId.trim();
     }
 
-    public String getLoadTypeName() {
-        return loadTypeName;
+    public String getLoanTypeName() {
+        return loanTypeName;
     }
 
-    public void setLoadTypeName(String loadTypeName) {
-        this.loadTypeName = loadTypeName == null ? null : loadTypeName.trim();
+    public void setLoanTypeName(String loanTypeName) {
+        this.loanTypeName = loanTypeName == null ? null : loanTypeName.trim();
     }
 }

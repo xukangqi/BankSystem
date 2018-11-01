@@ -3,14 +3,14 @@ package com.bank.pojo;
 import java.util.ArrayList;
 import java.util.List;
 
-public class BankLoadPaymentExample {
+public class BankLoanPaymentExample {
     protected String orderByClause;
 
     protected boolean distinct;
 
     protected List<Criteria> oredCriteria;
 
-    public BankLoadPaymentExample() {
+    public BankLoanPaymentExample() {
         oredCriteria = new ArrayList<Criteria>();
     }
 
@@ -411,6 +411,256 @@ public class BankLoadPaymentExample {
 
         public Criteria andPaymentDateNotBetween(String value1, String value2) {
             addCriterion("payment_date not between", value1, value2, "paymentDate");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsFinishedIsNull() {
+            addCriterion("is_finished is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsFinishedIsNotNull() {
+            addCriterion("is_finished is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsFinishedEqualTo(String value) {
+            addCriterion("is_finished =", value, "isFinished");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsFinishedNotEqualTo(String value) {
+            addCriterion("is_finished <>", value, "isFinished");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsFinishedGreaterThan(String value) {
+            addCriterion("is_finished >", value, "isFinished");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsFinishedGreaterThanOrEqualTo(String value) {
+            addCriterion("is_finished >=", value, "isFinished");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsFinishedLessThan(String value) {
+            addCriterion("is_finished <", value, "isFinished");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsFinishedLessThanOrEqualTo(String value) {
+            addCriterion("is_finished <=", value, "isFinished");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsFinishedLike(String value) {
+            addCriterion("is_finished like", value, "isFinished");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsFinishedNotLike(String value) {
+            addCriterion("is_finished not like", value, "isFinished");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsFinishedIn(List<String> values) {
+            addCriterion("is_finished in", values, "isFinished");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsFinishedNotIn(List<String> values) {
+            addCriterion("is_finished not in", values, "isFinished");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsFinishedBetween(String value1, String value2) {
+            addCriterion("is_finished between", value1, value2, "isFinished");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsFinishedNotBetween(String value1, String value2) {
+            addCriterion("is_finished not between", value1, value2, "isFinished");
+            return (Criteria) this;
+        }
+
+        public Criteria andFineRateIsNull() {
+            addCriterion("fine_rate is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andFineRateIsNotNull() {
+            addCriterion("fine_rate is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andFineRateEqualTo(Double value) {
+            addCriterion("fine_rate =", value, "fineRate");
+            return (Criteria) this;
+        }
+
+        public Criteria andFineRateNotEqualTo(Double value) {
+            addCriterion("fine_rate <>", value, "fineRate");
+            return (Criteria) this;
+        }
+
+        public Criteria andFineRateGreaterThan(Double value) {
+            addCriterion("fine_rate >", value, "fineRate");
+            return (Criteria) this;
+        }
+
+        public Criteria andFineRateGreaterThanOrEqualTo(Double value) {
+            addCriterion("fine_rate >=", value, "fineRate");
+            return (Criteria) this;
+        }
+
+        public Criteria andFineRateLessThan(Double value) {
+            addCriterion("fine_rate <", value, "fineRate");
+            return (Criteria) this;
+        }
+
+        public Criteria andFineRateLessThanOrEqualTo(Double value) {
+            addCriterion("fine_rate <=", value, "fineRate");
+            return (Criteria) this;
+        }
+
+        public Criteria andFineRateIn(List<Double> values) {
+            addCriterion("fine_rate in", values, "fineRate");
+            return (Criteria) this;
+        }
+
+        public Criteria andFineRateNotIn(List<Double> values) {
+            addCriterion("fine_rate not in", values, "fineRate");
+            return (Criteria) this;
+        }
+
+        public Criteria andFineRateBetween(Double value1, Double value2) {
+            addCriterion("fine_rate between", value1, value2, "fineRate");
+            return (Criteria) this;
+        }
+
+        public Criteria andFineRateNotBetween(Double value1, Double value2) {
+            addCriterion("fine_rate not between", value1, value2, "fineRate");
+            return (Criteria) this;
+        }
+
+        public Criteria andAllPaymentAmountIsNull() {
+            addCriterion("all_payment_amount is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andAllPaymentAmountIsNotNull() {
+            addCriterion("all_payment_amount is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andAllPaymentAmountEqualTo(Double value) {
+            addCriterion("all_payment_amount =", value, "allPaymentAmount");
+            return (Criteria) this;
+        }
+
+        public Criteria andAllPaymentAmountNotEqualTo(Double value) {
+            addCriterion("all_payment_amount <>", value, "allPaymentAmount");
+            return (Criteria) this;
+        }
+
+        public Criteria andAllPaymentAmountGreaterThan(Double value) {
+            addCriterion("all_payment_amount >", value, "allPaymentAmount");
+            return (Criteria) this;
+        }
+
+        public Criteria andAllPaymentAmountGreaterThanOrEqualTo(Double value) {
+            addCriterion("all_payment_amount >=", value, "allPaymentAmount");
+            return (Criteria) this;
+        }
+
+        public Criteria andAllPaymentAmountLessThan(Double value) {
+            addCriterion("all_payment_amount <", value, "allPaymentAmount");
+            return (Criteria) this;
+        }
+
+        public Criteria andAllPaymentAmountLessThanOrEqualTo(Double value) {
+            addCriterion("all_payment_amount <=", value, "allPaymentAmount");
+            return (Criteria) this;
+        }
+
+        public Criteria andAllPaymentAmountIn(List<Double> values) {
+            addCriterion("all_payment_amount in", values, "allPaymentAmount");
+            return (Criteria) this;
+        }
+
+        public Criteria andAllPaymentAmountNotIn(List<Double> values) {
+            addCriterion("all_payment_amount not in", values, "allPaymentAmount");
+            return (Criteria) this;
+        }
+
+        public Criteria andAllPaymentAmountBetween(Double value1, Double value2) {
+            addCriterion("all_payment_amount between", value1, value2, "allPaymentAmount");
+            return (Criteria) this;
+        }
+
+        public Criteria andAllPaymentAmountNotBetween(Double value1, Double value2) {
+            addCriterion("all_payment_amount not between", value1, value2, "allPaymentAmount");
+            return (Criteria) this;
+        }
+
+        public Criteria andReimbursementIsNull() {
+            addCriterion("reimbursement is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andReimbursementIsNotNull() {
+            addCriterion("reimbursement is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andReimbursementEqualTo(Double value) {
+            addCriterion("reimbursement =", value, "reimbursement");
+            return (Criteria) this;
+        }
+
+        public Criteria andReimbursementNotEqualTo(Double value) {
+            addCriterion("reimbursement <>", value, "reimbursement");
+            return (Criteria) this;
+        }
+
+        public Criteria andReimbursementGreaterThan(Double value) {
+            addCriterion("reimbursement >", value, "reimbursement");
+            return (Criteria) this;
+        }
+
+        public Criteria andReimbursementGreaterThanOrEqualTo(Double value) {
+            addCriterion("reimbursement >=", value, "reimbursement");
+            return (Criteria) this;
+        }
+
+        public Criteria andReimbursementLessThan(Double value) {
+            addCriterion("reimbursement <", value, "reimbursement");
+            return (Criteria) this;
+        }
+
+        public Criteria andReimbursementLessThanOrEqualTo(Double value) {
+            addCriterion("reimbursement <=", value, "reimbursement");
+            return (Criteria) this;
+        }
+
+        public Criteria andReimbursementIn(List<Double> values) {
+            addCriterion("reimbursement in", values, "reimbursement");
+            return (Criteria) this;
+        }
+
+        public Criteria andReimbursementNotIn(List<Double> values) {
+            addCriterion("reimbursement not in", values, "reimbursement");
+            return (Criteria) this;
+        }
+
+        public Criteria andReimbursementBetween(Double value1, Double value2) {
+            addCriterion("reimbursement between", value1, value2, "reimbursement");
+            return (Criteria) this;
+        }
+
+        public Criteria andReimbursementNotBetween(Double value1, Double value2) {
+            addCriterion("reimbursement not between", value1, value2, "reimbursement");
             return (Criteria) this;
         }
     }
