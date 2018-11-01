@@ -1,7 +1,10 @@
 package com.bank.service.Impl;
 
 
+import com.bank.mapper.BankAccountMapper;
 import com.bank.mapper.BankWithdrawMapper;
+import com.bank.pojo.BankAccount;
+import com.bank.pojo.BankAccountExample;
 import com.bank.pojo.BankWithdraw;
 import com.bank.pojo.BankWithdrawExample;
 import com.bank.service.BankWithdrawService;
@@ -20,6 +23,9 @@ public class BankWithdrawServiceImpl implements BankWithdrawService {
     @Autowired
     private BankWithdrawMapper bankWithdrawMapper;
 
+    @Autowired
+    private BankAccountMapper bankAccountMapper;
+
     @Override
     public BankResult insert(BankWithdraw bankWithdraw) {
         if (bankWithdraw == null) {
@@ -30,9 +36,22 @@ public class BankWithdrawServiceImpl implements BankWithdrawService {
             snowFlake = new SnowFlake(2, 1);
         }
 
+        BankAccountExample bankAccountExample = new BankAccountExample();
+        bankAccountExample.createCriteria().andAccountEqualTo(bankWithdraw.getAccount());
+        List<BankAccount> bankAccounts = bankAccountMapper.selectByExample(bankAccountExample);
+        if(bankAccounts == null || bankAccounts.size() > 1)
+            return BankResult.build(400, "参数错误");
+        BankAccount bankAccount = bankAccounts.get(0);
+        double balances = bankAccount.getBalances();
+        double blockedBalances =  bankAccount.getBlockedBalances();
+        if (balances - blockedBalances< bankWithdraw.getWithdrawMoney())
+            return BankResult.build(400, "余额不足");
+        balances -= bankWithdraw.getWithdrawMoney();
+        bankAccount.setBalances(balances);
+        bankAccountMapper.updateByPrimaryKeySelective(bankAccount);
         bankWithdraw.setWithdrawId(snowFlake.nextId());
         bankWithdrawMapper.insert(bankWithdraw);
-        return BankResult.build(200, "新增成功");
+        return BankResult.build(200, "取款成功");
     }
 
     @Override

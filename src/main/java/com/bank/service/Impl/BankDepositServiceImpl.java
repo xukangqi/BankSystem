@@ -1,7 +1,11 @@
 package com.bank.service.Impl;
 
+import com.bank.exception.BizException;
+import com.bank.mapper.BankAccountMapper;
 import com.bank.mapper.BankDepositMapper;
 import com.bank.mapper.BankDepositMapperEx;
+import com.bank.pojo.BankAccount;
+import com.bank.pojo.BankAccountExample;
 import com.bank.pojo.BankDeposit;
 import com.bank.pojo.BankDepositExample;
 import com.bank.service.BankDepositService;
@@ -14,6 +18,7 @@ import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -36,6 +41,9 @@ public class BankDepositServiceImpl implements BankDepositService {
     @Autowired
     private BankDepositMapperEx bankDepositMapperEx;
 
+    @Autowired
+    private BankAccountMapper bankAccountMapper;
+
     @Override
     public BankResult insert(BankDeposit bankDeposit) {
 
@@ -47,11 +55,29 @@ public class BankDepositServiceImpl implements BankDepositService {
             snowFlake = new SnowFlake(1, 1);
         }
 
-        //修改账户存款
+        BankAccountExample bankAccountExample = new BankAccountExample();
+        if(bankDeposit.getAccount() == null)
+            return BankResult.build(400, "参数错误");
+        bankAccountExample.createCriteria().andAccountEqualTo(bankDeposit.getAccount());
+        List<BankAccount> bankAccounts = bankAccountMapper.selectByExample(bankAccountExample);
+        if (bankAccounts == null || bankAccounts.size()>1)
+            return BankResult.build(400, "数据有误");
 
+        BankAccount bankAccount = bankAccounts.get(0);
+        bankDeposit.setDepositDate(new SimpleDateFormat().format(new Date()));
+        bankDeposit.setCustId(bankAccount.getCustId());
         bankDeposit.setDepositId(snowFlake.nextId());
+        bankDeposit.setDepositFlag("0");
         bankDepositMapper.insert(bankDeposit);
-        return BankResult.build(200, "新增成功");
+
+        double balances = bankAccount.getBalances();
+        double blockedBalances = bankAccount.getBlockedBalances();
+        if(!bankDeposit.getDepositDuration().equals("活期"))
+            bankAccount.setBlockedBalances(blockedBalances+bankDeposit.getDepositMoney());
+        bankAccount.setBalances(balances + bankDeposit.getDepositMoney());
+        bankAccountMapper.updateByPrimaryKeySelective(bankAccount);
+
+        return BankResult.build(200, "存款成功");
     }
 
     @Override
@@ -133,4 +159,27 @@ public class BankDepositServiceImpl implements BankDepositService {
         time += day; // 相加得到新的毫秒数
         return new Date(time); // 将毫秒数转换成日期
     }
+
+    /*private long getNumOfDay(String duration){
+        long days;
+        switch (duration){
+            case "活期":
+                days = -1; break;
+            case "三个月":
+                days = 90; break;
+            case "半年":
+                days = 180; break;
+            case "一年":
+                days = 360; break;
+            case "二年":
+                days = 720; break;
+            case "三年":
+                days = 1080; break;
+            case "五年":
+                days = 1800; break;
+            default:
+                throw new BizException("存款年限有误");
+        }
+        return days;
+    }*/
 }
