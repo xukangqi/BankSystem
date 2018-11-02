@@ -22,6 +22,7 @@ public class BankDepositRateServiceImpl implements BankDepositRateService {
         if (bankDepositRate == null) {
             return BankResult.build(400, "参数错误");
         }
+        bankDepositRate.setUpdateDate(Long.toString(System.currentTimeMillis()));
         bankDepositRateMapper.insert(bankDepositRate);
         return BankResult.build(200, "新增成功");
     }
