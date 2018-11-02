@@ -167,6 +167,7 @@ DROP TABLE IF EXISTS `bank_loan_paylog`;
 CREATE TABLE bank_loan_paylog
 (
   `paylog_id`          bigint(20) NOT NULL,
+  `trans_id`           bigint(20) DEFAULT NULL,
   `pay_amount`         double      DEFAULT NULL,
   `pay_date`           varchar(20) DEFAULT NULL,
   `account`          varchar(32) NOT NULL,

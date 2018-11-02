@@ -3,6 +3,8 @@ package com.bank.pojo;
 public class BankLoanPaylog {
     private Long paylogId;
 
+    private Long transId;
+
     private Double payAmount;
 
     private String payDate;
@@ -15,6 +17,14 @@ public class BankLoanPaylog {
 
     public void setPaylogId(Long paylogId) {
         this.paylogId = paylogId;
+    }
+
+    public Long getTransId() {
+        return transId;
+    }
+
+    public void setTransId(Long transId) {
+        this.transId = transId;
     }
 
     public Double getPayAmount() {

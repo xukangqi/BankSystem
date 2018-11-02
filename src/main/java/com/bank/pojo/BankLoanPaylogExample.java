@@ -164,6 +164,66 @@ public class BankLoanPaylogExample {
             return (Criteria) this;
         }
 
+        public Criteria andTransIdIsNull() {
+            addCriterion("trans_id is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andTransIdIsNotNull() {
+            addCriterion("trans_id is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andTransIdEqualTo(Long value) {
+            addCriterion("trans_id =", value, "transId");
+            return (Criteria) this;
+        }
+
+        public Criteria andTransIdNotEqualTo(Long value) {
+            addCriterion("trans_id <>", value, "transId");
+            return (Criteria) this;
+        }
+
+        public Criteria andTransIdGreaterThan(Long value) {
+            addCriterion("trans_id >", value, "transId");
+            return (Criteria) this;
+        }
+
+        public Criteria andTransIdGreaterThanOrEqualTo(Long value) {
+            addCriterion("trans_id >=", value, "transId");
+            return (Criteria) this;
+        }
+
+        public Criteria andTransIdLessThan(Long value) {
+            addCriterion("trans_id <", value, "transId");
+            return (Criteria) this;
+        }
+
+        public Criteria andTransIdLessThanOrEqualTo(Long value) {
+            addCriterion("trans_id <=", value, "transId");
+            return (Criteria) this;
+        }
+
+        public Criteria andTransIdIn(List<Long> values) {
+            addCriterion("trans_id in", values, "transId");
+            return (Criteria) this;
+        }
+
+        public Criteria andTransIdNotIn(List<Long> values) {
+            addCriterion("trans_id not in", values, "transId");
+            return (Criteria) this;
+        }
+
+        public Criteria andTransIdBetween(Long value1, Long value2) {
+            addCriterion("trans_id between", value1, value2, "transId");
+            return (Criteria) this;
+        }
+
+        public Criteria andTransIdNotBetween(Long value1, Long value2) {
+            addCriterion("trans_id not between", value1, value2, "transId");
+            return (Criteria) this;
+        }
+
         public Criteria andPayAmountIsNull() {
             addCriterion("pay_amount is null");
             return (Criteria) this;
