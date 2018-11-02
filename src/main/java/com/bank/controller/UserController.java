@@ -52,6 +52,7 @@ public class UserController {
     @RequestMapping(value = "/login", method = RequestMethod.POST)
     @ResponseBody
     public BankResult login(@RequestParam(value = "username") String username, @RequestParam(value = "password") String password, HttpServletRequest request, HttpServletResponse response) {
+        System.out.println(username);
         BankUser user = userService.login(username, password);
         if (user == null) {
             BankResult bankResult = new BankResult();
@@ -69,6 +70,7 @@ public class UserController {
     @RequestMapping(value = "/register", method = RequestMethod.POST)
     @ResponseBody
     public BankResult register(BankUser bankUser, HttpServletRequest request, HttpServletResponse response) {
+        System.out.println(bankUser.getUserName());
         boolean exist = userService.isExist(bankUser.getUserName());
         if (exist) {
             BankResult bankResult = new BankResult();
@@ -104,6 +106,7 @@ public class UserController {
     public BankResult changepassword(@RequestParam("username") String username, @RequestParam("oldpassword") String oldpassword,
                                      @RequestParam("newpassword") String newpassword,
                                      HttpServletRequest request, HttpServletResponse response) {
+        //没md5
         boolean success = userService.changePassword(username, oldpassword, newpassword);
         if (success) {
             return BankResult.ok();

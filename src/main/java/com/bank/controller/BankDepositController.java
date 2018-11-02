@@ -19,7 +19,7 @@ import java.util.Map;
  * @create: 2018-10-18 20:15
  **/
 @Controller
-@RequestMapping(value = "/deposit")
+@RequestMapping(value = "/money/deposit")
 public class BankDepositController {
 
     @Autowired

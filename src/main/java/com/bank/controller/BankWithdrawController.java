@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-@RequestMapping(value = "/withdraw")
+@RequestMapping(value = "/money/withdraw")
 @Controller
 public class BankWithdrawController {
 

@@ -37,6 +37,7 @@ public class CustomerController {
     public BankResult getAllCustomer(HttpServletRequest request, HttpServletResponse response) {
         List<BankCustomer> customerList = customerService.getCustomers();
         BankResult bankResult = new BankResult();
+        bankResult.setStatus(200);
         bankResult.setData(customerList);
         return bankResult;
     }
@@ -54,6 +55,7 @@ public class CustomerController {
     @RequestMapping(value = "/new", method = RequestMethod.POST)
     @ResponseBody
     public BankResult addCustomer(BankCustomer customer, HttpServletRequest request, HttpServletResponse response) {
+       //初始时要设置加信用 如    customer.setCredit("1");
         String custName = customer.getCustName();
         BankResult bankResult = new BankResult();
         if (customerService.isExist(custName)) {
@@ -72,6 +74,7 @@ public class CustomerController {
     @RequestMapping(value = "/edit", method = RequestMethod.POST)
     @ResponseBody
     public BankResult updateAccount(BankCustomer customer, HttpServletRequest request, HttpServletResponse response) {
+        //密码没md5
         boolean flag = customerService.update(customer);
         if (flag == true) {
             return BankResult.ok();
@@ -99,9 +102,11 @@ public class CustomerController {
     @ResponseBody
     public BankResult addAccount(@RequestParam(value = "custName") String custName, BankAccount account, HttpServletRequest request, HttpServletResponse response) {
         System.out.println(custName);
-        System.out.println(account);
+        System.out.println(account.toString());
+        //account_status没设置，balances两个没设置
         boolean success = accountService.add(custName, account);
         if (success) {
+
             return BankResult.ok();
         } else {
             BankResult bankResult = new BankResult();

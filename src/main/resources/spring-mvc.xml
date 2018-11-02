@@ -8,6 +8,17 @@
     <context:component-scan base-package="com.bank.controller"/>
     <!-- 开启SpringMVC注解模式 -->
     <mvc:annotation-driven/>
+    <!--<mvc:annotation-driven>-->
+        <!--<mvc:message-converters>-->
+            <!--<bean class="org.springframework.http.converter.StringHttpMessageConverter">-->
+                <!--<property name="supportedMediaTypes">-->
+                    <!--<list>-->
+                        <!--<value>application/json;charset=UTF-8</value>-->
+                    <!--</list>-->
+                <!--</property>-->
+            <!--</bean>-->
+        <!--</mvc:message-converters>-->
+    <!--</mvc:annotation-driven>-->
     <!-- 静态资源默认servlet配置 -->
     <mvc:default-servlet-handler/>
 
@@ -21,5 +32,6 @@
         <property name="prefix" value="/WEB-INF/views/"/>
         <property name="suffix" value=".jsp"/>
     </bean>
+     <!--处理请求返回json字符串的中文乱码问题-->
 
 </beans>
