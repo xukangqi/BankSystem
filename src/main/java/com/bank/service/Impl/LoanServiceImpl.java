@@ -7,6 +7,7 @@ import com.bank.pojo.loan.BankLoanPaymentInfo;
 import com.bank.utils.DateControlForLoan;
 import com.bank.service.LoanService;
 import com.bank.utils.BankResult;
+import com.bank.utils.MD5;
 import com.bank.utils.SnowFlake;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -72,7 +73,7 @@ public class LoanServiceImpl implements LoanService {
             case ("2") : loanType = "小微贷款"; break;
             case ("3") : loanType = "消费贷款"; break;
 //            case ("4") : loanType = "信用贷款"; break;
-            default: return BankResult.build(200,"Request failed","贷款类型不存在！");
+            default: return BankResult.build(400,"贷款类型不存在！");
         }
 
         //交易时间戳
@@ -96,7 +97,7 @@ public class LoanServiceImpl implements LoanService {
         try {
             bankLoanMapper.insert(bankLoan);
         } catch (Exception e) {
-            return BankResult.build(200,"Request failed","数据表插入异常");
+            return BankResult.build(400,"数据表插入异常");
         }
 
         //生成用户 payment 表，里面包括了用户在 n 期内每期的操作
@@ -129,11 +130,11 @@ public class LoanServiceImpl implements LoanService {
             try {
                 bankLoanPaymentMapper.insert(bankLoanPayment);
             } catch (Exception e) {
-                return BankResult.build(200,"Request failed","数据表插入异常");
+                return BankResult.build(400,"数据表插入异常");
             }
         }
 
-        return BankResult.build(200,"OK","交易成功！");
+        return BankResult.build(200,"交易成功！");
     }
 
 
@@ -171,7 +172,7 @@ public class LoanServiceImpl implements LoanService {
         try {
             bankLoanPaylogMapper.insert(bankLoanPaylog);
         } catch (Exception e) {
-            return BankResult.build(200,"Request failed","数据表插入异常");
+            return BankResult.build(400,"数据表插入异常");
         }
 
         //判断 transId 是否是属于account的一个合法 贷款号，并进行计算
@@ -180,7 +181,7 @@ public class LoanServiceImpl implements LoanService {
             BankLoan bankLoan = bankLoanMapper.selectByPrimaryKey( Long.valueOf(transId) );
             String accountTemp = bankLoan.getAccount();
             if( !accountTemp.equals( bankLoanPaymentInfo.getAccount() ) ) {
-                return BankResult.build(200,"Request failed","账户号有误");
+                return BankResult.build(400,"账户号有误");
             }
             //查询 transId 的贷款记录
             BankLoanPaymentExample bankLoanPaymentExample = new BankLoanPaymentExample();
@@ -236,7 +237,7 @@ public class LoanServiceImpl implements LoanService {
                     try {
                         bankLoanPaymentMapper.updateByPrimaryKeySelective(bankLoanPayment1);
                     }catch (Exception e) {
-                        return BankResult.build(200,"Request failed","数据表插入异常");
+                        return BankResult.build(400,"数据表插入异常");
                     }
                 }
                 else {  //不需要算罚金
@@ -260,7 +261,7 @@ public class LoanServiceImpl implements LoanService {
                     try {
                         bankLoanPaymentMapper.updateByPrimaryKeySelective(bankLoanPayment2);
                     }catch (Exception e) {
-                        return BankResult.build(200,"Request failed","数据表更新异常");
+                        return BankResult.build(400,"数据表更新异常");
                     }
                 }
             }
@@ -277,7 +278,7 @@ public class LoanServiceImpl implements LoanService {
             try {
                 bankAccountMapper.updateByPrimaryKeySelective(bankAccount);
             } catch (Exception e) {
-                return BankResult.build(200,"Request failed","数据表更新异常");
+                return BankResult.build(400,"数据表更新异常");
             }
 
 
@@ -299,14 +300,14 @@ public class LoanServiceImpl implements LoanService {
             try {
                 bankLoanMapper.updateByPrimaryKeySelective(bankLoan1);
             }catch (Exception e) {
-                return BankResult.build(200,"Request failed","数据表更新异常");
+                return BankResult.build(400,"数据表更新异常");
             }
 
         } catch (Exception e) {
-            return BankResult.build(200,"Request failed","数据表查询异常");
+            return BankResult.build(400,"数据表查询异常");
         }
 
-        return BankResult.build(200,"OK","还款成功！");
+        return BankResult.build(200,"还款成功！");
     }
 
     /**
@@ -320,7 +321,7 @@ public class LoanServiceImpl implements LoanService {
             List<BankLoan> bankLoanList = bankLoanMapper.selectByExample(bankLoanExample);
             return BankResult.ok(bankLoanList);
         } catch (Exception e) {
-            return BankResult.build(200,"Request failed","数据表查询异常");
+            return BankResult.build(400,"数据表查询异常");
         }
     }
 
@@ -334,10 +335,10 @@ public class LoanServiceImpl implements LoanService {
         try {
             BankLoan bankLoan = bankLoanMapper.selectByPrimaryKey(transId);
             if(bankLoan == null)
-                return BankResult.build(200,"Request failed","贷款交易号不存在，请检查输入正确性");
+                return BankResult.build(400,"贷款交易号不存在，请检查输入正确性");
             return BankResult.ok(bankLoan);
         } catch (Exception e) {
-            return BankResult.build(200,"Request failed","数据表查询异常");
+            return BankResult.build(400,"数据表查询异常");
         }
     }
 
@@ -348,7 +349,7 @@ public class LoanServiceImpl implements LoanService {
             List<BankLoanType> bankLoanTypeList = bankLoanTypeMapper.selectByExample(bankLoanTypeExample);
             return BankResult.ok(bankLoanTypeList);
         } catch (Exception e) {
-            return BankResult.build(200,"Request failed","数据表查询异常");
+            return BankResult.build(400,"数据表查询异常");
         }
     }
 
@@ -359,14 +360,14 @@ public class LoanServiceImpl implements LoanService {
             case 1: text = "住房贷款";break;
             case 2: text = "小微贷款";break;
             case 3: text = "消费贷款";break;
-            default: return BankResult.build(200,"Request failed","请求错误");
+            default: return BankResult.build(400,"请求错误");
         }
 
         try {
             BankLoanType bankLoanType = bankLoanTypeMapper.selectByPrimaryKey(text);
             return BankResult.ok(bankLoanType);
         } catch (Exception e) {
-            return BankResult.build(200,"Request failed","数据表查询异常");
+            return BankResult.build(400,"数据表查询异常");
         }
     }
 
@@ -379,7 +380,7 @@ public class LoanServiceImpl implements LoanService {
             List<BankLoanPaylog> bankLoanPaylogs = bankLoanPaylogMapper.selectByExample(bankLoanPaylogExample);
             return BankResult.ok(bankLoanPaylogs);
         } catch (Exception e) {
-            return BankResult.build(200,"Request failed","数据表查询异常");
+            return BankResult.build(400,"数据表查询异常");
         }
     }
 
@@ -392,7 +393,7 @@ public class LoanServiceImpl implements LoanService {
             List<BankLoanPayment> bankLoanPaymentList = bankLoanPaymentMapper.selectByExample(bankLoanPaymentExample);
             return BankResult.ok(bankLoanPaymentList);
         } catch (Exception e) {
-        return BankResult.build(200,"Request failed","数据表查询异常");
+        return BankResult.build(400,"数据表查询异常");
         }
     }
     /**
@@ -412,44 +413,45 @@ public class LoanServiceImpl implements LoanService {
             try {
                 Double.valueOf(amount);
             }catch (NumberFormatException e) {
-                return BankResult.build(200,"Request failed","还款金额是不合法");
+                return BankResult.build(400,"还款金额是不合法");
             }
 
             // 判断账户是否存在
             BankAccount bankAccount = bankAccountMapper.selectByPrimaryKey(account);
-            if(bankAccount == null) { return BankResult.build(200,"Request failed","账户名不存在！"); }
+            if(bankAccount == null) { return BankResult.build(400,"账户名不存在！"); }
 
             //判断密码是否匹配
-            if(!password.equals(bankAccount.getPassword())) {
-                return BankResult.build(200,"Request failed","密码错误！");
+            if(!MD5.string2MD5(password).equals(bankAccount.getPassword())) {
+
+                return BankResult.build(400,"密码错误！");
             }
 
             // 判断姓名与账户是否匹配
             String custId = bankAccount.getCustId();
             BankCustomer bankCustomer = bankCustomerMapper.selectByPrimaryKey(custId);
-            if(bankCustomer == null) { return BankResult.build(200,"Request failed","用户名不存在！"); }
+            if(bankCustomer == null) { return BankResult.build(400,"用户名不存在！"); }
 
             // 判断姓名账户
             if(!custName.equals(bankCustomer.getCustName()) ) {
-                return BankResult.build(200,"Request failed","姓名与账户不匹配！");
+                return BankResult.build(400,"姓名与账户不匹配！");
             }
 
             // 判断身份证号是否正确
             if(!IdCard.equals(bankCustomer.getIdentityCard())) {
-                return BankResult.build(200,"Request failed","身份证号不正确！");
+                return BankResult.build(400,"身份证号不正确！");
             }
 
             //判断用户是否具有还款能里，银行卡里有没有还款的
             if(flag) {
                 if( Double.valueOf(amount) > Double.valueOf(bankAccount.getBalances()) ) {
-                    return BankResult.build(200,"Request failed","还款金额超过账户余额");
+                    return BankResult.build(400,"还款金额超过账户余额");
                 }
                 amountInAccount = Double.valueOf(bankAccount.getBalances());
             }
-            return BankResult.build(200,"OK",custId);
+            return BankResult.build(200,"OK",custId); //这个和你没关系
 
         } catch (Exception e) {
-            return BankResult.build(200,"Request failed","数据表查询异常");
+            return BankResult.build(400,"数据表查询异常");
         }
 
     }
