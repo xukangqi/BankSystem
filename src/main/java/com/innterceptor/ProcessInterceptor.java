@@ -35,7 +35,7 @@ public class ProcessInterceptor implements HandlerInterceptor {
 
     @Override
     public void postHandle(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, Object o, ModelAndView modelAndView) throws Exception {
-
+//        httpServletResponse.setHeader("Content-type","application/json;charset=gbk");
     }
 
     @Override

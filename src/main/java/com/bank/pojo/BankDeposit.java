@@ -110,4 +110,21 @@ public class BankDeposit {
     public void setDepositFlag(String depositFlag) {
         this.depositFlag = depositFlag == null ? null : depositFlag.trim();
     }
+
+    @Override
+    public String toString() {
+        return "BankDeposit{" +
+                "depositId=" + depositId +
+                ", custId='" + custId + '\'' +
+                ", account='" + account + '\'' +
+                ", depositType='" + depositType + '\'' +
+                ", depositMoney=" + depositMoney +
+                ", depositRate=" + depositRate +
+                ", depositDate='" + depositDate + '\'' +
+                ", depositDuration='" + depositDuration + '\'' +
+                ", transferWay='" + transferWay + '\'' +
+                ", reviewerId='" + reviewerId + '\'' +
+                ", depositFlag='" + depositFlag + '\'' +
+                '}';
+    }
 }

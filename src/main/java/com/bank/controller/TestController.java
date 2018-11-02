@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.ws.rs.PathParam;
 
 @Controller
-@RequestMapping("/user")
+@RequestMapping("/test")
 public class TestController {
 
     //通过接口注入service

@@ -110,4 +110,21 @@ public class BankAccount {
     public void setPassword(String password) {
         this.password = password == null ? null : password.trim();
     }
+
+    @Override
+    public String toString() {
+        return "BankAccount{" +
+                "account='" + account + '\'' +
+                ", custId='" + custId + '\'' +
+                ", depositBank='" + depositBank + '\'' +
+                ", balances=" + balances +
+                ", blockedBalances=" + blockedBalances +
+                ", openDate='" + openDate + '\'' +
+                ", cancelDate='" + cancelDate + '\'' +
+                ", accountKind='" + accountKind + '\'' +
+                ", accountType='" + accountType + '\'' +
+                ", accountStatus='" + accountStatus + '\'' +
+                ", password='" + password + '\'' +
+                '}';
+    }
 }
