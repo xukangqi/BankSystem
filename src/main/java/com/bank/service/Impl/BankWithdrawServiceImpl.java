@@ -9,6 +9,7 @@ import com.bank.pojo.BankWithdraw;
 import com.bank.pojo.BankWithdrawExample;
 import com.bank.service.BankWithdrawService;
 import com.bank.utils.BankResult;
+import com.bank.utils.MD5;
 import com.bank.utils.SnowFlake;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -27,8 +28,8 @@ public class BankWithdrawServiceImpl implements BankWithdrawService {
     private BankAccountMapper bankAccountMapper;
 
     @Override
-    public BankResult insert(BankWithdraw bankWithdraw) {
-        if (bankWithdraw == null) {
+    public BankResult insert(BankWithdraw bankWithdraw, String password) {
+        if (bankWithdraw == null || password == null) {
             return BankResult.build(400, "参数错误");
         }
 
@@ -39,17 +40,22 @@ public class BankWithdrawServiceImpl implements BankWithdrawService {
         BankAccountExample bankAccountExample = new BankAccountExample();
         bankAccountExample.createCriteria().andAccountEqualTo(bankWithdraw.getAccount());
         List<BankAccount> bankAccounts = bankAccountMapper.selectByExample(bankAccountExample);
-        if(bankAccounts == null || bankAccounts.size() > 1)
+        if (bankAccounts == null || bankAccounts.size() > 1)
             return BankResult.build(400, "参数错误");
         BankAccount bankAccount = bankAccounts.get(0);
+        if(!bankAccount.getPassword().equals(MD5.string2MD5(password))){
+            return BankResult.build(400, "密码错误");
+        }
         double balances = bankAccount.getBalances();
-        double blockedBalances =  bankAccount.getBlockedBalances();
-        if (balances - blockedBalances< bankWithdraw.getWithdrawMoney())
+        double blockedBalances = bankAccount.getBlockedBalances();
+        if (balances - blockedBalances < bankWithdraw.getWithdrawMoney())
             return BankResult.build(400, "余额不足");
         balances -= bankWithdraw.getWithdrawMoney();
         bankAccount.setBalances(balances);
         bankAccountMapper.updateByPrimaryKeySelective(bankAccount);
         bankWithdraw.setCustId(bankAccount.getCustId());
+        bankWithdraw.setWithdrawDate(Long.toString(System.currentTimeMillis()));
+        bankWithdraw.setArriveTime(Long.toString(System.currentTimeMillis() + 2000));
         bankWithdraw.setWithdrawId(snowFlake.nextId());
         bankWithdrawMapper.insert(bankWithdraw);
         return BankResult.build(200, "取款成功");

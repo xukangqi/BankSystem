@@ -5,7 +5,7 @@ import com.bank.utils.BankResult;
 
 public interface BankWithdrawService {
 
-    BankResult insert(BankWithdraw bankWithdraw);
+    BankResult insert(BankWithdraw bankWithdraw, String password);
 
     BankResult getBankWithdrawByAccount(String account);
 }

@@ -9,6 +9,7 @@ import com.bank.pojo.BankDeposit;
 import com.bank.pojo.BankDepositExample;
 import com.bank.service.BankDepositService;
 import com.bank.utils.BankResult;
+import com.bank.utils.MD5;
 import com.bank.utils.SnowFlake;
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
@@ -44,7 +45,7 @@ public class BankDepositServiceImpl implements BankDepositService {
     private BankAccountMapper bankAccountMapper;
 
     @Override
-    public BankResult insert(BankDeposit bankDeposit) {
+    public BankResult insert(BankDeposit bankDeposit, String password) {
 
         if(bankDeposit == null){
             return BankResult.build(400, "参数错误");
@@ -62,6 +63,9 @@ public class BankDepositServiceImpl implements BankDepositService {
         if (bankAccounts == null || bankAccounts.size()>1)
             return BankResult.build(400, "数据有误");
         BankAccount bankAccount = bankAccounts.get(0);
+        if(!bankAccount.getPassword().equals(MD5.string2MD5(password))){
+            return BankResult.build(400, "密码错误");
+        }
         bankDeposit.setDepositDate(Long.toString(System.currentTimeMillis()));
         bankDeposit.setCustId(bankAccount.getCustId());
         bankDeposit.setDepositId(snowFlake.nextId());

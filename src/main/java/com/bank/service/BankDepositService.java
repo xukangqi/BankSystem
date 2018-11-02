@@ -8,7 +8,7 @@ import java.util.Map;
 
 public interface BankDepositService {
 
-    BankResult insert(BankDeposit bankDeposit);
+    BankResult insert(BankDeposit bankDeposit, String password);
 
     BankResult update(BankDeposit bankDeposit);
 
