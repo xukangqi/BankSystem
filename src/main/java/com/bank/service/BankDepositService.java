@@ -14,7 +14,7 @@ public interface BankDepositService {
 
     BankResult delete(List<Long> depositIds);
 
-    Map<String, Object> getByPage(String keys, Integer pageStart, Integer pageSize);
+//    Map<String, Object> getByPage(String keys, Integer pageStart, Integer pageSize);
 
 //    List<BankDeposit> getAllBankDeposit();
 

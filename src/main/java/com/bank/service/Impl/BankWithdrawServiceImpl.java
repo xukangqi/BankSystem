@@ -49,6 +49,7 @@ public class BankWithdrawServiceImpl implements BankWithdrawService {
         balances -= bankWithdraw.getWithdrawMoney();
         bankAccount.setBalances(balances);
         bankAccountMapper.updateByPrimaryKeySelective(bankAccount);
+        bankWithdraw.setCustId(bankAccount.getCustId());
         bankWithdraw.setWithdrawId(snowFlake.nextId());
         bankWithdrawMapper.insert(bankWithdraw);
         return BankResult.build(200, "取款成功");

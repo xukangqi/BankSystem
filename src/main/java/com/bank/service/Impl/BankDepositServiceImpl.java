@@ -3,7 +3,6 @@ package com.bank.service.Impl;
 import com.bank.exception.BizException;
 import com.bank.mapper.BankAccountMapper;
 import com.bank.mapper.BankDepositMapper;
-import com.bank.mapper.BankDepositMapperEx;
 import com.bank.pojo.BankAccount;
 import com.bank.pojo.BankAccountExample;
 import com.bank.pojo.BankDeposit;
@@ -38,8 +37,8 @@ public class BankDepositServiceImpl implements BankDepositService {
     @Autowired
     private BankDepositMapper bankDepositMapper;
 
-    @Autowired
-    private BankDepositMapperEx bankDepositMapperEx;
+/*    @Autowired
+    private BankDepositMapperEx bankDepositMapperEx;*/
 
     @Autowired
     private BankAccountMapper bankAccountMapper;
@@ -62,9 +61,8 @@ public class BankDepositServiceImpl implements BankDepositService {
         List<BankAccount> bankAccounts = bankAccountMapper.selectByExample(bankAccountExample);
         if (bankAccounts == null || bankAccounts.size()>1)
             return BankResult.build(400, "数据有误");
-
         BankAccount bankAccount = bankAccounts.get(0);
-        bankDeposit.setDepositDate(new SimpleDateFormat().format(new Date()));
+        bankDeposit.setDepositDate(Long.toString(System.currentTimeMillis()));
         bankDeposit.setCustId(bankAccount.getCustId());
         bankDeposit.setDepositId(snowFlake.nextId());
         bankDeposit.setDepositFlag("0");
@@ -72,7 +70,7 @@ public class BankDepositServiceImpl implements BankDepositService {
 
         double balances = bankAccount.getBalances();
         double blockedBalances = bankAccount.getBlockedBalances();
-        if(!bankDeposit.getDepositDuration().equals("活期"))
+        if(!bankDeposit.getDepositType().equals("活期"))
             bankAccount.setBlockedBalances(blockedBalances+bankDeposit.getDepositMoney());
         bankAccount.setBalances(balances + bankDeposit.getDepositMoney());
         bankAccountMapper.updateByPrimaryKeySelective(bankAccount);
@@ -102,7 +100,7 @@ public class BankDepositServiceImpl implements BankDepositService {
         return BankResult.build(200, "删除成功");
     }
 
-    @Override
+    /*@Override
     public Map<String, Object> getByPage(String keys, Integer pageStart, Integer pageSize) {
         Map<String, Object> conditionMap = this.getCriteria(keys);
         conditionMap.put("start", pageStart);
@@ -119,7 +117,7 @@ public class BankDepositServiceImpl implements BankDepositService {
         map.put("num", num);
 
         return map;
-    }
+    }*/
 
     @Override
     public BankResult getBankDepositFromAccount(String account) {

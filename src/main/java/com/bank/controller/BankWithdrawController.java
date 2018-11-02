@@ -10,13 +10,14 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+@RequestMapping(value = "/withdraw")
 @Controller
 public class BankWithdrawController {
 
     @Autowired
     private BankWithdrawService bankWithdrawService;
 
-    @RequestMapping(value = "/insert.do")
+    @RequestMapping(value = "/insert")
     @ResponseBody
     public BankResult insert(BankWithdraw bankWithdraw){
         return bankWithdrawService.insert(bankWithdraw);

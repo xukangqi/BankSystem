@@ -8,8 +8,8 @@ import java.util.Map;
 
 public interface BankDepositMapperEx {
 
-    List<BankDeposit> getByPage(@Param("conditionMap")Map<String,Object> conditionMap, @Param("start") Integer start, @Param("length") Integer length);
+    List<BankDeposit> getByPage(@Param("conditionMap") Map<String, Object> conditionMap, @Param("start") Integer start, @Param("length") Integer length);
 
-    int getCountByPage(@Param("conditionMap")Map<String,Object> conditionMap);
+    int getCountByPage(@Param("conditionMap") Map<String, Object> conditionMap);
 
 }

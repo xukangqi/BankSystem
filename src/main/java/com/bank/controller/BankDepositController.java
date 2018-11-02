@@ -25,7 +25,7 @@ public class BankDepositController {
     @Autowired
     private BankDepositService bankDepositService;
 
-    @RequestMapping(value = "/insert.do")
+    @RequestMapping(value = "/insert")
     @ResponseBody
     public BankResult insert(BankDeposit bankDeposit){
         return bankDepositService.insert(bankDeposit);

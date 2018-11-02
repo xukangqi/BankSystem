@@ -15,19 +15,19 @@ public class BankDepositRateController {
     @Autowired
     private BankDepositRateService bankDepositRateService;
 
-    @RequestMapping(value = "/insert.do")
+    @RequestMapping(value = "/insert")
     @ResponseBody
     public BankResult insert(BankDepositRate bankDepositRate){
         return bankDepositRateService.insert(bankDepositRate);
     }
 
-    @RequestMapping(value = "/update.do")
+    @RequestMapping(value = "/update")
     @ResponseBody
     public BankResult update(BankDepositRate bankDepositRate){
         return bankDepositRateService.update(bankDepositRate);
     }
 
-    @RequestMapping(value = "/getRate.do")
+    @RequestMapping(value = "/getRate")
     @ResponseBody
     public BankResult getAllRate(){
         return bankDepositRateService.getAllRate();
