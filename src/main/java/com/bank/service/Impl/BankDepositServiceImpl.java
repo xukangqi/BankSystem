@@ -70,7 +70,7 @@ public class BankDepositServiceImpl implements BankDepositService {
 
         double balances = bankAccount.getBalances();
         double blockedBalances = bankAccount.getBlockedBalances();
-        if(!bankDeposit.getDepositType().equals("活期"))
+        if(!bankDeposit.getDepositType().equals("活期存款"))
             bankAccount.setBlockedBalances(blockedBalances+bankDeposit.getDepositMoney());
         bankAccount.setBalances(balances + bankDeposit.getDepositMoney());
         bankAccountMapper.updateByPrimaryKeySelective(bankAccount);
