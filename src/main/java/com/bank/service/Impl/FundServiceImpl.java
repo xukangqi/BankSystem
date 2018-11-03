@@ -60,7 +60,6 @@ public class FundServiceImpl implements FundService {
 
         if (bankCustomer.getPassword().equals(passowrd)) return BankResult.build(200, "Request Failed", "Wrong password!");
 
-        // TODO: 此处有可能会要求修改基金产品表
         // 找到对应的基金产品
         BankFundProductExample bankFundProductExample = new BankFundProductExample();
         BankFundProductExample.Criteria criteria = bankFundProductExample.createCriteria();
@@ -138,7 +137,6 @@ public class FundServiceImpl implements FundService {
         SnowFlake snowFlake = new SnowFlake(datacenterId, machineId);
         long fundTxId = snowFlake.nextId();
 
-        // TODO: 此处有可能会要求修改基金产品表
         // 找到对应的基金产品
         BankFundProductExample bankFundProductExample = new BankFundProductExample();
         BankFundProductExample.Criteria criteria = bankFundProductExample.createCriteria();

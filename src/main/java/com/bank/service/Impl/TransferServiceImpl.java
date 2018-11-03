@@ -24,7 +24,7 @@ public class TransferServiceImpl implements TransferService {
     private long machineId ;     //机器标识
 
     @Override
-    public BankResult createTransfer(String transferOutAccount, String transferInAccount, double amount) {
+    public BankResult createTransfer(String transferOutAccount, String transferInAccount, String password, double amount) {
         machineId = 1L;
 
 
@@ -32,6 +32,9 @@ public class TransferServiceImpl implements TransferService {
         BankAccount inAccount = bankAccountMapper.selectByPrimaryKey(transferInAccount);
         if (outAccount == null)
             return BankResult.build(200, "Request Failed", "Transfer out account not exist!");
+
+        if (!outAccount.getPassword().equals(password)) return BankResult.build(200, "Request Failed", "Wrong password!");
+
         if (inAccount == null)
             return BankResult.build(200, "Request Failed", "Transfer in account not exist!");
 
