@@ -41,6 +41,9 @@ public class CustomerServiceImpl implements ICustomerService {
         customer.setCustId(cust_id);
         String pw = MD5.string2MD5(customer.getPassword());
         customer.setPassword(pw);
+        if (null == customer.getCredit()) {
+            customer.setCredit("1");
+        }
         bankCustomerMapper.insert(customer);
         return cust_id;
     }

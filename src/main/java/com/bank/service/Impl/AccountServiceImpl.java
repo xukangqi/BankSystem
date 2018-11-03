@@ -39,6 +39,12 @@ public class AccountServiceImpl implements IAccountService {
             account.setOpenDate(String.valueOf(System.currentTimeMillis()));
             String pw = MD5.string2MD5(account.getPassword());
             account.setPassword(pw);
+            if (null == account.getBalances()) {
+                account.setBalances(0.0);
+            }
+            if (null == account.getBlockedBalances()) {
+                account.setBlockedBalances(0.0);
+            }
             bankAccountMapper.insert(account);
             System.out.println("账户插入成功");
             return true;
