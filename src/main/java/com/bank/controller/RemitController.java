@@ -20,8 +20,8 @@ public class RemitController {
     @ResponseBody
     public BankResult createRemit(@RequestParam(value = "name")String name,
                                   @RequestParam(value = "phone")String phone,
-                                  @RequestParam(value = "remit_out_account")String remitOutAccount,
-                                  @RequestParam(value = "remit_in_account")String remitInAccount,
+                                  @RequestParam(value = "remitOutAccount")String remitOutAccount,
+                                  @RequestParam(value = "remitInAccount")String remitInAccount,
                                   @RequestParam(value = "password")String password,
                                   @RequestParam(value = "amount")double amount) {
         BankResult bankResult = remitService.createRemit(name, phone, remitOutAccount, remitInAccount, password, amount);
@@ -30,8 +30,8 @@ public class RemitController {
 
     @RequestMapping(value = "/get", method = RequestMethod.POST)
     @ResponseBody
-    public BankResult getRemit(@RequestParam(value = "remit_in_account")String remitInAccount,
-                               @RequestParam(value = "remit_id")String remitId) {
+    public BankResult getRemit(@RequestParam(value = "remitInAccount")String remitInAccount,
+                               @RequestParam(value = "remitId")String remitId) {
         BankResult bankResult = remitService.getRemit(remitInAccount, remitId);
         return bankResult;
     }
@@ -40,6 +40,13 @@ public class RemitController {
     @ResponseBody
     public BankResult getRemitLogs() {
         BankResult bankResult = remitService.getRemitLogs();
+        return bankResult;
+    }
+
+    @RequestMapping(value = "/query/{remitId}", method = RequestMethod.GET)
+    @ResponseBody
+    public BankResult getOneRemitLogs(@RequestParam(value = "id")String remitId) {
+        BankResult bankResult = remitService.getOneRemitLog(remitId);
         return bankResult;
     }
 }

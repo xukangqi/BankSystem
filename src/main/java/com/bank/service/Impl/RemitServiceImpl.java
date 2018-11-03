@@ -33,22 +33,22 @@ public class RemitServiceImpl implements RemitService {
         BankAccount inAccount = bankAccountMapper.selectByPrimaryKey(remitInAccount);
 
         if (!outAccountCustomer.getCustName().equals(name))
-            return BankResult.build(200, "Request Failed", "Wrong name!");
+            return BankResult.build(400, "Request Failed", "Wrong name!");
 
         if (!outAccountCustomer.getPhone().equals(phone))
-            return BankResult.build(200, "Request Failed", "Wrong phone!");
+            return BankResult.build(400, "Request Failed", "Wrong phone!");
 
         if (outAccount == null)
-            return BankResult.build(200, "Request Failed", "Remit out account not exist!");
+            return BankResult.build(400, "Request Failed", "Remit out account not exist!");
 
         if (!outAccount.getPassword().equals(password))
-            return BankResult.build(200, "Request Failed", "Wrong password!");
+            return BankResult.build(400, "Request Failed", "Wrong password!");
 
         if (inAccount == null)
-            return BankResult.build(200, "Request Failed", "Remit in account not exist!");
+            return BankResult.build(400, "Request Failed", "Remit in account not exist!");
 
         if (outAccount.getBalances() < amount)
-            return BankResult.build(200, "Request Failed", "Insufficient balance in remit out account!");
+            return BankResult.build(400, "Request Failed", "Insufficient balance in remit out account!");
 
         SnowFlake snowFlake = new SnowFlake(datacenterId, machineId);
         long remitId = snowFlake.nextId();
@@ -74,13 +74,13 @@ public class RemitServiceImpl implements RemitService {
     public BankResult getRemit(String remitInAccount, String remitId) {
         BankAccount inAccount = bankAccountMapper.selectByPrimaryKey(remitInAccount);
         BankRemitLog bankRemitLog = bankRemitLogMapper.selectByPrimaryKey(remitId);
-        if (bankRemitLog == null) return BankResult.build(200, "Request Failed", "Remit not exist!");
+        if (bankRemitLog == null) return BankResult.build(400, "Request Failed", "Remit not exist!");
 
         if (!bankRemitLog.getRemitInAccount().equals(remitInAccount))
-            return BankResult.build(200, "Request Failed", "Account not consistent with the remit!");
+            return BankResult.build(400, "Request Failed", "Account not consistent with the remit!");
 
         if (!bankRemitLog.getRemitArriveDate().equals("Unpaid"))
-            return BankResult.build(200, "Request Failed", "Remit has already been paid!");
+            return BankResult.build(400, "Request Failed", "Remit has already been paid!");
 
         bankRemitLog.setRemitArriveDate(String.valueOf(System.currentTimeMillis()));
         bankRemitLogMapper.updateByPrimaryKey(bankRemitLog);
@@ -88,7 +88,7 @@ public class RemitServiceImpl implements RemitService {
         inAccount.setBalances(inAccount.getBalances() + bankRemitLog.getAmount());
         bankAccountMapper.updateByPrimaryKey(inAccount);
 
-        return BankResult.ok(remitId);
+        return BankResult.ok();
     }
 
     @Override
@@ -101,5 +101,10 @@ public class RemitServiceImpl implements RemitService {
         return BankResult.ok(bankRemitLogsList);
     }
 
+    @Override
+    public BankResult getOneRemitLog(String remitId) {
+        BankRemitLog bankRemitLog = bankRemitLogMapper.selectByPrimaryKey(remitId);
+        return BankResult.ok(bankRemitLog);
+    }
 
 }

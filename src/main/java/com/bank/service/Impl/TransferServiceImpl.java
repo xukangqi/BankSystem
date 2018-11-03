@@ -36,21 +36,21 @@ public class TransferServiceImpl implements TransferService {
 
         BankAccount inAccount = bankAccountMapper.selectByPrimaryKey(transferInAccount);
         if (!outAccountCustomer.getCustName().equals(name))
-            return BankResult.build(200, "Request Failed", "Wrong name!");
+            return BankResult.build(400, "Request Failed", "Wrong name!");
 
         if (!outAccountCustomer.getPhone().equals(phone))
-            return BankResult.build(200, "Request Failed", "Wrong phone!");
+            return BankResult.build(400, "Request Failed", "Wrong phone!");
 
         if (outAccount == null)
-            return BankResult.build(200, "Request Failed", "Transfer out account not exist!");
+            return BankResult.build(400, "Request Failed", "Transfer out account not exist!");
 
-        if (!outAccount.getPassword().equals(password)) return BankResult.build(200, "Request Failed", "Wrong password!");
+        if (!outAccount.getPassword().equals(password)) return BankResult.build(400, "Request Failed", "Wrong password!");
 
         if (inAccount == null)
-            return BankResult.build(200, "Request Failed", "Transfer in account not exist!");
+            return BankResult.build(400, "Request Failed", "Transfer in account not exist!");
 
         if (outAccount.getBalances() < amount)
-            return BankResult.build(200, "Request Failed", "Insufficient balance in transfer out account!");
+            return BankResult.build(400, "Request Failed", "Insufficient balance in transfer out account!");
 
         SnowFlake snowFlake = new SnowFlake(datacenterId, machineId);
         long transferId = snowFlake.nextId();
@@ -83,5 +83,11 @@ public class TransferServiceImpl implements TransferService {
         List<BankTransferLog> bankTransferLogList = bankTransferLogMapper.selectByExample(bankTransferLogExample);
 
         return BankResult.ok(bankTransferLogList);
+    }
+
+    @Override
+    public BankResult getOneTransferLog(String transferId) {
+        BankTransferLog bankTransferLog = bankTransferLogMapper.selectByPrimaryKey(transferId);
+        return BankResult.ok(bankTransferLog);
     }
 }

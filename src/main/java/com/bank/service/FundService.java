@@ -1,12 +1,16 @@
 package com.bank.service;
 
+import com.bank.pojo.BankFundLog;
 import com.bank.utils.BankResult;
 
 public interface FundService {
-    BankResult createFundProduct(String type, double purchase_rate, double net_asset_value, double redemption_rate);
-    BankResult createFundPurchaseTx(String name, String phone, String account, String fundId, double amount, String password);
-    BankResult createFundRedemptionTx(String account, String fundId, double share, String password);
+    BankResult createFundProduct(String type, double purchaseRate, double netAssetValue, double redemptionRate);
+    BankResult createFundPurchaseTx(String name, String phone, String account, String fundId, double amount, String password, String reviewerId);
+    BankResult createFundRedemptionTx(String account, String fundId, double share, String password, String reviewerId);
     BankResult getFundProducts();
+    BankResult getOneFundProduct(String fundId, String purchaseDate);
     BankResult getFundLogs();
+    BankResult getOneFundLog(String fundTxId);
     BankResult getFundHolds();
+    BankResult getOneFundHold(String account, String fundId);
 }
