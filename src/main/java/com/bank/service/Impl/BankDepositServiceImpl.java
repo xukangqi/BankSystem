@@ -68,7 +68,7 @@ public class BankDepositServiceImpl implements BankDepositService {
         }
         bankDeposit.setDepositDate(Long.toString(System.currentTimeMillis()));
         bankDeposit.setCustId(bankAccount.getCustId());
-        bankDeposit.setDepositId(snowFlake.nextId());
+        bankDeposit.setDepositId(String.valueOf(snowFlake.nextId()));
         bankDeposit.setDepositFlag("0");
         bankDepositMapper.insert(bankDeposit);
 

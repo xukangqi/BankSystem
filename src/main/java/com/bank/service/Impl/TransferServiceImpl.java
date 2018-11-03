@@ -46,7 +46,7 @@ public class TransferServiceImpl implements TransferService {
 
         BankTransferLog bankTransferLog = new BankTransferLog();
 
-        bankTransferLog.setTransferId(transferId);
+        bankTransferLog.setTransferId(String.valueOf(transferId));
         bankTransferLog.setTransferOutAccount(transferOutAccount);
         bankTransferLog.setTransferInAccount(transferInAccount);
         bankTransferLog.setAmount(amount);

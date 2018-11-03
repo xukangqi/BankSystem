@@ -44,7 +44,7 @@ public class RemitServiceImpl implements RemitService {
 
         BankRemitLog bankRemitLog = new BankRemitLog();
 
-        bankRemitLog.setRemitId(remitId);
+        bankRemitLog.setRemitId(String.valueOf(remitId));
         bankRemitLog.setRemitOutAccount(remitOutAccount);
         bankRemitLog.setRemitInAccount(remitInAccount);
         bankRemitLog.setAmount(amount);
@@ -62,7 +62,7 @@ public class RemitServiceImpl implements RemitService {
     @Override
     public BankResult getRemit(String remitInAccount, String remitId) {
         BankAccount inAccount = bankAccountMapper.selectByPrimaryKey(remitInAccount);
-        BankRemitLog bankRemitLog = bankRemitLogMapper.selectByPrimaryKey(Long.parseLong(remitId));
+        BankRemitLog bankRemitLog = bankRemitLogMapper.selectByPrimaryKey(remitId);
         if (bankRemitLog == null) return BankResult.build(200, "Request Failed", "Remit not exist!");
 
         if (!bankRemitLog.getRemitInAccount().equals(remitInAccount))

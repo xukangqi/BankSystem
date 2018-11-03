@@ -84,7 +84,7 @@ public class FundServiceImpl implements FundService {
 
         // 创建交易记录
         BankFundLog bankFundLog = new BankFundLog();
-        bankFundLog.setFundTxId(fundTxId);
+        bankFundLog.setFundTxId(String.valueOf(fundTxId));
         bankFundLog.setCustId(custId);
         bankFundLog.setAccount(account);
         bankFundLog.setFundId(fundId);
@@ -160,7 +160,7 @@ public class FundServiceImpl implements FundService {
 
         // 创建交易记录
         BankFundLog bankFundLog = new BankFundLog();
-        bankFundLog.setFundTxId(fundTxId);
+        bankFundLog.setFundTxId(String.valueOf(fundTxId));
         bankFundLog.setCustId(bankAccount.getCustId());
         bankFundLog.setAccount(account);
         bankFundLog.setFundId(fundId);
