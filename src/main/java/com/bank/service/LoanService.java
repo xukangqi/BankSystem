@@ -8,9 +8,9 @@ public interface LoanService {
     BankResult dealApplyment(BankLoanApplyInfo bankLoanApplyInfo);
     BankResult sentAllRecords();
     BankResult payForLoan(BankLoanPaymentInfo bankLoanPaymentInfo);
-    BankResult sentOneRecord(long transId);
+    BankResult sentOneRecord(String transId);
     BankResult getInterestRate();
     BankResult getInterestOneRate(int value);
-    BankResult getPaylog(long value);
-    BankResult getPaymentOneInfo(long value);
+    BankResult getPaylog(String value);
+    BankResult getPaymentOneInfo(String value);
 }

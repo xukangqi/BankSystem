@@ -25,7 +25,7 @@ public class DateControlForLoan {
         Calendar cal = Calendar.getInstance();
         int day = cal.get(Calendar.DATE);
         int month = cal.get(Calendar.MONTH);
-        int year = cal.get(Calendar.YEAR);//2017
+        int year = cal.get(Calendar.YEAR);
 
         DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
         //循环月，年
