@@ -11,7 +11,7 @@ public interface BankDepositMapper {
 
     int deleteByExample(BankDepositExample example);
 
-    int deleteByPrimaryKey(Long depositId);
+    int deleteByPrimaryKey(String depositId);
 
     int insert(BankDeposit record);
 
@@ -19,7 +19,7 @@ public interface BankDepositMapper {
 
     List<BankDeposit> selectByExample(BankDepositExample example);
 
-    BankDeposit selectByPrimaryKey(Long depositId);
+    BankDeposit selectByPrimaryKey(String depositId);
 
     int updateByExampleSelective(@Param("record") BankDeposit record, @Param("example") BankDepositExample example);
 

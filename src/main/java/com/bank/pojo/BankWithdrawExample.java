@@ -114,52 +114,62 @@ public class BankWithdrawExample {
             return (Criteria) this;
         }
 
-        public Criteria andWithdrawIdEqualTo(Long value) {
+        public Criteria andWithdrawIdEqualTo(String value) {
             addCriterion("withdraw_id =", value, "withdrawId");
             return (Criteria) this;
         }
 
-        public Criteria andWithdrawIdNotEqualTo(Long value) {
+        public Criteria andWithdrawIdNotEqualTo(String value) {
             addCriterion("withdraw_id <>", value, "withdrawId");
             return (Criteria) this;
         }
 
-        public Criteria andWithdrawIdGreaterThan(Long value) {
+        public Criteria andWithdrawIdGreaterThan(String value) {
             addCriterion("withdraw_id >", value, "withdrawId");
             return (Criteria) this;
         }
 
-        public Criteria andWithdrawIdGreaterThanOrEqualTo(Long value) {
+        public Criteria andWithdrawIdGreaterThanOrEqualTo(String value) {
             addCriterion("withdraw_id >=", value, "withdrawId");
             return (Criteria) this;
         }
 
-        public Criteria andWithdrawIdLessThan(Long value) {
+        public Criteria andWithdrawIdLessThan(String value) {
             addCriterion("withdraw_id <", value, "withdrawId");
             return (Criteria) this;
         }
 
-        public Criteria andWithdrawIdLessThanOrEqualTo(Long value) {
+        public Criteria andWithdrawIdLessThanOrEqualTo(String value) {
             addCriterion("withdraw_id <=", value, "withdrawId");
             return (Criteria) this;
         }
 
-        public Criteria andWithdrawIdIn(List<Long> values) {
+        public Criteria andWithdrawIdLike(String value) {
+            addCriterion("withdraw_id like", value, "withdrawId");
+            return (Criteria) this;
+        }
+
+        public Criteria andWithdrawIdNotLike(String value) {
+            addCriterion("withdraw_id not like", value, "withdrawId");
+            return (Criteria) this;
+        }
+
+        public Criteria andWithdrawIdIn(List<String> values) {
             addCriterion("withdraw_id in", values, "withdrawId");
             return (Criteria) this;
         }
 
-        public Criteria andWithdrawIdNotIn(List<Long> values) {
+        public Criteria andWithdrawIdNotIn(List<String> values) {
             addCriterion("withdraw_id not in", values, "withdrawId");
             return (Criteria) this;
         }
 
-        public Criteria andWithdrawIdBetween(Long value1, Long value2) {
+        public Criteria andWithdrawIdBetween(String value1, String value2) {
             addCriterion("withdraw_id between", value1, value2, "withdrawId");
             return (Criteria) this;
         }
 
-        public Criteria andWithdrawIdNotBetween(Long value1, Long value2) {
+        public Criteria andWithdrawIdNotBetween(String value1, String value2) {
             addCriterion("withdraw_id not between", value1, value2, "withdrawId");
             return (Criteria) this;
         }

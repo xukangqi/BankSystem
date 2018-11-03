@@ -1,7 +1,7 @@
 package com.bank.pojo;
 
 public class BankLoan {
-    private Long transId;
+    private String transId;
 
     private String custId;
 
@@ -27,12 +27,12 @@ public class BankLoan {
 
     private String loanTypeName;
 
-    public Long getTransId() {
+    public String getTransId() {
         return transId;
     }
 
-    public void setTransId(Long transId) {
-        this.transId = transId;
+    public void setTransId(String transId) {
+        this.transId = transId == null ? null : transId.trim();
     }
 
     public String getCustId() {

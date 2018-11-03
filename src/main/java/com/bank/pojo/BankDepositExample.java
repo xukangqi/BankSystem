@@ -114,52 +114,62 @@ public class BankDepositExample {
             return (Criteria) this;
         }
 
-        public Criteria andDepositIdEqualTo(Long value) {
+        public Criteria andDepositIdEqualTo(String value) {
             addCriterion("deposit_id =", value, "depositId");
             return (Criteria) this;
         }
 
-        public Criteria andDepositIdNotEqualTo(Long value) {
+        public Criteria andDepositIdNotEqualTo(String value) {
             addCriterion("deposit_id <>", value, "depositId");
             return (Criteria) this;
         }
 
-        public Criteria andDepositIdGreaterThan(Long value) {
+        public Criteria andDepositIdGreaterThan(String value) {
             addCriterion("deposit_id >", value, "depositId");
             return (Criteria) this;
         }
 
-        public Criteria andDepositIdGreaterThanOrEqualTo(Long value) {
+        public Criteria andDepositIdGreaterThanOrEqualTo(String value) {
             addCriterion("deposit_id >=", value, "depositId");
             return (Criteria) this;
         }
 
-        public Criteria andDepositIdLessThan(Long value) {
+        public Criteria andDepositIdLessThan(String value) {
             addCriterion("deposit_id <", value, "depositId");
             return (Criteria) this;
         }
 
-        public Criteria andDepositIdLessThanOrEqualTo(Long value) {
+        public Criteria andDepositIdLessThanOrEqualTo(String value) {
             addCriterion("deposit_id <=", value, "depositId");
             return (Criteria) this;
         }
 
-        public Criteria andDepositIdIn(List<Long> values) {
+        public Criteria andDepositIdLike(String value) {
+            addCriterion("deposit_id like", value, "depositId");
+            return (Criteria) this;
+        }
+
+        public Criteria andDepositIdNotLike(String value) {
+            addCriterion("deposit_id not like", value, "depositId");
+            return (Criteria) this;
+        }
+
+        public Criteria andDepositIdIn(List<String> values) {
             addCriterion("deposit_id in", values, "depositId");
             return (Criteria) this;
         }
 
-        public Criteria andDepositIdNotIn(List<Long> values) {
+        public Criteria andDepositIdNotIn(List<String> values) {
             addCriterion("deposit_id not in", values, "depositId");
             return (Criteria) this;
         }
 
-        public Criteria andDepositIdBetween(Long value1, Long value2) {
+        public Criteria andDepositIdBetween(String value1, String value2) {
             addCriterion("deposit_id between", value1, value2, "depositId");
             return (Criteria) this;
         }
 
-        public Criteria andDepositIdNotBetween(Long value1, Long value2) {
+        public Criteria andDepositIdNotBetween(String value1, String value2) {
             addCriterion("deposit_id not between", value1, value2, "depositId");
             return (Criteria) this;
         }

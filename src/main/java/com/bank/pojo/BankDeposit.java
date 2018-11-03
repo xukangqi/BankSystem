@@ -1,7 +1,7 @@
 package com.bank.pojo;
 
 public class BankDeposit {
-    private Long depositId;
+    private String depositId;
 
     private String custId;
 
@@ -23,12 +23,12 @@ public class BankDeposit {
 
     private String depositFlag;
 
-    public Long getDepositId() {
+    public String getDepositId() {
         return depositId;
     }
 
-    public void setDepositId(Long depositId) {
-        this.depositId = depositId;
+    public void setDepositId(String depositId) {
+        this.depositId = depositId == null ? null : depositId.trim();
     }
 
     public String getCustId() {

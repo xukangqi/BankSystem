@@ -1,7 +1,7 @@
 package com.bank.pojo;
 
 public class BankFundLog {
-    private Long fundTxId;
+    private String fundTxId;
 
     private String custId;
 
@@ -19,12 +19,12 @@ public class BankFundLog {
 
     private String reviewId;
 
-    public Long getFundTxId() {
+    public String getFundTxId() {
         return fundTxId;
     }
 
-    public void setFundTxId(Long fundTxId) {
-        this.fundTxId = fundTxId;
+    public void setFundTxId(String fundTxId) {
+        this.fundTxId = fundTxId == null ? null : fundTxId.trim();
     }
 
     public String getCustId() {

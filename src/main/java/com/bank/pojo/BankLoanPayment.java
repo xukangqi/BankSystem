@@ -1,9 +1,9 @@
 package com.bank.pojo;
 
 public class BankLoanPayment {
-    private Long paymentId;
+    private String paymentId;
 
-    private Long transId;
+    private String transId;
 
     private Short insNum;
 
@@ -19,20 +19,20 @@ public class BankLoanPayment {
 
     private Double reimbursement;
 
-    public Long getPaymentId() {
+    public String getPaymentId() {
         return paymentId;
     }
 
-    public void setPaymentId(Long paymentId) {
-        this.paymentId = paymentId;
+    public void setPaymentId(String paymentId) {
+        this.paymentId = paymentId == null ? null : paymentId.trim();
     }
 
-    public Long getTransId() {
+    public String getTransId() {
         return transId;
     }
 
-    public void setTransId(Long transId) {
-        this.transId = transId;
+    public void setTransId(String transId) {
+        this.transId = transId == null ? null : transId.trim();
     }
 
     public Short getInsNum() {

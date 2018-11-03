@@ -1,7 +1,7 @@
 package com.bank.pojo;
 
 public class BankRemitLog {
-    private Long remitId;
+    private String remitId;
 
     private String remitOutAccount;
 
@@ -13,12 +13,12 @@ public class BankRemitLog {
 
     private String remitArriveDate;
 
-    public Long getRemitId() {
+    public String getRemitId() {
         return remitId;
     }
 
-    public void setRemitId(Long remitId) {
-        this.remitId = remitId;
+    public void setRemitId(String remitId) {
+        this.remitId = remitId == null ? null : remitId.trim();
     }
 
     public String getRemitOutAccount() {
