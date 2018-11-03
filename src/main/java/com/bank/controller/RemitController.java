@@ -18,11 +18,13 @@ public class RemitController {
 
     @RequestMapping(value = "/create", method = RequestMethod.POST)
     @ResponseBody
-    public BankResult createRemit(@RequestParam(value = "remit_out_account")String remitOutAccount,
+    public BankResult createRemit(@RequestParam(value = "name")String name,
+                                  @RequestParam(value = "phone")String phone,
+                                  @RequestParam(value = "remit_out_account")String remitOutAccount,
                                   @RequestParam(value = "remit_in_account")String remitInAccount,
                                   @RequestParam(value = "password")String password,
                                   @RequestParam(value = "amount")double amount) {
-        BankResult bankResult = remitService.createRemit(remitOutAccount, remitInAccount, password, amount);
+        BankResult bankResult = remitService.createRemit(name, phone, remitOutAccount, remitInAccount, password, amount);
         return bankResult;
     }
 

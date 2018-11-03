@@ -1,8 +1,10 @@
 package com.bank.service.Impl;
 
 import com.bank.mapper.BankAccountMapper;
+import com.bank.mapper.BankCustomerMapper;
 import com.bank.mapper.BankTransferLogMapper;
 import com.bank.pojo.BankAccount;
+import com.bank.pojo.BankCustomer;
 import com.bank.pojo.BankTransferLog;
 import com.bank.pojo.BankTransferLogExample;
 import com.bank.service.TransferService;
@@ -19,17 +21,26 @@ public class TransferServiceImpl implements TransferService {
     private BankTransferLogMapper bankTransferLogMapper;
     @Autowired
     private BankAccountMapper bankAccountMapper;
+    @Autowired
+    private BankCustomerMapper bankCustomerMapper;
 
     private long datacenterId = 3L;  //数据中心
     private long machineId ;     //机器标识
 
     @Override
-    public BankResult createTransfer(String transferOutAccount, String transferInAccount, String password, double amount) {
+    public BankResult createTransfer(String name, String phone, String transferOutAccount, String transferInAccount, String password, double amount) {
         machineId = 1L;
 
-
         BankAccount outAccount = bankAccountMapper.selectByPrimaryKey(transferOutAccount);
+        BankCustomer outAccountCustomer = bankCustomerMapper.selectByPrimaryKey(outAccount.getCustId());
+
         BankAccount inAccount = bankAccountMapper.selectByPrimaryKey(transferInAccount);
+        if (!outAccountCustomer.getCustName().equals(name))
+            return BankResult.build(200, "Request Failed", "Wrong name!");
+
+        if (!outAccountCustomer.getPhone().equals(phone))
+            return BankResult.build(200, "Request Failed", "Wrong phone!");
+
         if (outAccount == null)
             return BankResult.build(200, "Request Failed", "Transfer out account not exist!");
 

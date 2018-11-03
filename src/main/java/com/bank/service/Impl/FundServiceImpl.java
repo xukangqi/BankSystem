@@ -45,20 +45,24 @@ public class FundServiceImpl implements FundService {
     }
 
     @Override
-    public BankResult createFundPurchaseTx(String custId, String account, String fundId, double amount, String passowrd) {
+    public BankResult createFundPurchaseTx(String name, String phone, String account, String fundId, double amount, String passowrd) {
         machineId = 2L;
-
-        BankCustomer bankCustomer = bankCustomerMapper.selectByPrimaryKey(custId);
-        if (bankCustomer == null) return BankResult.build(200, "Request Failed", "Customer not exist!");
 
         BankAccount bankAccount = bankAccountMapper.selectByPrimaryKey(account);
         if (bankAccount == null) return BankResult.build(200, "Request Failed", "Account not exist!");
 
-        if (!bankAccount.getCustId().equals(custId)) return BankResult.build(200, "Request Failed", "Account not correspond to customer!");
+        String custId = bankAccount.getCustId();
+        BankCustomer bankCustomer = bankCustomerMapper.selectByPrimaryKey(custId);
+
+        if (!bankCustomer.getCustName().equals(name))
+            return BankResult.build(200, "Request Failed", "Wrong name!");
+
+        if (!bankCustomer.getPhone().equals(phone))
+            return BankResult.build(200, "Request Failed", "Wrong phone!");
 
         if (bankAccount.getBalances() < amount) return BankResult.build(200, "Request Failed", "Insufficient balance!");
 
-        if (bankCustomer.getPassword().equals(passowrd)) return BankResult.build(200, "Request Failed", "Wrong password!");
+        if (!bankCustomer.getPassword().equals(passowrd)) return BankResult.build(200, "Request Failed", "Wrong password!");
 
         // 找到对应的基金产品
         BankFundProductExample bankFundProductExample = new BankFundProductExample();
@@ -121,7 +125,7 @@ public class FundServiceImpl implements FundService {
     }
 
     @Override
-    public BankResult createFundRedemptionTx(String account, String fundId, double share) {
+    public BankResult createFundRedemptionTx(String account, String fundId, double share, String password) {
         machineId = 2L;
 
         BankAccount bankAccount = bankAccountMapper.selectByPrimaryKey(account);
@@ -130,9 +134,7 @@ public class FundServiceImpl implements FundService {
         bankFundHoldKey.setAccount(account);
         BankFundHold bankFundHold = bankFundHoldMapper.selectByPrimaryKey(bankFundHoldKey);
 
-        // TODO: 添加一些条件判断
         if (bankFundHold.getShare() < share) return BankResult.build(200, "Request Failed", "Insufficient share");
-
 
         SnowFlake snowFlake = new SnowFlake(datacenterId, machineId);
         long fundTxId = snowFlake.nextId();
@@ -155,6 +157,9 @@ public class FundServiceImpl implements FundService {
         else {
             return BankResult.build(200, "Request Failed", "Fund product not exist!");
         }
+
+        if (!bankAccount.getPassword().equals(password))
+            return BankResult.build(200, "Request Failed", "Wrong password!");
 
         double amount = share * bankFundProduct.getNetAssetValue();
 

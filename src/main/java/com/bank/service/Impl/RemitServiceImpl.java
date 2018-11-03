@@ -1,6 +1,7 @@
 package com.bank.service.Impl;
 
 import com.bank.mapper.BankAccountMapper;
+import com.bank.mapper.BankCustomerMapper;
 import com.bank.mapper.BankRemitLogMapper;
 import com.bank.pojo.*;
 import com.bank.service.RemitService;
@@ -17,16 +18,26 @@ public class RemitServiceImpl implements RemitService {
     private BankRemitLogMapper bankRemitLogMapper;
     @Autowired
     private BankAccountMapper bankAccountMapper;
+    @Autowired
+    private BankCustomerMapper bankCustomerMapper;
 
     private long datacenterId = 4L;  //数据中心
     private long machineId ;     //机器标识
 
     @Override
-    public BankResult createRemit(String remitOutAccount, String remitInAccount, String password, double amount) {
+    public BankResult createRemit(String name, String phone, String remitOutAccount, String remitInAccount, String password, double amount) {
         machineId = 1L;
 
         BankAccount outAccount = bankAccountMapper.selectByPrimaryKey(remitOutAccount);
+        BankCustomer outAccountCustomer = bankCustomerMapper.selectByPrimaryKey(outAccount.getCustId());
         BankAccount inAccount = bankAccountMapper.selectByPrimaryKey(remitInAccount);
+
+        if (!outAccountCustomer.getCustName().equals(name))
+            return BankResult.build(200, "Request Failed", "Wrong name!");
+
+        if (!outAccountCustomer.getPhone().equals(phone))
+            return BankResult.build(200, "Request Failed", "Wrong phone!");
+
         if (outAccount == null)
             return BankResult.build(200, "Request Failed", "Remit out account not exist!");
 
@@ -52,7 +63,7 @@ public class RemitServiceImpl implements RemitService {
         outAccount.setBalances(outAccount.getBalances() - amount);
         bankAccountMapper.updateByPrimaryKey(outAccount);
         bankRemitLog.setRemitGenerateDate(String.valueOf(System.currentTimeMillis()));
-        bankRemitLog.setRemitArriveDate(String.valueOf("-1"));
+        bankRemitLog.setRemitArriveDate(String.valueOf("Unpaid"));
 
         bankRemitLogMapper.insert(bankRemitLog);
 
@@ -68,7 +79,7 @@ public class RemitServiceImpl implements RemitService {
         if (!bankRemitLog.getRemitInAccount().equals(remitInAccount))
             return BankResult.build(200, "Request Failed", "Account not consistent with the remit!");
 
-        if (!bankRemitLog.getRemitArriveDate().equals("-1"))
+        if (!bankRemitLog.getRemitArriveDate().equals("Unpaid"))
             return BankResult.build(200, "Request Failed", "Remit has already been paid!");
 
         bankRemitLog.setRemitArriveDate(String.valueOf(System.currentTimeMillis()));

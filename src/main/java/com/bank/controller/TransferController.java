@@ -14,11 +14,13 @@ public class TransferController {
 
     @RequestMapping(value = "/create", method = RequestMethod.POST)
     @ResponseBody
-    public BankResult createTransfer(@RequestParam(value = "transfer_out_account")String transferOutAccount,
+    public BankResult createTransfer(@RequestParam(value = "name")String name,
+                                     @RequestParam(value = "phone")String phone,
+                                     @RequestParam(value = "transfer_out_account")String transferOutAccount,
                                      @RequestParam(value = "transfer_in_account")String transferInAccount,
                                      @RequestParam(value = "password")String password,
                                      @RequestParam(value = "amount")double amount) {
-        BankResult bankResult = transferService.createTransfer(transferOutAccount, transferInAccount, password, amount);
+        BankResult bankResult = transferService.createTransfer(name, phone, transferOutAccount, transferInAccount, password, amount);
 
         return bankResult;
     }

@@ -29,13 +29,14 @@ public class FundController {
 
     @RequestMapping(value = "/create/tx/purchase",method = RequestMethod.POST)
     @ResponseBody
-    public BankResult createFundPurchaseTx(@RequestParam(value = "cust_id")String custId,
+    public BankResult createFundPurchaseTx(@RequestParam(value = "name")String name,
+                                           @RequestParam(value = "phone")String phone,
                                            @RequestParam(value = "account")String account,
                                            @RequestParam(value = "fund_id")String fundId,
                                            @RequestParam(value = "amount")double amount,
                                            @RequestParam(value = "password")String password) {
         // service层操作
-        BankResult bankResult = fundService.createFundPurchaseTx(custId, account, fundId, amount, password);
+        BankResult bankResult = fundService.createFundPurchaseTx(name, phone, account, fundId, amount, password);
 
         return bankResult;
     }
@@ -44,9 +45,10 @@ public class FundController {
     @ResponseBody
     public BankResult createFundRedemptionTx(@RequestParam(value = "account")String account,
                                              @RequestParam(value = "fund_id")String fundId,
-                                             @RequestParam(value = "share")double share) {
+                                             @RequestParam(value = "share")double share,
+                                             @RequestParam(value = "password")String password) {
         // service层操作
-        BankResult bankResult = fundService.createFundRedemptionTx(account, fundId, share);
+        BankResult bankResult = fundService.createFundRedemptionTx(account, fundId, share, password);
 
         return bankResult;
     }
