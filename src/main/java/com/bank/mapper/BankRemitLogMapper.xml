@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.bank.mapper.BankRemitLogMapper" >
   <resultMap id="BaseResultMap" type="com.bank.pojo.BankRemitLog" >
-    <id column="remit_id" property="remitId" jdbcType="BIGINT" />
+    <id column="remit_id" property="remitId" jdbcType="VARCHAR" />
     <result column="remit_out_account" property="remitOutAccount" jdbcType="VARCHAR" />
     <result column="remit_in_account" property="remitInAccount" jdbcType="VARCHAR" />
     <result column="amount" property="amount" jdbcType="DOUBLE" />
@@ -84,15 +84,15 @@
       order by ${orderByClause}
     </if>
   </select>
-  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
     select 
     <include refid="Base_Column_List" />
     from bank_remit_log
-    where remit_id = #{remitId,jdbcType=BIGINT}
+    where remit_id = #{remitId,jdbcType=VARCHAR}
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
     delete from bank_remit_log
-    where remit_id = #{remitId,jdbcType=BIGINT}
+    where remit_id = #{remitId,jdbcType=VARCHAR}
   </delete>
   <delete id="deleteByExample" parameterType="com.bank.pojo.BankRemitLogExample" >
     delete from bank_remit_log
@@ -104,7 +104,7 @@
     insert into bank_remit_log (remit_id, remit_out_account, remit_in_account, 
       amount, remit_generate_date, remit_arrive_date
       )
-    values (#{remitId,jdbcType=BIGINT}, #{remitOutAccount,jdbcType=VARCHAR}, #{remitInAccount,jdbcType=VARCHAR}, 
+    values (#{remitId,jdbcType=VARCHAR}, #{remitOutAccount,jdbcType=VARCHAR}, #{remitInAccount,jdbcType=VARCHAR}, 
       #{amount,jdbcType=DOUBLE}, #{remitGenerateDate,jdbcType=VARCHAR}, #{remitArriveDate,jdbcType=VARCHAR}
       )
   </insert>
@@ -132,7 +132,7 @@
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="remitId != null" >
-        #{remitId,jdbcType=BIGINT},
+        #{remitId,jdbcType=VARCHAR},
       </if>
       <if test="remitOutAccount != null" >
         #{remitOutAccount,jdbcType=VARCHAR},
@@ -161,7 +161,7 @@
     update bank_remit_log
     <set >
       <if test="record.remitId != null" >
-        remit_id = #{record.remitId,jdbcType=BIGINT},
+        remit_id = #{record.remitId,jdbcType=VARCHAR},
       </if>
       <if test="record.remitOutAccount != null" >
         remit_out_account = #{record.remitOutAccount,jdbcType=VARCHAR},
@@ -185,7 +185,7 @@
   </update>
   <update id="updateByExample" parameterType="map" >
     update bank_remit_log
-    set remit_id = #{record.remitId,jdbcType=BIGINT},
+    set remit_id = #{record.remitId,jdbcType=VARCHAR},
       remit_out_account = #{record.remitOutAccount,jdbcType=VARCHAR},
       remit_in_account = #{record.remitInAccount,jdbcType=VARCHAR},
       amount = #{record.amount,jdbcType=DOUBLE},
@@ -214,7 +214,7 @@
         remit_arrive_date = #{remitArriveDate,jdbcType=VARCHAR},
       </if>
     </set>
-    where remit_id = #{remitId,jdbcType=BIGINT}
+    where remit_id = #{remitId,jdbcType=VARCHAR}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.bank.pojo.BankRemitLog" >
     update bank_remit_log
@@ -223,6 +223,6 @@
       amount = #{amount,jdbcType=DOUBLE},
       remit_generate_date = #{remitGenerateDate,jdbcType=VARCHAR},
       remit_arrive_date = #{remitArriveDate,jdbcType=VARCHAR}
-    where remit_id = #{remitId,jdbcType=BIGINT}
+    where remit_id = #{remitId,jdbcType=VARCHAR}
   </update>
 </mapper>

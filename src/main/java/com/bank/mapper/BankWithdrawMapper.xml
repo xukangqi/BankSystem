@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.bank.mapper.BankWithdrawMapper" >
   <resultMap id="BaseResultMap" type="com.bank.pojo.BankWithdraw" >
-    <id column="withdraw_id" property="withdrawId" jdbcType="BIGINT" />
+    <id column="withdraw_id" property="withdrawId" jdbcType="VARCHAR" />
     <result column="cust_id" property="custId" jdbcType="VARCHAR" />
     <result column="account" property="account" jdbcType="VARCHAR" />
     <result column="withdraw_money" property="withdrawMoney" jdbcType="DOUBLE" />
@@ -85,15 +85,15 @@
       order by ${orderByClause}
     </if>
   </select>
-  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
     select 
     <include refid="Base_Column_List" />
     from bank_withdraw
-    where withdraw_id = #{withdrawId,jdbcType=BIGINT}
+    where withdraw_id = #{withdrawId,jdbcType=VARCHAR}
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
     delete from bank_withdraw
-    where withdraw_id = #{withdrawId,jdbcType=BIGINT}
+    where withdraw_id = #{withdrawId,jdbcType=VARCHAR}
   </delete>
   <delete id="deleteByExample" parameterType="com.bank.pojo.BankWithdrawExample" >
     delete from bank_withdraw
@@ -105,7 +105,7 @@
     insert into bank_withdraw (withdraw_id, cust_id, account, 
       withdraw_money, withdraw_date, arrive_time, 
       reviewer_id)
-    values (#{withdrawId,jdbcType=BIGINT}, #{custId,jdbcType=VARCHAR}, #{account,jdbcType=VARCHAR}, 
+    values (#{withdrawId,jdbcType=VARCHAR}, #{custId,jdbcType=VARCHAR}, #{account,jdbcType=VARCHAR}, 
       #{withdrawMoney,jdbcType=DOUBLE}, #{withdrawDate,jdbcType=VARCHAR}, #{arriveTime,jdbcType=VARCHAR}, 
       #{reviewerId,jdbcType=VARCHAR})
   </insert>
@@ -136,7 +136,7 @@
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="withdrawId != null" >
-        #{withdrawId,jdbcType=BIGINT},
+        #{withdrawId,jdbcType=VARCHAR},
       </if>
       <if test="custId != null" >
         #{custId,jdbcType=VARCHAR},
@@ -168,7 +168,7 @@
     update bank_withdraw
     <set >
       <if test="record.withdrawId != null" >
-        withdraw_id = #{record.withdrawId,jdbcType=BIGINT},
+        withdraw_id = #{record.withdrawId,jdbcType=VARCHAR},
       </if>
       <if test="record.custId != null" >
         cust_id = #{record.custId,jdbcType=VARCHAR},
@@ -195,7 +195,7 @@
   </update>
   <update id="updateByExample" parameterType="map" >
     update bank_withdraw
-    set withdraw_id = #{record.withdrawId,jdbcType=BIGINT},
+    set withdraw_id = #{record.withdrawId,jdbcType=VARCHAR},
       cust_id = #{record.custId,jdbcType=VARCHAR},
       account = #{record.account,jdbcType=VARCHAR},
       withdraw_money = #{record.withdrawMoney,jdbcType=DOUBLE},
@@ -228,7 +228,7 @@
         reviewer_id = #{reviewerId,jdbcType=VARCHAR},
       </if>
     </set>
-    where withdraw_id = #{withdrawId,jdbcType=BIGINT}
+    where withdraw_id = #{withdrawId,jdbcType=VARCHAR}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.bank.pojo.BankWithdraw" >
     update bank_withdraw
@@ -238,6 +238,6 @@
       withdraw_date = #{withdrawDate,jdbcType=VARCHAR},
       arrive_time = #{arriveTime,jdbcType=VARCHAR},
       reviewer_id = #{reviewerId,jdbcType=VARCHAR}
-    where withdraw_id = #{withdrawId,jdbcType=BIGINT}
+    where withdraw_id = #{withdrawId,jdbcType=VARCHAR}
   </update>
 </mapper>

@@ -33,4 +33,6 @@ public class TestServiceImpl implements TestService {
         criteria.andEmailEqualTo("123@123.com");
         List<BankUser> bankUserList = bankUserMapper.selectByExample(bankUserExample);
     }
+
+
 }

@@ -62,7 +62,7 @@ CREATE TABLE `bank_account`
 DROP TABLE IF EXISTS `bank_deposit`;
 CREATE TABLE `bank_deposit`
 (
-  `deposit_id`       bigint(20) NOT NULL,
+  `deposit_id`       varchar(20) NOT NULL,
   `cust_id`          varchar(32) DEFAULT NULL,
   `account`          varchar(32) NOT NULL,
   `deposit_type`     varchar(20) DEFAULT NULL,
@@ -99,9 +99,9 @@ DROP TABLE IF EXISTS `bank_withdraw`;
 
 CREATE TABLE `bank_withdraw`
 (
-  `withdraw_id`    bigint(20) NOT NULL,
+  `withdraw_id`    varchar(20) NOT NULL,
   `cust_id`        varchar(32) DEFAULT NULL,
-  `account`          varchar(32) NOT NULL,
+  `account`        varchar(32) NOT NULL,
   `withdraw_money` double      DEFAULT NULL,
   `withdraw_date`  varchar(20) DEFAULT NULL,
   `arrive_time`    varchar(20) DEFAULT NULL,
@@ -126,7 +126,7 @@ CREATE TABLE `bank_loan_type`
 DROP TABLE IF EXISTS `bank_loan`;
 CREATE TABLE `bank_loan`
 (
-  `trans_id`         bigint(20) NOT NULL,
+  `trans_id`         varchar(20) NOT NULL,
   `cust_id`          varchar(32) NOT NULL,
   `account`          varchar(32) NOT NULL,
   `trans_date`       varchar(20)  DEFAULT NULL,
@@ -149,8 +149,8 @@ CREATE TABLE `bank_loan`
 DROP TABLE IF EXISTS `bank_loan_payment`;
 CREATE TABLE `bank_loan_payment`
 (
-  `payment_id`         bigint(20) NOT NULL,
-  `trans_id`           bigint(20) DEFAULT NULL,
+  `payment_id`         varchar(20) NOT NULL,
+  `trans_id`           varchar(20) DEFAULT NULL,
   `ins_num`            smallint(6) DEFAULT NULL,
   `payment_amount`     double      DEFAULT NULL,
   `payment_date`       varchar(20) DEFAULT NULL,
@@ -166,10 +166,11 @@ CREATE TABLE `bank_loan_payment`
 DROP TABLE IF EXISTS `bank_loan_paylog`;
 CREATE TABLE bank_loan_paylog
 (
-  `paylog_id`          bigint(20) NOT NULL,
-  `pay_amount`         double      DEFAULT NULL,
-  `pay_date`           varchar(20) DEFAULT NULL,
-  `account`          varchar(32) NOT NULL,
+  `paylog_id`  varchar(20) NOT NULL,
+  `trans_id`   varchar(20) DEFAULT NULL,
+  `pay_amount` double      DEFAULT NULL,
+  `pay_date`   varchar(20) DEFAULT NULL,
+  `account`    varchar(32) NOT NULL,
   PRIMARY KEY (`paylog_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -202,7 +203,7 @@ CREATE TABLE `bank_fund_hold`
 DROP TABLE IF EXISTS `bank_fund_log`;
 CREATE TABLE `bank_fund_log`
 (
-  `fund_tx_id` bigint(20) NOT NULL,
+  `fund_tx_id` varchar(20) NOT NULL,
   `cust_id`    varchar(32) DEFAULT NULL,
   `account`    varchar(32) NOT NULL,
   `fund_id`    varchar(16) DEFAULT NULL,
@@ -221,7 +222,7 @@ CREATE TABLE `bank_fund_log`
 DROP TABLE IF EXISTS `bank_remit_log`;
 CREATE TABLE `bank_remit_log`
 (
-  `remit_id`            bigint(20) NOT NULL,
+  `remit_id`            varchar(20) NOT NULL,
   `remit_out_account`   varchar(20) DEFAULT NULL,
   `remit_in_account`    varchar(20) DEFAULT NULL,
   `amount`              DOUBLE      DEFAULT NULL,
@@ -234,7 +235,7 @@ CREATE TABLE `bank_remit_log`
 DROP TABLE IF EXISTS `bank_transfer_log`;
 CREATE TABLE `bank_transfer_log`
 (
-  `transfer_id`          bigint(20) NOT NULL,
+  `transfer_id`          varchar(20) NOT NULL,
   `transfer_out_account` varchar(20) DEFAULT NULL,
   `transfer_in_account`  varchar(20) DEFAULT NULL,
   `amount`               double      DEFAULT NULL,
@@ -242,5 +243,21 @@ CREATE TABLE `bank_transfer_log`
   `receive_date`         varchar(20) DEFAULT NULL,
   PRIMARY KEY (`transfer_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+
+INSERT INTO `bank_deposit_rate`
+VALUES ('1541138029081', 0.3, 1.35, 1.55, 1.75, 2.25, 2.75, 2.75, 1.35, 1.55, 1.55);
+-- ----------------------------
+-- Records of bank_loan_payment
+-- ----------------------------
+
+BEGIN;
+INSERT INTO `bank_loan_type`
+VALUES ('住房贷款', 4.6, 5, 5.15, 0.05);
+INSERT INTO `bank_loan_type`
+VALUES ('小微贷款', 7.3, 7.7, 7.9, 0.08);
+INSERT INTO `bank_loan_type`
+VALUES ('消费贷款', 5.2, 5.7, 6, 0.06);
+
 
 
