@@ -116,8 +116,10 @@ public class UserServiceImpl implements IUserService {
             return false;
         } else {
             BankUser user = userList.get(0);
-            if (oldpassword.equals(user.getPassword())) {
-                user.setPassword(newpassword);
+            String oldpw = MD5.string2MD5(oldpassword);
+            if (oldpw.equals(user.getPassword())) {
+                String pw = MD5.string2MD5(newpassword);
+                user.setPassword(pw);
                 bankUserMapper.updateByPrimaryKey(user);
                 return true;
             } else {

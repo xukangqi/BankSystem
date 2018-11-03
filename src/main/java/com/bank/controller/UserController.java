@@ -106,7 +106,7 @@ public class UserController {
     public BankResult changepassword(@RequestParam("username") String username, @RequestParam("oldpassword") String oldpassword,
                                      @RequestParam("newpassword") String newpassword,
                                      HttpServletRequest request, HttpServletResponse response) {
-        //没md5
+        //
         boolean success = userService.changePassword(username, oldpassword, newpassword);
         if (success) {
             return BankResult.ok();
