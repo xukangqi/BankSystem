@@ -11,7 +11,7 @@ public interface BankLoanPaymentMapper {
 
     int deleteByExample(BankLoanPaymentExample example);
 
-    int deleteByPrimaryKey(Long paymentId);
+    int deleteByPrimaryKey(String paymentId);
 
     int insert(BankLoanPayment record);
 
@@ -19,7 +19,7 @@ public interface BankLoanPaymentMapper {
 
     List<BankLoanPayment> selectByExample(BankLoanPaymentExample example);
 
-    BankLoanPayment selectByPrimaryKey(Long paymentId);
+    BankLoanPayment selectByPrimaryKey(String paymentId);
 
     int updateByExampleSelective(@Param("record") BankLoanPayment record, @Param("example") BankLoanPaymentExample example);
 

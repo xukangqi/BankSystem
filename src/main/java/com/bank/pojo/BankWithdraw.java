@@ -1,7 +1,7 @@
 package com.bank.pojo;
 
 public class BankWithdraw {
-    private Long withdrawId;
+    private String withdrawId;
 
     private String custId;
 
@@ -15,12 +15,12 @@ public class BankWithdraw {
 
     private String reviewerId;
 
-    public Long getWithdrawId() {
+    public String getWithdrawId() {
         return withdrawId;
     }
 
-    public void setWithdrawId(Long withdrawId) {
-        this.withdrawId = withdrawId;
+    public void setWithdrawId(String withdrawId) {
+        this.withdrawId = withdrawId == null ? null : withdrawId.trim();
     }
 
     public String getCustId() {

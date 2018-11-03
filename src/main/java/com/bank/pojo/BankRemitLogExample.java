@@ -114,52 +114,62 @@ public class BankRemitLogExample {
             return (Criteria) this;
         }
 
-        public Criteria andRemitIdEqualTo(Long value) {
+        public Criteria andRemitIdEqualTo(String value) {
             addCriterion("remit_id =", value, "remitId");
             return (Criteria) this;
         }
 
-        public Criteria andRemitIdNotEqualTo(Long value) {
+        public Criteria andRemitIdNotEqualTo(String value) {
             addCriterion("remit_id <>", value, "remitId");
             return (Criteria) this;
         }
 
-        public Criteria andRemitIdGreaterThan(Long value) {
+        public Criteria andRemitIdGreaterThan(String value) {
             addCriterion("remit_id >", value, "remitId");
             return (Criteria) this;
         }
 
-        public Criteria andRemitIdGreaterThanOrEqualTo(Long value) {
+        public Criteria andRemitIdGreaterThanOrEqualTo(String value) {
             addCriterion("remit_id >=", value, "remitId");
             return (Criteria) this;
         }
 
-        public Criteria andRemitIdLessThan(Long value) {
+        public Criteria andRemitIdLessThan(String value) {
             addCriterion("remit_id <", value, "remitId");
             return (Criteria) this;
         }
 
-        public Criteria andRemitIdLessThanOrEqualTo(Long value) {
+        public Criteria andRemitIdLessThanOrEqualTo(String value) {
             addCriterion("remit_id <=", value, "remitId");
             return (Criteria) this;
         }
 
-        public Criteria andRemitIdIn(List<Long> values) {
+        public Criteria andRemitIdLike(String value) {
+            addCriterion("remit_id like", value, "remitId");
+            return (Criteria) this;
+        }
+
+        public Criteria andRemitIdNotLike(String value) {
+            addCriterion("remit_id not like", value, "remitId");
+            return (Criteria) this;
+        }
+
+        public Criteria andRemitIdIn(List<String> values) {
             addCriterion("remit_id in", values, "remitId");
             return (Criteria) this;
         }
 
-        public Criteria andRemitIdNotIn(List<Long> values) {
+        public Criteria andRemitIdNotIn(List<String> values) {
             addCriterion("remit_id not in", values, "remitId");
             return (Criteria) this;
         }
 
-        public Criteria andRemitIdBetween(Long value1, Long value2) {
+        public Criteria andRemitIdBetween(String value1, String value2) {
             addCriterion("remit_id between", value1, value2, "remitId");
             return (Criteria) this;
         }
 
-        public Criteria andRemitIdNotBetween(Long value1, Long value2) {
+        public Criteria andRemitIdNotBetween(String value1, String value2) {
             addCriterion("remit_id not between", value1, value2, "remitId");
             return (Criteria) this;
         }

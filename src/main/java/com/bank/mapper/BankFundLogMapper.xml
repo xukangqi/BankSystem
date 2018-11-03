@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.bank.mapper.BankFundLogMapper" >
   <resultMap id="BaseResultMap" type="com.bank.pojo.BankFundLog" >
-    <id column="fund_tx_id" property="fundTxId" jdbcType="BIGINT" />
+    <id column="fund_tx_id" property="fundTxId" jdbcType="VARCHAR" />
     <result column="cust_id" property="custId" jdbcType="VARCHAR" />
     <result column="account" property="account" jdbcType="VARCHAR" />
     <result column="fund_id" property="fundId" jdbcType="VARCHAR" />
@@ -87,15 +87,15 @@
       order by ${orderByClause}
     </if>
   </select>
-  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
     select 
     <include refid="Base_Column_List" />
     from bank_fund_log
-    where fund_tx_id = #{fundTxId,jdbcType=BIGINT}
+    where fund_tx_id = #{fundTxId,jdbcType=VARCHAR}
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
     delete from bank_fund_log
-    where fund_tx_id = #{fundTxId,jdbcType=BIGINT}
+    where fund_tx_id = #{fundTxId,jdbcType=VARCHAR}
   </delete>
   <delete id="deleteByExample" parameterType="com.bank.pojo.BankFundLogExample" >
     delete from bank_fund_log
@@ -108,7 +108,7 @@
       fund_id, type, amount, 
       share, tx_date, review_id
       )
-    values (#{fundTxId,jdbcType=BIGINT}, #{custId,jdbcType=VARCHAR}, #{account,jdbcType=VARCHAR}, 
+    values (#{fundTxId,jdbcType=VARCHAR}, #{custId,jdbcType=VARCHAR}, #{account,jdbcType=VARCHAR}, 
       #{fundId,jdbcType=VARCHAR}, #{type,jdbcType=VARCHAR}, #{amount,jdbcType=DOUBLE}, 
       #{share,jdbcType=DOUBLE}, #{txDate,jdbcType=VARCHAR}, #{reviewId,jdbcType=VARCHAR}
       )
@@ -146,7 +146,7 @@
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="fundTxId != null" >
-        #{fundTxId,jdbcType=BIGINT},
+        #{fundTxId,jdbcType=VARCHAR},
       </if>
       <if test="custId != null" >
         #{custId,jdbcType=VARCHAR},
@@ -184,7 +184,7 @@
     update bank_fund_log
     <set >
       <if test="record.fundTxId != null" >
-        fund_tx_id = #{record.fundTxId,jdbcType=BIGINT},
+        fund_tx_id = #{record.fundTxId,jdbcType=VARCHAR},
       </if>
       <if test="record.custId != null" >
         cust_id = #{record.custId,jdbcType=VARCHAR},
@@ -217,7 +217,7 @@
   </update>
   <update id="updateByExample" parameterType="map" >
     update bank_fund_log
-    set fund_tx_id = #{record.fundTxId,jdbcType=BIGINT},
+    set fund_tx_id = #{record.fundTxId,jdbcType=VARCHAR},
       cust_id = #{record.custId,jdbcType=VARCHAR},
       account = #{record.account,jdbcType=VARCHAR},
       fund_id = #{record.fundId,jdbcType=VARCHAR},
@@ -258,7 +258,7 @@
         review_id = #{reviewId,jdbcType=VARCHAR},
       </if>
     </set>
-    where fund_tx_id = #{fundTxId,jdbcType=BIGINT}
+    where fund_tx_id = #{fundTxId,jdbcType=VARCHAR}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.bank.pojo.BankFundLog" >
     update bank_fund_log
@@ -270,6 +270,6 @@
       share = #{share,jdbcType=DOUBLE},
       tx_date = #{txDate,jdbcType=VARCHAR},
       review_id = #{reviewId,jdbcType=VARCHAR}
-    where fund_tx_id = #{fundTxId,jdbcType=BIGINT}
+    where fund_tx_id = #{fundTxId,jdbcType=VARCHAR}
   </update>
 </mapper>

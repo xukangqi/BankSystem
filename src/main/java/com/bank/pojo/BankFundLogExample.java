@@ -114,52 +114,62 @@ public class BankFundLogExample {
             return (Criteria) this;
         }
 
-        public Criteria andFundTxIdEqualTo(Long value) {
+        public Criteria andFundTxIdEqualTo(String value) {
             addCriterion("fund_tx_id =", value, "fundTxId");
             return (Criteria) this;
         }
 
-        public Criteria andFundTxIdNotEqualTo(Long value) {
+        public Criteria andFundTxIdNotEqualTo(String value) {
             addCriterion("fund_tx_id <>", value, "fundTxId");
             return (Criteria) this;
         }
 
-        public Criteria andFundTxIdGreaterThan(Long value) {
+        public Criteria andFundTxIdGreaterThan(String value) {
             addCriterion("fund_tx_id >", value, "fundTxId");
             return (Criteria) this;
         }
 
-        public Criteria andFundTxIdGreaterThanOrEqualTo(Long value) {
+        public Criteria andFundTxIdGreaterThanOrEqualTo(String value) {
             addCriterion("fund_tx_id >=", value, "fundTxId");
             return (Criteria) this;
         }
 
-        public Criteria andFundTxIdLessThan(Long value) {
+        public Criteria andFundTxIdLessThan(String value) {
             addCriterion("fund_tx_id <", value, "fundTxId");
             return (Criteria) this;
         }
 
-        public Criteria andFundTxIdLessThanOrEqualTo(Long value) {
+        public Criteria andFundTxIdLessThanOrEqualTo(String value) {
             addCriterion("fund_tx_id <=", value, "fundTxId");
             return (Criteria) this;
         }
 
-        public Criteria andFundTxIdIn(List<Long> values) {
+        public Criteria andFundTxIdLike(String value) {
+            addCriterion("fund_tx_id like", value, "fundTxId");
+            return (Criteria) this;
+        }
+
+        public Criteria andFundTxIdNotLike(String value) {
+            addCriterion("fund_tx_id not like", value, "fundTxId");
+            return (Criteria) this;
+        }
+
+        public Criteria andFundTxIdIn(List<String> values) {
             addCriterion("fund_tx_id in", values, "fundTxId");
             return (Criteria) this;
         }
 
-        public Criteria andFundTxIdNotIn(List<Long> values) {
+        public Criteria andFundTxIdNotIn(List<String> values) {
             addCriterion("fund_tx_id not in", values, "fundTxId");
             return (Criteria) this;
         }
 
-        public Criteria andFundTxIdBetween(Long value1, Long value2) {
+        public Criteria andFundTxIdBetween(String value1, String value2) {
             addCriterion("fund_tx_id between", value1, value2, "fundTxId");
             return (Criteria) this;
         }
 
-        public Criteria andFundTxIdNotBetween(Long value1, Long value2) {
+        public Criteria andFundTxIdNotBetween(String value1, String value2) {
             addCriterion("fund_tx_id not between", value1, value2, "fundTxId");
             return (Criteria) this;
         }

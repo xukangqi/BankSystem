@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.bank.mapper.BankDepositMapper" >
   <resultMap id="BaseResultMap" type="com.bank.pojo.BankDeposit" >
-    <id column="deposit_id" property="depositId" jdbcType="BIGINT" />
+    <id column="deposit_id" property="depositId" jdbcType="VARCHAR" />
     <result column="cust_id" property="custId" jdbcType="VARCHAR" />
     <result column="account" property="account" jdbcType="VARCHAR" />
     <result column="deposit_type" property="depositType" jdbcType="VARCHAR" />
@@ -90,15 +90,15 @@
       order by ${orderByClause}
     </if>
   </select>
-  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
     select 
     <include refid="Base_Column_List" />
     from bank_deposit
-    where deposit_id = #{depositId,jdbcType=BIGINT}
+    where deposit_id = #{depositId,jdbcType=VARCHAR}
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
     delete from bank_deposit
-    where deposit_id = #{depositId,jdbcType=BIGINT}
+    where deposit_id = #{depositId,jdbcType=VARCHAR}
   </delete>
   <delete id="deleteByExample" parameterType="com.bank.pojo.BankDepositExample" >
     delete from bank_deposit
@@ -111,7 +111,7 @@
       deposit_type, deposit_money, deposit_rate, 
       deposit_date, deposit_duration, transfer_way, 
       reviewer_id, deposit_flag)
-    values (#{depositId,jdbcType=BIGINT}, #{custId,jdbcType=VARCHAR}, #{account,jdbcType=VARCHAR}, 
+    values (#{depositId,jdbcType=VARCHAR}, #{custId,jdbcType=VARCHAR}, #{account,jdbcType=VARCHAR}, 
       #{depositType,jdbcType=VARCHAR}, #{depositMoney,jdbcType=DOUBLE}, #{depositRate,jdbcType=DOUBLE}, 
       #{depositDate,jdbcType=VARCHAR}, #{depositDuration,jdbcType=VARCHAR}, #{transferWay,jdbcType=VARCHAR}, 
       #{reviewerId,jdbcType=VARCHAR}, #{depositFlag,jdbcType=VARCHAR})
@@ -155,7 +155,7 @@
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="depositId != null" >
-        #{depositId,jdbcType=BIGINT},
+        #{depositId,jdbcType=VARCHAR},
       </if>
       <if test="custId != null" >
         #{custId,jdbcType=VARCHAR},
@@ -199,7 +199,7 @@
     update bank_deposit
     <set >
       <if test="record.depositId != null" >
-        deposit_id = #{record.depositId,jdbcType=BIGINT},
+        deposit_id = #{record.depositId,jdbcType=VARCHAR},
       </if>
       <if test="record.custId != null" >
         cust_id = #{record.custId,jdbcType=VARCHAR},
@@ -238,7 +238,7 @@
   </update>
   <update id="updateByExample" parameterType="map" >
     update bank_deposit
-    set deposit_id = #{record.depositId,jdbcType=BIGINT},
+    set deposit_id = #{record.depositId,jdbcType=VARCHAR},
       cust_id = #{record.custId,jdbcType=VARCHAR},
       account = #{record.account,jdbcType=VARCHAR},
       deposit_type = #{record.depositType,jdbcType=VARCHAR},
@@ -287,7 +287,7 @@
         deposit_flag = #{depositFlag,jdbcType=VARCHAR},
       </if>
     </set>
-    where deposit_id = #{depositId,jdbcType=BIGINT}
+    where deposit_id = #{depositId,jdbcType=VARCHAR}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.bank.pojo.BankDeposit" >
     update bank_deposit
@@ -301,6 +301,6 @@
       transfer_way = #{transferWay,jdbcType=VARCHAR},
       reviewer_id = #{reviewerId,jdbcType=VARCHAR},
       deposit_flag = #{depositFlag,jdbcType=VARCHAR}
-    where deposit_id = #{depositId,jdbcType=BIGINT}
+    where deposit_id = #{depositId,jdbcType=VARCHAR}
   </update>
 </mapper>

@@ -114,52 +114,62 @@ public class BankTransferLogExample {
             return (Criteria) this;
         }
 
-        public Criteria andTransferIdEqualTo(Long value) {
+        public Criteria andTransferIdEqualTo(String value) {
             addCriterion("transfer_id =", value, "transferId");
             return (Criteria) this;
         }
 
-        public Criteria andTransferIdNotEqualTo(Long value) {
+        public Criteria andTransferIdNotEqualTo(String value) {
             addCriterion("transfer_id <>", value, "transferId");
             return (Criteria) this;
         }
 
-        public Criteria andTransferIdGreaterThan(Long value) {
+        public Criteria andTransferIdGreaterThan(String value) {
             addCriterion("transfer_id >", value, "transferId");
             return (Criteria) this;
         }
 
-        public Criteria andTransferIdGreaterThanOrEqualTo(Long value) {
+        public Criteria andTransferIdGreaterThanOrEqualTo(String value) {
             addCriterion("transfer_id >=", value, "transferId");
             return (Criteria) this;
         }
 
-        public Criteria andTransferIdLessThan(Long value) {
+        public Criteria andTransferIdLessThan(String value) {
             addCriterion("transfer_id <", value, "transferId");
             return (Criteria) this;
         }
 
-        public Criteria andTransferIdLessThanOrEqualTo(Long value) {
+        public Criteria andTransferIdLessThanOrEqualTo(String value) {
             addCriterion("transfer_id <=", value, "transferId");
             return (Criteria) this;
         }
 
-        public Criteria andTransferIdIn(List<Long> values) {
+        public Criteria andTransferIdLike(String value) {
+            addCriterion("transfer_id like", value, "transferId");
+            return (Criteria) this;
+        }
+
+        public Criteria andTransferIdNotLike(String value) {
+            addCriterion("transfer_id not like", value, "transferId");
+            return (Criteria) this;
+        }
+
+        public Criteria andTransferIdIn(List<String> values) {
             addCriterion("transfer_id in", values, "transferId");
             return (Criteria) this;
         }
 
-        public Criteria andTransferIdNotIn(List<Long> values) {
+        public Criteria andTransferIdNotIn(List<String> values) {
             addCriterion("transfer_id not in", values, "transferId");
             return (Criteria) this;
         }
 
-        public Criteria andTransferIdBetween(Long value1, Long value2) {
+        public Criteria andTransferIdBetween(String value1, String value2) {
             addCriterion("transfer_id between", value1, value2, "transferId");
             return (Criteria) this;
         }
 
-        public Criteria andTransferIdNotBetween(Long value1, Long value2) {
+        public Criteria andTransferIdNotBetween(String value1, String value2) {
             addCriterion("transfer_id not between", value1, value2, "transferId");
             return (Criteria) this;
         }

@@ -114,52 +114,62 @@ public class BankLoanPaymentExample {
             return (Criteria) this;
         }
 
-        public Criteria andPaymentIdEqualTo(Long value) {
+        public Criteria andPaymentIdEqualTo(String value) {
             addCriterion("payment_id =", value, "paymentId");
             return (Criteria) this;
         }
 
-        public Criteria andPaymentIdNotEqualTo(Long value) {
+        public Criteria andPaymentIdNotEqualTo(String value) {
             addCriterion("payment_id <>", value, "paymentId");
             return (Criteria) this;
         }
 
-        public Criteria andPaymentIdGreaterThan(Long value) {
+        public Criteria andPaymentIdGreaterThan(String value) {
             addCriterion("payment_id >", value, "paymentId");
             return (Criteria) this;
         }
 
-        public Criteria andPaymentIdGreaterThanOrEqualTo(Long value) {
+        public Criteria andPaymentIdGreaterThanOrEqualTo(String value) {
             addCriterion("payment_id >=", value, "paymentId");
             return (Criteria) this;
         }
 
-        public Criteria andPaymentIdLessThan(Long value) {
+        public Criteria andPaymentIdLessThan(String value) {
             addCriterion("payment_id <", value, "paymentId");
             return (Criteria) this;
         }
 
-        public Criteria andPaymentIdLessThanOrEqualTo(Long value) {
+        public Criteria andPaymentIdLessThanOrEqualTo(String value) {
             addCriterion("payment_id <=", value, "paymentId");
             return (Criteria) this;
         }
 
-        public Criteria andPaymentIdIn(List<Long> values) {
+        public Criteria andPaymentIdLike(String value) {
+            addCriterion("payment_id like", value, "paymentId");
+            return (Criteria) this;
+        }
+
+        public Criteria andPaymentIdNotLike(String value) {
+            addCriterion("payment_id not like", value, "paymentId");
+            return (Criteria) this;
+        }
+
+        public Criteria andPaymentIdIn(List<String> values) {
             addCriterion("payment_id in", values, "paymentId");
             return (Criteria) this;
         }
 
-        public Criteria andPaymentIdNotIn(List<Long> values) {
+        public Criteria andPaymentIdNotIn(List<String> values) {
             addCriterion("payment_id not in", values, "paymentId");
             return (Criteria) this;
         }
 
-        public Criteria andPaymentIdBetween(Long value1, Long value2) {
+        public Criteria andPaymentIdBetween(String value1, String value2) {
             addCriterion("payment_id between", value1, value2, "paymentId");
             return (Criteria) this;
         }
 
-        public Criteria andPaymentIdNotBetween(Long value1, Long value2) {
+        public Criteria andPaymentIdNotBetween(String value1, String value2) {
             addCriterion("payment_id not between", value1, value2, "paymentId");
             return (Criteria) this;
         }
@@ -174,52 +184,62 @@ public class BankLoanPaymentExample {
             return (Criteria) this;
         }
 
-        public Criteria andTransIdEqualTo(Long value) {
+        public Criteria andTransIdEqualTo(String value) {
             addCriterion("trans_id =", value, "transId");
             return (Criteria) this;
         }
 
-        public Criteria andTransIdNotEqualTo(Long value) {
+        public Criteria andTransIdNotEqualTo(String value) {
             addCriterion("trans_id <>", value, "transId");
             return (Criteria) this;
         }
 
-        public Criteria andTransIdGreaterThan(Long value) {
+        public Criteria andTransIdGreaterThan(String value) {
             addCriterion("trans_id >", value, "transId");
             return (Criteria) this;
         }
 
-        public Criteria andTransIdGreaterThanOrEqualTo(Long value) {
+        public Criteria andTransIdGreaterThanOrEqualTo(String value) {
             addCriterion("trans_id >=", value, "transId");
             return (Criteria) this;
         }
 
-        public Criteria andTransIdLessThan(Long value) {
+        public Criteria andTransIdLessThan(String value) {
             addCriterion("trans_id <", value, "transId");
             return (Criteria) this;
         }
 
-        public Criteria andTransIdLessThanOrEqualTo(Long value) {
+        public Criteria andTransIdLessThanOrEqualTo(String value) {
             addCriterion("trans_id <=", value, "transId");
             return (Criteria) this;
         }
 
-        public Criteria andTransIdIn(List<Long> values) {
+        public Criteria andTransIdLike(String value) {
+            addCriterion("trans_id like", value, "transId");
+            return (Criteria) this;
+        }
+
+        public Criteria andTransIdNotLike(String value) {
+            addCriterion("trans_id not like", value, "transId");
+            return (Criteria) this;
+        }
+
+        public Criteria andTransIdIn(List<String> values) {
             addCriterion("trans_id in", values, "transId");
             return (Criteria) this;
         }
 
-        public Criteria andTransIdNotIn(List<Long> values) {
+        public Criteria andTransIdNotIn(List<String> values) {
             addCriterion("trans_id not in", values, "transId");
             return (Criteria) this;
         }
 
-        public Criteria andTransIdBetween(Long value1, Long value2) {
+        public Criteria andTransIdBetween(String value1, String value2) {
             addCriterion("trans_id between", value1, value2, "transId");
             return (Criteria) this;
         }
 
-        public Criteria andTransIdNotBetween(Long value1, Long value2) {
+        public Criteria andTransIdNotBetween(String value1, String value2) {
             addCriterion("trans_id not between", value1, value2, "transId");
             return (Criteria) this;
         }

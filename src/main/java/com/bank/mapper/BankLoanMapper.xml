@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.bank.mapper.BankLoanMapper" >
   <resultMap id="BaseResultMap" type="com.bank.pojo.BankLoan" >
-    <id column="trans_id" property="transId" jdbcType="BIGINT" />
+    <id column="trans_id" property="transId" jdbcType="VARCHAR" />
     <result column="cust_id" property="custId" jdbcType="VARCHAR" />
     <result column="account" property="account" jdbcType="VARCHAR" />
     <result column="trans_date" property="transDate" jdbcType="VARCHAR" />
@@ -92,15 +92,15 @@
       order by ${orderByClause}
     </if>
   </select>
-  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
     select 
     <include refid="Base_Column_List" />
     from bank_loan
-    where trans_id = #{transId,jdbcType=BIGINT}
+    where trans_id = #{transId,jdbcType=VARCHAR}
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
     delete from bank_loan
-    where trans_id = #{transId,jdbcType=BIGINT}
+    where trans_id = #{transId,jdbcType=VARCHAR}
   </delete>
   <delete id="deleteByExample" parameterType="com.bank.pojo.BankLoanExample" >
     delete from bank_loan
@@ -114,7 +114,7 @@
       loan_interest, loan_amount_sum, expiration_date, 
       recovered_amount, loan_status, reviewer_id, 
       loan_type_name)
-    values (#{transId,jdbcType=BIGINT}, #{custId,jdbcType=VARCHAR}, #{account,jdbcType=VARCHAR}, 
+    values (#{transId,jdbcType=VARCHAR}, #{custId,jdbcType=VARCHAR}, #{account,jdbcType=VARCHAR}, 
       #{transDate,jdbcType=VARCHAR}, #{loanAmount,jdbcType=DOUBLE}, #{insCount,jdbcType=SMALLINT}, 
       #{loanInterest,jdbcType=DOUBLE}, #{loanAmountSum,jdbcType=DOUBLE}, #{expirationDate,jdbcType=VARCHAR}, 
       #{recoveredAmount,jdbcType=DOUBLE}, #{loanStatus,jdbcType=VARCHAR}, #{reviewerId,jdbcType=VARCHAR}, 
@@ -165,7 +165,7 @@
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="transId != null" >
-        #{transId,jdbcType=BIGINT},
+        #{transId,jdbcType=VARCHAR},
       </if>
       <if test="custId != null" >
         #{custId,jdbcType=VARCHAR},
@@ -215,7 +215,7 @@
     update bank_loan
     <set >
       <if test="record.transId != null" >
-        trans_id = #{record.transId,jdbcType=BIGINT},
+        trans_id = #{record.transId,jdbcType=VARCHAR},
       </if>
       <if test="record.custId != null" >
         cust_id = #{record.custId,jdbcType=VARCHAR},
@@ -260,7 +260,7 @@
   </update>
   <update id="updateByExample" parameterType="map" >
     update bank_loan
-    set trans_id = #{record.transId,jdbcType=BIGINT},
+    set trans_id = #{record.transId,jdbcType=VARCHAR},
       cust_id = #{record.custId,jdbcType=VARCHAR},
       account = #{record.account,jdbcType=VARCHAR},
       trans_date = #{record.transDate,jdbcType=VARCHAR},
@@ -317,7 +317,7 @@
         loan_type_name = #{loanTypeName,jdbcType=VARCHAR},
       </if>
     </set>
-    where trans_id = #{transId,jdbcType=BIGINT}
+    where trans_id = #{transId,jdbcType=VARCHAR}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.bank.pojo.BankLoan" >
     update bank_loan
@@ -333,6 +333,6 @@
       loan_status = #{loanStatus,jdbcType=VARCHAR},
       reviewer_id = #{reviewerId,jdbcType=VARCHAR},
       loan_type_name = #{loanTypeName,jdbcType=VARCHAR}
-    where trans_id = #{transId,jdbcType=BIGINT}
+    where trans_id = #{transId,jdbcType=VARCHAR}
   </update>
 </mapper>

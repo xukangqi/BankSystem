@@ -12,7 +12,7 @@ public interface BankDepositService {
 
     BankResult update(BankDeposit bankDeposit);
 
-    BankResult delete(List<Long> depositIds);
+    BankResult delete(List<String> depositIds);
 
 //    Map<String, Object> getByPage(String keys, Integer pageStart, Integer pageSize);
 

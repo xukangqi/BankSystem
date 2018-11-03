@@ -11,7 +11,7 @@ public interface BankFundLogMapper {
 
     int deleteByExample(BankFundLogExample example);
 
-    int deleteByPrimaryKey(Long fundTxId);
+    int deleteByPrimaryKey(String fundTxId);
 
     int insert(BankFundLog record);
 
@@ -19,7 +19,7 @@ public interface BankFundLogMapper {
 
     List<BankFundLog> selectByExample(BankFundLogExample example);
 
-    BankFundLog selectByPrimaryKey(Long fundTxId);
+    BankFundLog selectByPrimaryKey(String fundTxId);
 
     int updateByExampleSelective(@Param("record") BankFundLog record, @Param("example") BankFundLogExample example);
 

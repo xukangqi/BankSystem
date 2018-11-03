@@ -11,7 +11,7 @@ public interface BankTransferLogMapper {
 
     int deleteByExample(BankTransferLogExample example);
 
-    int deleteByPrimaryKey(Long transferId);
+    int deleteByPrimaryKey(String transferId);
 
     int insert(BankTransferLog record);
 
@@ -19,7 +19,7 @@ public interface BankTransferLogMapper {
 
     List<BankTransferLog> selectByExample(BankTransferLogExample example);
 
-    BankTransferLog selectByPrimaryKey(Long transferId);
+    BankTransferLog selectByPrimaryKey(String transferId);
 
     int updateByExampleSelective(@Param("record") BankTransferLog record, @Param("example") BankTransferLogExample example);
 

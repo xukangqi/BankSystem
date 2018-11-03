@@ -2,8 +2,8 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.bank.mapper.BankLoanPaymentMapper" >
   <resultMap id="BaseResultMap" type="com.bank.pojo.BankLoanPayment" >
-    <id column="payment_id" property="paymentId" jdbcType="BIGINT" />
-    <result column="trans_id" property="transId" jdbcType="BIGINT" />
+    <id column="payment_id" property="paymentId" jdbcType="VARCHAR" />
+    <result column="trans_id" property="transId" jdbcType="VARCHAR" />
     <result column="ins_num" property="insNum" jdbcType="SMALLINT" />
     <result column="payment_amount" property="paymentAmount" jdbcType="DOUBLE" />
     <result column="payment_date" property="paymentDate" jdbcType="VARCHAR" />
@@ -88,15 +88,15 @@
       order by ${orderByClause}
     </if>
   </select>
-  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
     select 
     <include refid="Base_Column_List" />
     from bank_loan_payment
-    where payment_id = #{paymentId,jdbcType=BIGINT}
+    where payment_id = #{paymentId,jdbcType=VARCHAR}
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
     delete from bank_loan_payment
-    where payment_id = #{paymentId,jdbcType=BIGINT}
+    where payment_id = #{paymentId,jdbcType=VARCHAR}
   </delete>
   <delete id="deleteByExample" parameterType="com.bank.pojo.BankLoanPaymentExample" >
     delete from bank_loan_payment
@@ -109,7 +109,7 @@
       payment_amount, payment_date, is_finished, 
       fine_rate, all_payment_amount, reimbursement
       )
-    values (#{paymentId,jdbcType=BIGINT}, #{transId,jdbcType=BIGINT}, #{insNum,jdbcType=SMALLINT}, 
+    values (#{paymentId,jdbcType=VARCHAR}, #{transId,jdbcType=VARCHAR}, #{insNum,jdbcType=SMALLINT}, 
       #{paymentAmount,jdbcType=DOUBLE}, #{paymentDate,jdbcType=VARCHAR}, #{isFinished,jdbcType=VARCHAR}, 
       #{fineRate,jdbcType=DOUBLE}, #{allPaymentAmount,jdbcType=DOUBLE}, #{reimbursement,jdbcType=DOUBLE}
       )
@@ -147,10 +147,10 @@
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="paymentId != null" >
-        #{paymentId,jdbcType=BIGINT},
+        #{paymentId,jdbcType=VARCHAR},
       </if>
       <if test="transId != null" >
-        #{transId,jdbcType=BIGINT},
+        #{transId,jdbcType=VARCHAR},
       </if>
       <if test="insNum != null" >
         #{insNum,jdbcType=SMALLINT},
@@ -185,10 +185,10 @@
     update bank_loan_payment
     <set >
       <if test="record.paymentId != null" >
-        payment_id = #{record.paymentId,jdbcType=BIGINT},
+        payment_id = #{record.paymentId,jdbcType=VARCHAR},
       </if>
       <if test="record.transId != null" >
-        trans_id = #{record.transId,jdbcType=BIGINT},
+        trans_id = #{record.transId,jdbcType=VARCHAR},
       </if>
       <if test="record.insNum != null" >
         ins_num = #{record.insNum,jdbcType=SMALLINT},
@@ -218,8 +218,8 @@
   </update>
   <update id="updateByExample" parameterType="map" >
     update bank_loan_payment
-    set payment_id = #{record.paymentId,jdbcType=BIGINT},
-      trans_id = #{record.transId,jdbcType=BIGINT},
+    set payment_id = #{record.paymentId,jdbcType=VARCHAR},
+      trans_id = #{record.transId,jdbcType=VARCHAR},
       ins_num = #{record.insNum,jdbcType=SMALLINT},
       payment_amount = #{record.paymentAmount,jdbcType=DOUBLE},
       payment_date = #{record.paymentDate,jdbcType=VARCHAR},
@@ -235,7 +235,7 @@
     update bank_loan_payment
     <set >
       <if test="transId != null" >
-        trans_id = #{transId,jdbcType=BIGINT},
+        trans_id = #{transId,jdbcType=VARCHAR},
       </if>
       <if test="insNum != null" >
         ins_num = #{insNum,jdbcType=SMALLINT},
@@ -259,11 +259,11 @@
         reimbursement = #{reimbursement,jdbcType=DOUBLE},
       </if>
     </set>
-    where payment_id = #{paymentId,jdbcType=BIGINT}
+    where payment_id = #{paymentId,jdbcType=VARCHAR}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.bank.pojo.BankLoanPayment" >
     update bank_loan_payment
-    set trans_id = #{transId,jdbcType=BIGINT},
+    set trans_id = #{transId,jdbcType=VARCHAR},
       ins_num = #{insNum,jdbcType=SMALLINT},
       payment_amount = #{paymentAmount,jdbcType=DOUBLE},
       payment_date = #{paymentDate,jdbcType=VARCHAR},
@@ -271,6 +271,6 @@
       fine_rate = #{fineRate,jdbcType=DOUBLE},
       all_payment_amount = #{allPaymentAmount,jdbcType=DOUBLE},
       reimbursement = #{reimbursement,jdbcType=DOUBLE}
-    where payment_id = #{paymentId,jdbcType=BIGINT}
+    where payment_id = #{paymentId,jdbcType=VARCHAR}
   </update>
 </mapper>

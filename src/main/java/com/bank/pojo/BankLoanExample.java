@@ -114,52 +114,62 @@ public class BankLoanExample {
             return (Criteria) this;
         }
 
-        public Criteria andTransIdEqualTo(Long value) {
+        public Criteria andTransIdEqualTo(String value) {
             addCriterion("trans_id =", value, "transId");
             return (Criteria) this;
         }
 
-        public Criteria andTransIdNotEqualTo(Long value) {
+        public Criteria andTransIdNotEqualTo(String value) {
             addCriterion("trans_id <>", value, "transId");
             return (Criteria) this;
         }
 
-        public Criteria andTransIdGreaterThan(Long value) {
+        public Criteria andTransIdGreaterThan(String value) {
             addCriterion("trans_id >", value, "transId");
             return (Criteria) this;
         }
 
-        public Criteria andTransIdGreaterThanOrEqualTo(Long value) {
+        public Criteria andTransIdGreaterThanOrEqualTo(String value) {
             addCriterion("trans_id >=", value, "transId");
             return (Criteria) this;
         }
 
-        public Criteria andTransIdLessThan(Long value) {
+        public Criteria andTransIdLessThan(String value) {
             addCriterion("trans_id <", value, "transId");
             return (Criteria) this;
         }
 
-        public Criteria andTransIdLessThanOrEqualTo(Long value) {
+        public Criteria andTransIdLessThanOrEqualTo(String value) {
             addCriterion("trans_id <=", value, "transId");
             return (Criteria) this;
         }
 
-        public Criteria andTransIdIn(List<Long> values) {
+        public Criteria andTransIdLike(String value) {
+            addCriterion("trans_id like", value, "transId");
+            return (Criteria) this;
+        }
+
+        public Criteria andTransIdNotLike(String value) {
+            addCriterion("trans_id not like", value, "transId");
+            return (Criteria) this;
+        }
+
+        public Criteria andTransIdIn(List<String> values) {
             addCriterion("trans_id in", values, "transId");
             return (Criteria) this;
         }
 
-        public Criteria andTransIdNotIn(List<Long> values) {
+        public Criteria andTransIdNotIn(List<String> values) {
             addCriterion("trans_id not in", values, "transId");
             return (Criteria) this;
         }
 
-        public Criteria andTransIdBetween(Long value1, Long value2) {
+        public Criteria andTransIdBetween(String value1, String value2) {
             addCriterion("trans_id between", value1, value2, "transId");
             return (Criteria) this;
         }
 
-        public Criteria andTransIdNotBetween(Long value1, Long value2) {
+        public Criteria andTransIdNotBetween(String value1, String value2) {
             addCriterion("trans_id not between", value1, value2, "transId");
             return (Criteria) this;
         }
