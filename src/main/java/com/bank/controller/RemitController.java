@@ -20,8 +20,9 @@ public class RemitController {
     @ResponseBody
     public BankResult createRemit(@RequestParam(value = "remit_out_account")String remitOutAccount,
                                   @RequestParam(value = "remit_in_account")String remitInAccount,
+                                  @RequestParam(value = "password")String password,
                                   @RequestParam(value = "amount")double amount) {
-        BankResult bankResult = remitService.createRemit(remitOutAccount, remitInAccount, amount);
+        BankResult bankResult = remitService.createRemit(remitOutAccount, remitInAccount, password, amount);
         return bankResult;
     }
 

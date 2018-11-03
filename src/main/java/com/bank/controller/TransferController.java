@@ -16,8 +16,9 @@ public class TransferController {
     @ResponseBody
     public BankResult createTransfer(@RequestParam(value = "transfer_out_account")String transferOutAccount,
                                      @RequestParam(value = "transfer_in_account")String transferInAccount,
+                                     @RequestParam(value = "password")String password,
                                      @RequestParam(value = "amount")double amount) {
-        BankResult bankResult = transferService.createTransfer(transferOutAccount, transferInAccount, amount);
+        BankResult bankResult = transferService.createTransfer(transferOutAccount, transferInAccount, password, amount);
 
         return bankResult;
     }
