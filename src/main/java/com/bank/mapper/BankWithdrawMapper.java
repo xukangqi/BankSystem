@@ -11,7 +11,7 @@ public interface BankWithdrawMapper {
 
     int deleteByExample(BankWithdrawExample example);
 
-    int deleteByPrimaryKey(Long withdrawId);
+    int deleteByPrimaryKey(String withdrawId);
 
     int insert(BankWithdraw record);
 
@@ -19,7 +19,7 @@ public interface BankWithdrawMapper {
 
     List<BankWithdraw> selectByExample(BankWithdrawExample example);
 
-    BankWithdraw selectByPrimaryKey(Long withdrawId);
+    BankWithdraw selectByPrimaryKey(String withdrawId);
 
     int updateByExampleSelective(@Param("record") BankWithdraw record, @Param("example") BankWithdrawExample example);
 

@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.bank.mapper.BankTransferLogMapper" >
   <resultMap id="BaseResultMap" type="com.bank.pojo.BankTransferLog" >
-    <id column="transfer_id" property="transferId" jdbcType="BIGINT" />
+    <id column="transfer_id" property="transferId" jdbcType="VARCHAR" />
     <result column="transfer_out_account" property="transferOutAccount" jdbcType="VARCHAR" />
     <result column="transfer_in_account" property="transferInAccount" jdbcType="VARCHAR" />
     <result column="amount" property="amount" jdbcType="DOUBLE" />
@@ -84,15 +84,15 @@
       order by ${orderByClause}
     </if>
   </select>
-  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
     select 
     <include refid="Base_Column_List" />
     from bank_transfer_log
-    where transfer_id = #{transferId,jdbcType=BIGINT}
+    where transfer_id = #{transferId,jdbcType=VARCHAR}
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
     delete from bank_transfer_log
-    where transfer_id = #{transferId,jdbcType=BIGINT}
+    where transfer_id = #{transferId,jdbcType=VARCHAR}
   </delete>
   <delete id="deleteByExample" parameterType="com.bank.pojo.BankTransferLogExample" >
     delete from bank_transfer_log
@@ -104,7 +104,7 @@
     insert into bank_transfer_log (transfer_id, transfer_out_account, transfer_in_account, 
       amount, transfer_date, receive_date
       )
-    values (#{transferId,jdbcType=BIGINT}, #{transferOutAccount,jdbcType=VARCHAR}, #{transferInAccount,jdbcType=VARCHAR}, 
+    values (#{transferId,jdbcType=VARCHAR}, #{transferOutAccount,jdbcType=VARCHAR}, #{transferInAccount,jdbcType=VARCHAR}, 
       #{amount,jdbcType=DOUBLE}, #{transferDate,jdbcType=VARCHAR}, #{receiveDate,jdbcType=VARCHAR}
       )
   </insert>
@@ -132,7 +132,7 @@
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="transferId != null" >
-        #{transferId,jdbcType=BIGINT},
+        #{transferId,jdbcType=VARCHAR},
       </if>
       <if test="transferOutAccount != null" >
         #{transferOutAccount,jdbcType=VARCHAR},
@@ -161,7 +161,7 @@
     update bank_transfer_log
     <set >
       <if test="record.transferId != null" >
-        transfer_id = #{record.transferId,jdbcType=BIGINT},
+        transfer_id = #{record.transferId,jdbcType=VARCHAR},
       </if>
       <if test="record.transferOutAccount != null" >
         transfer_out_account = #{record.transferOutAccount,jdbcType=VARCHAR},
@@ -185,7 +185,7 @@
   </update>
   <update id="updateByExample" parameterType="map" >
     update bank_transfer_log
-    set transfer_id = #{record.transferId,jdbcType=BIGINT},
+    set transfer_id = #{record.transferId,jdbcType=VARCHAR},
       transfer_out_account = #{record.transferOutAccount,jdbcType=VARCHAR},
       transfer_in_account = #{record.transferInAccount,jdbcType=VARCHAR},
       amount = #{record.amount,jdbcType=DOUBLE},
@@ -214,7 +214,7 @@
         receive_date = #{receiveDate,jdbcType=VARCHAR},
       </if>
     </set>
-    where transfer_id = #{transferId,jdbcType=BIGINT}
+    where transfer_id = #{transferId,jdbcType=VARCHAR}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.bank.pojo.BankTransferLog" >
     update bank_transfer_log
@@ -223,6 +223,6 @@
       amount = #{amount,jdbcType=DOUBLE},
       transfer_date = #{transferDate,jdbcType=VARCHAR},
       receive_date = #{receiveDate,jdbcType=VARCHAR}
-    where transfer_id = #{transferId,jdbcType=BIGINT}
+    where transfer_id = #{transferId,jdbcType=VARCHAR}
   </update>
 </mapper>

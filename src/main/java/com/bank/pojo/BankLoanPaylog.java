@@ -1,9 +1,9 @@
 package com.bank.pojo;
 
 public class BankLoanPaylog {
-    private Long paylogId;
+    private String paylogId;
 
-    private Long transId;
+    private String transId;
 
     private Double payAmount;
 
@@ -11,20 +11,20 @@ public class BankLoanPaylog {
 
     private String account;
 
-    public Long getPaylogId() {
+    public String getPaylogId() {
         return paylogId;
     }
 
-    public void setPaylogId(Long paylogId) {
-        this.paylogId = paylogId;
+    public void setPaylogId(String paylogId) {
+        this.paylogId = paylogId == null ? null : paylogId.trim();
     }
 
-    public Long getTransId() {
+    public String getTransId() {
         return transId;
     }
 
-    public void setTransId(Long transId) {
-        this.transId = transId;
+    public void setTransId(String transId) {
+        this.transId = transId == null ? null : transId.trim();
     }
 
     public Double getPayAmount() {

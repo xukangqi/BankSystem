@@ -319,6 +319,7 @@ public class LoanServiceImpl implements LoanService {
         BankLoanExample bankLoanExample = new BankLoanExample();
         try {
             List<BankLoan> bankLoanList = bankLoanMapper.selectByExample(bankLoanExample);
+            System.out.println(bankLoanList.get(0).getTransId());
             return BankResult.ok(bankLoanList);
         } catch (Exception e) {
             return BankResult.build(400,"数据表查询异常");

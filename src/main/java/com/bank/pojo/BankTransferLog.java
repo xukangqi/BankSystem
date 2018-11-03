@@ -1,7 +1,7 @@
 package com.bank.pojo;
 
 public class BankTransferLog {
-    private Long transferId;
+    private String transferId;
 
     private String transferOutAccount;
 
@@ -13,12 +13,12 @@ public class BankTransferLog {
 
     private String receiveDate;
 
-    public Long getTransferId() {
+    public String getTransferId() {
         return transferId;
     }
 
-    public void setTransferId(Long transferId) {
-        this.transferId = transferId;
+    public void setTransferId(String transferId) {
+        this.transferId = transferId == null ? null : transferId.trim();
     }
 
     public String getTransferOutAccount() {

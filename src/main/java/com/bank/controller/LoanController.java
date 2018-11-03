@@ -22,6 +22,7 @@ public class LoanController {
     @RequestMapping(value = "/apply",method = RequestMethod.POST)
     @ResponseBody
     public BankResult applyLoan(BankLoanApplyInfo bankLoanApplyInfo) {
+        System.out.println(bankLoanApplyInfo.toString());
         return loanService.dealApplyment(bankLoanApplyInfo);
     }
 
@@ -40,20 +41,12 @@ public class LoanController {
     }
 
     //获取单个贷款信息
-    @RequestMapping(value = "{id}",method = RequestMethod.GET)
+    @RequestMapping(value = "/{id}",method = RequestMethod.GET)
     @ResponseBody
     public BankResult getOneRecord(@PathVariable("id")long id) {
         return loanService.sentOneRecord(id);
     }
 
-
-    //还款信息获取
-    @RequestMapping(value = "/payment",method = RequestMethod.GET)
-    @ResponseBody
-    public BankResult getPaymentInfo() {
-
-        return null;
-    }
 
     //还款信息获取
     @RequestMapping(value = "/payment/{value}",method = RequestMethod.GET)

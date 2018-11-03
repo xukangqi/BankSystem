@@ -11,7 +11,7 @@ public interface BankRemitLogMapper {
 
     int deleteByExample(BankRemitLogExample example);
 
-    int deleteByPrimaryKey(Long remitId);
+    int deleteByPrimaryKey(String remitId);
 
     int insert(BankRemitLog record);
 
@@ -19,7 +19,7 @@ public interface BankRemitLogMapper {
 
     List<BankRemitLog> selectByExample(BankRemitLogExample example);
 
-    BankRemitLog selectByPrimaryKey(Long remitId);
+    BankRemitLog selectByPrimaryKey(String remitId);
 
     int updateByExampleSelective(@Param("record") BankRemitLog record, @Param("example") BankRemitLogExample example);
 

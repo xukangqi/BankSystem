@@ -2,8 +2,8 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.bank.mapper.BankLoanPaylogMapper" >
   <resultMap id="BaseResultMap" type="com.bank.pojo.BankLoanPaylog" >
-    <id column="paylog_id" property="paylogId" jdbcType="BIGINT" />
-    <result column="trans_id" property="transId" jdbcType="BIGINT" />
+    <id column="paylog_id" property="paylogId" jdbcType="VARCHAR" />
+    <result column="trans_id" property="transId" jdbcType="VARCHAR" />
     <result column="pay_amount" property="payAmount" jdbcType="DOUBLE" />
     <result column="pay_date" property="payDate" jdbcType="VARCHAR" />
     <result column="account" property="account" jdbcType="VARCHAR" />
@@ -83,15 +83,15 @@
       order by ${orderByClause}
     </if>
   </select>
-  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
     select 
     <include refid="Base_Column_List" />
     from bank_loan_paylog
-    where paylog_id = #{paylogId,jdbcType=BIGINT}
+    where paylog_id = #{paylogId,jdbcType=VARCHAR}
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
     delete from bank_loan_paylog
-    where paylog_id = #{paylogId,jdbcType=BIGINT}
+    where paylog_id = #{paylogId,jdbcType=VARCHAR}
   </delete>
   <delete id="deleteByExample" parameterType="com.bank.pojo.BankLoanPaylogExample" >
     delete from bank_loan_paylog
@@ -102,7 +102,7 @@
   <insert id="insert" parameterType="com.bank.pojo.BankLoanPaylog" >
     insert into bank_loan_paylog (paylog_id, trans_id, pay_amount, 
       pay_date, account)
-    values (#{paylogId,jdbcType=BIGINT}, #{transId,jdbcType=BIGINT}, #{payAmount,jdbcType=DOUBLE}, 
+    values (#{paylogId,jdbcType=VARCHAR}, #{transId,jdbcType=VARCHAR}, #{payAmount,jdbcType=DOUBLE}, 
       #{payDate,jdbcType=VARCHAR}, #{account,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.bank.pojo.BankLoanPaylog" >
@@ -126,10 +126,10 @@
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="paylogId != null" >
-        #{paylogId,jdbcType=BIGINT},
+        #{paylogId,jdbcType=VARCHAR},
       </if>
       <if test="transId != null" >
-        #{transId,jdbcType=BIGINT},
+        #{transId,jdbcType=VARCHAR},
       </if>
       <if test="payAmount != null" >
         #{payAmount,jdbcType=DOUBLE},
@@ -152,10 +152,10 @@
     update bank_loan_paylog
     <set >
       <if test="record.paylogId != null" >
-        paylog_id = #{record.paylogId,jdbcType=BIGINT},
+        paylog_id = #{record.paylogId,jdbcType=VARCHAR},
       </if>
       <if test="record.transId != null" >
-        trans_id = #{record.transId,jdbcType=BIGINT},
+        trans_id = #{record.transId,jdbcType=VARCHAR},
       </if>
       <if test="record.payAmount != null" >
         pay_amount = #{record.payAmount,jdbcType=DOUBLE},
@@ -173,8 +173,8 @@
   </update>
   <update id="updateByExample" parameterType="map" >
     update bank_loan_paylog
-    set paylog_id = #{record.paylogId,jdbcType=BIGINT},
-      trans_id = #{record.transId,jdbcType=BIGINT},
+    set paylog_id = #{record.paylogId,jdbcType=VARCHAR},
+      trans_id = #{record.transId,jdbcType=VARCHAR},
       pay_amount = #{record.payAmount,jdbcType=DOUBLE},
       pay_date = #{record.payDate,jdbcType=VARCHAR},
       account = #{record.account,jdbcType=VARCHAR}
@@ -186,7 +186,7 @@
     update bank_loan_paylog
     <set >
       <if test="transId != null" >
-        trans_id = #{transId,jdbcType=BIGINT},
+        trans_id = #{transId,jdbcType=VARCHAR},
       </if>
       <if test="payAmount != null" >
         pay_amount = #{payAmount,jdbcType=DOUBLE},
@@ -198,14 +198,14 @@
         account = #{account,jdbcType=VARCHAR},
       </if>
     </set>
-    where paylog_id = #{paylogId,jdbcType=BIGINT}
+    where paylog_id = #{paylogId,jdbcType=VARCHAR}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.bank.pojo.BankLoanPaylog" >
     update bank_loan_paylog
-    set trans_id = #{transId,jdbcType=BIGINT},
+    set trans_id = #{transId,jdbcType=VARCHAR},
       pay_amount = #{payAmount,jdbcType=DOUBLE},
       pay_date = #{payDate,jdbcType=VARCHAR},
       account = #{account,jdbcType=VARCHAR}
-    where paylog_id = #{paylogId,jdbcType=BIGINT}
+    where paylog_id = #{paylogId,jdbcType=VARCHAR}
   </update>
 </mapper>
