@@ -56,7 +56,7 @@ public class BankWithdrawServiceImpl implements BankWithdrawService {
         bankWithdraw.setCustId(bankAccount.getCustId());
         bankWithdraw.setWithdrawDate(Long.toString(System.currentTimeMillis()));
         bankWithdraw.setArriveTime(Long.toString(System.currentTimeMillis() + 2000));
-        bankWithdraw.setWithdrawId(snowFlake.nextId());
+        bankWithdraw.setWithdrawId(Long.toString(snowFlake.nextId()));
         bankWithdrawMapper.insert(bankWithdraw);
         return BankResult.build(200, "取款成功");
     }

@@ -68,7 +68,7 @@ public class BankDepositServiceImpl implements BankDepositService {
         }
         bankDeposit.setDepositDate(Long.toString(System.currentTimeMillis()));
         bankDeposit.setCustId(bankAccount.getCustId());
-        bankDeposit.setDepositId(snowFlake.nextId());
+        bankDeposit.setDepositId(Long.toString(snowFlake.nextId()));
         bankDeposit.setDepositFlag("0");
         bankDepositMapper.insert(bankDeposit);
 
@@ -93,7 +93,7 @@ public class BankDepositServiceImpl implements BankDepositService {
     }
 
     @Override
-    public BankResult delete(List<Long> depositIds) {
+    public BankResult delete(List<String> depositIds) {
         if(depositIds == null || depositIds.size() == 0){
             return BankResult.build(400, "参数错误");
         }
