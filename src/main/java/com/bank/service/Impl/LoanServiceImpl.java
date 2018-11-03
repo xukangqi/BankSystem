@@ -51,10 +51,11 @@ public class LoanServiceImpl implements LoanService {
         String account = bankLoanApplyInfo.getAccount();
         BankResult isLegalInfo = isLegalInfo(account,bankLoanApplyInfo.getName(),bankLoanApplyInfo.getIdCard(),
                 bankLoanApplyInfo.getPassword(),bankLoanApplyInfo.getAmount(),false);
-        if( isLegalInfo.getMsg().equals("Request failed") ) {
+        if( isLegalInfo.getStatus() == 400 ) {
             return isLegalInfo;
         }
         String custId = isLegalInfo.getData().toString();
+        System.out.println(custId);
         isLegalInfo = null;
 
         //利用雪花算法算出 transId
@@ -81,7 +82,7 @@ public class LoanServiceImpl implements LoanService {
 
         //插入数据
         BankLoan bankLoan = new BankLoan();
-        bankLoan.setTransId( transId );
+        bankLoan.setTransId( String.valueOf(transId) );
         bankLoan.setCustId( custId );
         bankLoan.setAccount( account );
         bankLoan.setTransDate( transDate );
@@ -113,8 +114,8 @@ public class LoanServiceImpl implements LoanService {
             long paymentId = snowFlake.nextId();
             BankLoanPayment bankLoanPayment = new BankLoanPayment();
             //将 payment_date 设置为到期日
-            bankLoanPayment.setPaymentId(paymentId);
-            bankLoanPayment.setTransId(transId);
+            bankLoanPayment.setPaymentId(String.valueOf(paymentId));
+            bankLoanPayment.setTransId(String.valueOf(transId));
             bankLoanPayment.setInsNum( Short.valueOf(i+1+"") ) ;
             if(i == 0) {
                 bankLoanPayment.setPaymentAmount( payMoney1 );
@@ -150,7 +151,7 @@ public class LoanServiceImpl implements LoanService {
         BankResult isLegalInfo = isLegalInfo(bankLoanPaymentInfo.getAccount(),
                 bankLoanPaymentInfo.getName(),bankLoanPaymentInfo.getIdCard(),bankLoanPaymentInfo.getPassword(),
                 bankLoanPaymentInfo.getAmount(),true);
-        if( isLegalInfo.getMsg().equals("Request failed") ) {
+        if( isLegalInfo.getStatus() == 400 ) {
             return isLegalInfo;
         }
 
@@ -162,10 +163,10 @@ public class LoanServiceImpl implements LoanService {
         String transTime = String.valueOf( System.currentTimeMillis() );
 
         BankLoanPaylog bankLoanPaylog = new BankLoanPaylog();
-        bankLoanPaylog.setPaylogId(payLogId);
+        bankLoanPaylog.setPaylogId(String.valueOf(payLogId));
         bankLoanPaylog.setPayDate(transTime);
         bankLoanPaylog.setAccount(bankLoanPaymentInfo.getAccount());
-        bankLoanPaylog.setTransId( Long.valueOf(bankLoanPaymentInfo.getTransId()) );
+        bankLoanPaylog.setTransId(bankLoanPaymentInfo.getTransId() );
         bankLoanPaylog.setPayAmount( DateControlForLoan.toCriterionD(bankLoanPaymentInfo.getAmount()) );
 
         //插入
@@ -178,7 +179,7 @@ public class LoanServiceImpl implements LoanService {
         //判断 transId 是否是属于account的一个合法 贷款号，并进行计算
         try {
             String transId = bankLoanPaymentInfo.getTransId();
-            BankLoan bankLoan = bankLoanMapper.selectByPrimaryKey( Long.valueOf(transId) );
+            BankLoan bankLoan = bankLoanMapper.selectByPrimaryKey( transId );
             String accountTemp = bankLoan.getAccount();
             if( !accountTemp.equals( bankLoanPaymentInfo.getAccount() ) ) {
                 return BankResult.build(400,"账户号有误");
@@ -187,7 +188,7 @@ public class LoanServiceImpl implements LoanService {
             BankLoanPaymentExample bankLoanPaymentExample = new BankLoanPaymentExample();
             bankLoanPaymentExample.setOrderByClause("ins_num ASC");
             BankLoanPaymentExample.Criteria criteria = bankLoanPaymentExample.createCriteria();
-            criteria.andTransIdEqualTo(Long.valueOf(transId));
+            criteria.andTransIdEqualTo(transId);
             criteria.andIsFinishedEqualTo("false");
             List<BankLoanPayment> bankLoanPaymentList = bankLoanPaymentMapper.selectByExample(bankLoanPaymentExample);
             //现在时间戳
@@ -332,7 +333,7 @@ public class LoanServiceImpl implements LoanService {
      * @return
      */
     @Override
-    public BankResult sentOneRecord(long transId) {
+    public BankResult sentOneRecord(String transId) {
         try {
             BankLoan bankLoan = bankLoanMapper.selectByPrimaryKey(transId);
             if(bankLoan == null)
@@ -373,7 +374,7 @@ public class LoanServiceImpl implements LoanService {
     }
 
     @Override
-    public BankResult getPaylog(long value) {
+    public BankResult getPaylog(String value) {
         BankLoanPaylogExample bankLoanPaylogExample = new BankLoanPaylogExample();
         BankLoanPaylogExample.Criteria criteria = bankLoanPaylogExample.createCriteria();
         criteria.andTransIdEqualTo(value);
@@ -386,7 +387,7 @@ public class LoanServiceImpl implements LoanService {
     }
 
     @Override
-    public  BankResult getPaymentOneInfo(long value) {
+    public  BankResult getPaymentOneInfo(String value) {
         BankLoanPaymentExample bankLoanPaymentExample = new BankLoanPaymentExample();
         BankLoanPaymentExample.Criteria criteria = bankLoanPaymentExample.createCriteria();
         criteria.andTransIdEqualTo(value);
@@ -409,39 +410,33 @@ public class LoanServiceImpl implements LoanService {
      */
     public BankResult isLegalInfo(String account, String custName,String IdCard,String password,
                                   String amount,boolean flag) {
+
         try {
             //判断 还钱数 是否是一个 double 数
             try {
                 Double.valueOf(amount);
             }catch (NumberFormatException e) {
-                return BankResult.build(400,"还款金额是不合法");
+                return BankResult.build(400,"还款金额不合法");
             }
-
             // 判断账户是否存在
             BankAccount bankAccount = bankAccountMapper.selectByPrimaryKey(account);
             if(bankAccount == null) { return BankResult.build(400,"账户名不存在！"); }
-
             //判断密码是否匹配
             if(!MD5.string2MD5(password).equals(bankAccount.getPassword())) {
-
                 return BankResult.build(400,"密码错误！");
             }
-
             // 判断姓名与账户是否匹配
             String custId = bankAccount.getCustId();
             BankCustomer bankCustomer = bankCustomerMapper.selectByPrimaryKey(custId);
             if(bankCustomer == null) { return BankResult.build(400,"用户名不存在！"); }
-
             // 判断姓名账户
             if(!custName.equals(bankCustomer.getCustName()) ) {
                 return BankResult.build(400,"姓名与账户不匹配！");
             }
-
             // 判断身份证号是否正确
             if(!IdCard.equals(bankCustomer.getIdentityCard())) {
                 return BankResult.build(400,"身份证号不正确！");
             }
-
             //判断用户是否具有还款能里，银行卡里有没有还款的
             if(flag) {
                 if( Double.valueOf(amount) > Double.valueOf(bankAccount.getBalances()) ) {

@@ -98,11 +98,15 @@ public class CustomerServiceImpl implements ICustomerService {
     public boolean update(BankCustomer customer) {
         //验证客户id 和 password
         BankCustomerExample example = new BankCustomerExample();
-        example.createCriteria().andCustIdEqualTo(customer.getCustId()).andPasswordEqualTo(customer.getPassword());
+        example.createCriteria().andCustIdEqualTo(customer.getCustId());
         List<BankCustomer> bankCustomerList = bankCustomerMapper.selectByExample(example);
         if (bankCustomerList.isEmpty()) {
             return false;
         } else {
+            if (null != customer.getPassword()) {
+                String pw = MD5.string2MD5(customer.getPassword());
+                customer.setPassword(pw);
+            }
             bankCustomerMapper.updateByPrimaryKeySelective(customer);
             return true;
         }

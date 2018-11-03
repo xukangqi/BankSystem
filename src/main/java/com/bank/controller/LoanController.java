@@ -43,7 +43,7 @@ public class LoanController {
     //获取单个贷款信息
     @RequestMapping(value = "/{id}",method = RequestMethod.GET)
     @ResponseBody
-    public BankResult getOneRecord(@PathVariable("id")long id) {
+    public BankResult getOneRecord(@PathVariable("id")String id) {
         return loanService.sentOneRecord(id);
     }
 
@@ -51,7 +51,7 @@ public class LoanController {
     //还款信息获取
     @RequestMapping(value = "/payment/{value}",method = RequestMethod.GET)
     @ResponseBody
-    public BankResult getPaymentOneInfo(@PathVariable("value")long value) {
+    public BankResult getPaymentOneInfo(@PathVariable("value")String value) {
 
         return loanService.getPaymentOneInfo(value);
     }
@@ -73,7 +73,7 @@ public class LoanController {
     //获取还款日志
     @RequestMapping(value = "/paylog/{value}",method = RequestMethod.GET)
     @ResponseBody
-    public BankResult getPayLog(@PathVariable("value")long value) {
+    public BankResult getPayLog(@PathVariable("value")String value) {
         return loanService.getPaylog(value);
     }
 }
