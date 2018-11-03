@@ -21,6 +21,12 @@ public class BankLoanApplyInfo {
 
     private String loanType;
 
+    private String reviewerId;
+
+    public String getReviewerId() { return reviewerId; }
+
+    public void setReviewerId(String reviewerId) { this.reviewerId = reviewerId; }
+
     public String getName() { return name; }
 
     public void setName(String name) { this.name = name; }

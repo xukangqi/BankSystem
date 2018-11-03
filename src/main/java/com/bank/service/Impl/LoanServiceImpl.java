@@ -94,7 +94,7 @@ public class LoanServiceImpl implements LoanService {
         bankLoan.setRecoveredAmount( 0.00 );
         bankLoan.setLoanTypeName( loanType );
         bankLoan.setLoanStatus( "未到期" );
-        //TODO 审核员ID 待插入
+        bankLoan.setReviewerId(bankLoanApplyInfo.getReviewerId());
         try {
             bankLoanMapper.insert(bankLoan);
         } catch (Exception e) {
