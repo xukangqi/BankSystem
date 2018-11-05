@@ -67,21 +67,8 @@ public class FundServiceImpl implements FundService {
         if (!bankCustomer.getPassword().equals(passowrd)) return BankResult.build(400, "Request Failed", "Wrong password!");
 
         // 找到对应的基金产品
-        BankFundProductExample bankFundProductExample = new BankFundProductExample();
-        BankFundProductExample.Criteria criteria = bankFundProductExample.createCriteria();
-        criteria.andFundIdEqualTo(fundId);
-        List<BankFundProduct> bankFundProductList = bankFundProductMapper.selectByExample(bankFundProductExample);
-        // 找到该基金产品最新的产品记录
-        BankFundProduct bankFundProduct;
-        if (!bankFundProductList.isEmpty()) {
-            bankFundProduct = bankFundProductList.get(0);
-            for (BankFundProduct bfp : bankFundProductList) {
-                if (Long.parseLong(bfp.getPurchaseDate()) >  Long.parseLong(bankFundProduct.getPurchaseDate())) {
-                    bankFundProduct = bfp;
-                }
-            }
-        }
-        else {
+        BankFundProduct bankFundProduct = getUpdatedFundProduct(fundId);
+        if (bankFundProduct == null) {
             return BankResult.build(400, "Request Failed", "Fund product not exist!");
         }
 
@@ -142,21 +129,8 @@ public class FundServiceImpl implements FundService {
         long fundTxId = snowFlake.nextId();
 
         // 找到对应的基金产品
-        BankFundProductExample bankFundProductExample = new BankFundProductExample();
-        BankFundProductExample.Criteria criteria = bankFundProductExample.createCriteria();
-        criteria.andFundIdEqualTo(fundId);
-        List<BankFundProduct> bankFundProductList = bankFundProductMapper.selectByExample(bankFundProductExample);
-        // 找到该基金产品最新的产品记录
-        BankFundProduct bankFundProduct;
-        if (!bankFundProductList.isEmpty()) {
-            bankFundProduct = bankFundProductList.get(0);
-            for (BankFundProduct bfp : bankFundProductList) {
-                if (Long.parseLong(bfp.getPurchaseDate()) >  Long.parseLong(bankFundProduct.getPurchaseDate())) {
-                    bankFundProduct = bfp;
-                }
-            }
-        }
-        else {
+        BankFundProduct bankFundProduct = getUpdatedFundProduct(fundId);
+        if (bankFundProduct == null) {
             return BankResult.build(400, "Request Failed", "Fund product not exist!");
         }
 
@@ -198,23 +172,7 @@ public class FundServiceImpl implements FundService {
 
     @Override
     public BankResult getOneFundProduct(String fundId, String purchaseDate) {
-
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
-        Date date;
-        try {
-            date = simpleDateFormat.parse(purchaseDate);
-        }
-        catch (Exception e) {
-            e.printStackTrace();
-            return BankResult.build(400, "Request Failed", "Cannot parse purchaseDate!");
-        }
-
-        purchaseDate = String.valueOf(date.getTime());
-
-        BankFundProductKey bankFundProductKey = new BankFundProductKey();
-        bankFundProductKey.setFundId(fundId);
-        bankFundProductKey.setPurchaseDate(purchaseDate);
-        BankFundProduct bankFundProduct = bankFundProductMapper.selectByPrimaryKey(bankFundProductKey);
+        BankFundProduct bankFundProduct = getUpdatedFundProduct(fundId);
         return BankResult.ok(bankFundProduct);
     }
 
@@ -249,5 +207,26 @@ public class FundServiceImpl implements FundService {
         bankFundHoldKey.setFundId(fundId);
         BankFundHold bankFundHold = bankFundHoldMapper.selectByPrimaryKey(bankFundHoldKey);
         return BankResult.ok(bankFundHold);
+    }
+
+    private BankFundProduct getUpdatedFundProduct(String fundId) {
+        BankFundProductExample bankFundProductExample = new BankFundProductExample();
+        BankFundProductExample.Criteria criteria = bankFundProductExample.createCriteria();
+        criteria.andFundIdEqualTo(fundId);
+        List<BankFundProduct> bankFundProductList = bankFundProductMapper.selectByExample(bankFundProductExample);
+        // 找到该基金产品最新的产品记录
+        BankFundProduct bankFundProduct;
+        if (!bankFundProductList.isEmpty()) {
+            bankFundProduct = bankFundProductList.get(0);
+            for (BankFundProduct bfp : bankFundProductList) {
+                if (Long.parseLong(bfp.getPurchaseDate()) >  Long.parseLong(bankFundProduct.getPurchaseDate())) {
+                    bankFundProduct = bfp;
+                }
+            }
+        }
+        else {
+            return null;
+        }
+        return bankFundProduct;
     }
 }
