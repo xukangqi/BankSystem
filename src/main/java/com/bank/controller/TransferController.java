@@ -35,7 +35,7 @@ public class TransferController {
 
     @RequestMapping(value = "/querydetail/{transferId}", method = RequestMethod.GET)
     @ResponseBody
-    public BankResult getTransferLogs(@RequestParam(value = "transferId")String transferId) {
+    public BankResult getOneTransferLog(@RequestParam(value = "transferId")String transferId) {
         BankResult bankResult = transferService.getOneTransferLog(transferId);
 
         return bankResult;

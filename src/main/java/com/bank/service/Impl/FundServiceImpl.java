@@ -8,6 +8,8 @@ import com.bank.utils.SnowFlake;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -196,6 +198,19 @@ public class FundServiceImpl implements FundService {
 
     @Override
     public BankResult getOneFundProduct(String fundId, String purchaseDate) {
+
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        Date date;
+        try {
+            date = simpleDateFormat.parse(purchaseDate);
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+            return BankResult.build(400, "Request Failed", "Cannot parse purchaseDate!");
+        }
+
+        purchaseDate = String.valueOf(date.getTime());
+
         BankFundProductKey bankFundProductKey = new BankFundProductKey();
         bankFundProductKey.setFundId(fundId);
         bankFundProductKey.setPurchaseDate(purchaseDate);

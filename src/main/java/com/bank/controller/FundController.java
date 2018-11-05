@@ -64,7 +64,7 @@ public class FundController {
         return bankResult;
     }
 
-    // 请求格式/query/productdetail/fundId=123&purchaseDate=123
+    // 请求格式/query/productdetail?fundId=123&purchaseDate=123
     @RequestMapping(value = "/query/productdetail",method = RequestMethod.GET)
     @ResponseBody
     public BankResult getFundOneProduct(@RequestParam(value = "fundId")String fundId,
@@ -102,8 +102,8 @@ public class FundController {
         return bankResult;
     }
 
-    // 请求格式/query/holddetail/account=123&fundId=123
-    @RequestMapping(value = "/query/holddetail/",method = RequestMethod.GET)
+    // 请求格式/query/holddetail?account=123&fundId=123
+    @RequestMapping(value = "/query/holddetail",method = RequestMethod.GET)
     @ResponseBody
     public BankResult getOneFundHold(@RequestParam(value = "account")String account,
                                      @RequestParam(value = "fundId")String fundId) {
