@@ -45,7 +45,7 @@ public class RemitController {
 
     @RequestMapping(value = "/query/{remitId}", method = RequestMethod.GET)
     @ResponseBody
-    public BankResult getOneRemitLogs(@RequestParam(value = "id")String remitId) {
+    public BankResult getOneRemitLog(@RequestParam(value = "id")String remitId) {
         BankResult bankResult = remitService.getOneRemitLog(remitId);
         return bankResult;
     }

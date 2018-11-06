@@ -4,10 +4,13 @@ import com.bank.mapper.*;
 import com.bank.pojo.*;
 import com.bank.service.FundService;
 import com.bank.utils.BankResult;
+import com.bank.utils.MD5;
 import com.bank.utils.SnowFlake;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -54,6 +57,8 @@ public class FundServiceImpl implements FundService {
         String custId = bankAccount.getCustId();
         BankCustomer bankCustomer = bankCustomerMapper.selectByPrimaryKey(custId);
 
+        String pw = MD5.string2MD5(passowrd);
+
         if (!bankCustomer.getCustName().equals(name))
             return BankResult.build(400, "Request Failed", "Wrong name!");
 
@@ -62,24 +67,11 @@ public class FundServiceImpl implements FundService {
 
         if (bankAccount.getBalances() < amount) return BankResult.build(400, "Request Failed", "Insufficient balance!");
 
-        if (!bankCustomer.getPassword().equals(passowrd)) return BankResult.build(400, "Request Failed", "Wrong password!");
+        if (!bankAccount.getPassword().equals(pw)) return BankResult.build(400, "Request Failed", "Wrong password!");
 
         // 找到对应的基金产品
-        BankFundProductExample bankFundProductExample = new BankFundProductExample();
-        BankFundProductExample.Criteria criteria = bankFundProductExample.createCriteria();
-        criteria.andFundIdEqualTo(fundId);
-        List<BankFundProduct> bankFundProductList = bankFundProductMapper.selectByExample(bankFundProductExample);
-        // 找到该基金产品最新的产品记录
-        BankFundProduct bankFundProduct;
-        if (!bankFundProductList.isEmpty()) {
-            bankFundProduct = bankFundProductList.get(0);
-            for (BankFundProduct bfp : bankFundProductList) {
-                if (Long.parseLong(bfp.getPurchaseDate()) >  Long.parseLong(bankFundProduct.getPurchaseDate())) {
-                    bankFundProduct = bfp;
-                }
-            }
-        }
-        else {
+        BankFundProduct bankFundProduct = getUpdatedFundProduct(fundId);
+        if (bankFundProduct == null) {
             return BankResult.build(400, "Request Failed", "Fund product not exist!");
         }
 
@@ -134,31 +126,20 @@ public class FundServiceImpl implements FundService {
         bankFundHoldKey.setAccount(account);
         BankFundHold bankFundHold = bankFundHoldMapper.selectByPrimaryKey(bankFundHoldKey);
 
+        String pw = MD5.string2MD5(password);
+
         if (bankFundHold.getShare() < share) return BankResult.build(400, "Request Failed", "Insufficient share");
 
         SnowFlake snowFlake = new SnowFlake(datacenterId, machineId);
         long fundTxId = snowFlake.nextId();
 
         // 找到对应的基金产品
-        BankFundProductExample bankFundProductExample = new BankFundProductExample();
-        BankFundProductExample.Criteria criteria = bankFundProductExample.createCriteria();
-        criteria.andFundIdEqualTo(fundId);
-        List<BankFundProduct> bankFundProductList = bankFundProductMapper.selectByExample(bankFundProductExample);
-        // 找到该基金产品最新的产品记录
-        BankFundProduct bankFundProduct;
-        if (!bankFundProductList.isEmpty()) {
-            bankFundProduct = bankFundProductList.get(0);
-            for (BankFundProduct bfp : bankFundProductList) {
-                if (Long.parseLong(bfp.getPurchaseDate()) >  Long.parseLong(bankFundProduct.getPurchaseDate())) {
-                    bankFundProduct = bfp;
-                }
-            }
-        }
-        else {
+        BankFundProduct bankFundProduct = getUpdatedFundProduct(fundId);
+        if (bankFundProduct == null) {
             return BankResult.build(400, "Request Failed", "Fund product not exist!");
         }
 
-        if (!bankAccount.getPassword().equals(password))
+        if (!bankAccount.getPassword().equals(pw))
             return BankResult.build(400, "Request Failed", "Wrong password!");
 
         double amount = share * bankFundProduct.getNetAssetValue();
@@ -195,12 +176,12 @@ public class FundServiceImpl implements FundService {
     }
 
     @Override
-    public BankResult getOneFundProduct(String fundId, String purchaseDate) {
-        BankFundProductKey bankFundProductKey = new BankFundProductKey();
-        bankFundProductKey.setFundId(fundId);
-        bankFundProductKey.setPurchaseDate(purchaseDate);
-        BankFundProduct bankFundProduct = bankFundProductMapper.selectByPrimaryKey(bankFundProductKey);
-        return BankResult.ok(bankFundProduct);
+    public BankResult getOneFundProduct(String fundId) {
+        BankFundProductExample bankFundProductExample = new BankFundProductExample();
+        BankFundProductExample.Criteria criteria = bankFundProductExample.createCriteria();
+        criteria.andFundIdEqualTo(fundId);
+        List<BankFundProduct> bankFundProductList = bankFundProductMapper.selectByExample(bankFundProductExample);
+        return BankResult.ok(bankFundProductList);
     }
 
     @Override
@@ -234,5 +215,26 @@ public class FundServiceImpl implements FundService {
         bankFundHoldKey.setFundId(fundId);
         BankFundHold bankFundHold = bankFundHoldMapper.selectByPrimaryKey(bankFundHoldKey);
         return BankResult.ok(bankFundHold);
+    }
+
+    private BankFundProduct getUpdatedFundProduct(String fundId) {
+        BankFundProductExample bankFundProductExample = new BankFundProductExample();
+        BankFundProductExample.Criteria criteria = bankFundProductExample.createCriteria();
+        criteria.andFundIdEqualTo(fundId);
+        List<BankFundProduct> bankFundProductList = bankFundProductMapper.selectByExample(bankFundProductExample);
+        // 找到该基金产品最新的产品记录
+        BankFundProduct bankFundProduct;
+        if (!bankFundProductList.isEmpty()) {
+            bankFundProduct = bankFundProductList.get(0);
+            for (BankFundProduct bfp : bankFundProductList) {
+                if (Long.parseLong(bfp.getPurchaseDate()) >  Long.parseLong(bankFundProduct.getPurchaseDate())) {
+                    bankFundProduct = bfp;
+                }
+            }
+        }
+        else {
+            return null;
+        }
+        return bankFundProduct;
     }
 }
