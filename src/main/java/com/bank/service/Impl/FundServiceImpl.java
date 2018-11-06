@@ -84,7 +84,7 @@ public class FundServiceImpl implements FundService {
         bankFundLog.setCustId(custId);
         bankFundLog.setAccount(account);
         bankFundLog.setFundId(fundId);
-        bankFundLog.setType("purchase");
+        bankFundLog.setType("0");   // 标记0代表申购/认购
         bankFundLog.setAmount(amount);
         double share = (amount - amount * bankFundProduct.getPurchaseRate()) / bankFundProduct.getNetAssetValue();
         bankFundLog.setShare(share);
@@ -150,7 +150,7 @@ public class FundServiceImpl implements FundService {
         bankFundLog.setCustId(bankAccount.getCustId());
         bankFundLog.setAccount(account);
         bankFundLog.setFundId(fundId);
-        bankFundLog.setType("redemption");
+        bankFundLog.setType("1");   // 标记1代表赎回
         bankFundLog.setAmount(amount);
         bankFundLog.setShare(share);
         bankFundLog.setTxDate(String.valueOf(System.currentTimeMillis()));
