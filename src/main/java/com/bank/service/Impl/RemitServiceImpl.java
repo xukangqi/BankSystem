@@ -36,22 +36,22 @@ public class RemitServiceImpl implements RemitService {
         String pw = MD5.string2MD5(password);
 
         if (!outAccountCustomer.getCustName().equals(name))
-            return BankResult.build(400, "Request Failed", "Wrong name!");
+            return BankResult.build(400, "Incompatible name!", "");
 
         if (!outAccountCustomer.getPhone().equals(phone))
-            return BankResult.build(400, "Request Failed", "Wrong phone!");
+            return BankResult.build(400, "Incompatible phone!", "");
 
         if (outAccount == null)
-            return BankResult.build(400, "Request Failed", "Remit out account not exist!");
+            return BankResult.build(400, "Remit out account not exist!", "");
 
         if (!outAccount.getPassword().equals(pw))
-            return BankResult.build(400, "Request Failed", "Wrong password!");
+            return BankResult.build(400, "Wrong password!", "");
 
         if (inAccount == null)
-            return BankResult.build(400, "Request Failed", "Remit in account not exist!");
+            return BankResult.build(400, "Remit in account not exist!", "");
 
         if (outAccount.getBalances() < amount)
-            return BankResult.build(400, "Request Failed", "Insufficient balance in remit out account!");
+            return BankResult.build(400, "Insufficient balance in remit out account!", "");
 
         SnowFlake snowFlake = new SnowFlake(datacenterId, machineId);
         long remitId = snowFlake.nextId();
@@ -77,13 +77,13 @@ public class RemitServiceImpl implements RemitService {
     public BankResult getRemit(String remitInAccount, String remitId) {
         BankAccount inAccount = bankAccountMapper.selectByPrimaryKey(remitInAccount);
         BankRemitLog bankRemitLog = bankRemitLogMapper.selectByPrimaryKey(remitId);
-        if (bankRemitLog == null) return BankResult.build(400, "Request Failed", "Remit not exist!");
+        if (bankRemitLog == null) return BankResult.build(400, "Remit not exist!", "");
 
         if (!bankRemitLog.getRemitInAccount().equals(remitInAccount))
-            return BankResult.build(400, "Request Failed", "Account not consistent with the remit!");
+            return BankResult.build(400, "Account not consistent with the remit!", "");
 
         if (!bankRemitLog.getRemitArriveDate().equals("Unpaid"))
-            return BankResult.build(400, "Request Failed", "Remit has already been paid!");
+            return BankResult.build(400, "Remit has already been paid!", "");
 
         bankRemitLog.setRemitArriveDate(String.valueOf(System.currentTimeMillis()));
         bankRemitLogMapper.updateByPrimaryKey(bankRemitLog);

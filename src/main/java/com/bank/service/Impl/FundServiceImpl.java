@@ -9,6 +9,7 @@ import com.bank.utils.SnowFlake;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
@@ -86,8 +87,11 @@ public class FundServiceImpl implements FundService {
         bankFundLog.setFundId(fundId);
         bankFundLog.setType("0");   // 标记0代表申购/认购
         bankFundLog.setAmount(amount);
-        double share = (amount - amount * bankFundProduct.getPurchaseRate()) / bankFundProduct.getNetAssetValue();
+        double shareTemp = (amount - amount * bankFundProduct.getPurchaseRate()) / bankFundProduct.getNetAssetValue();
+        DecimalFormat df = new DecimalFormat("#.00");
+        double share = Double.valueOf(df.format(shareTemp));
         bankFundLog.setShare(share);
+
         bankFundLog.setTxDate(String.valueOf(System.currentTimeMillis()));
         bankFundLog.setReviewId(reviewerId);
         bankFundLogMapper.insert(bankFundLog);
@@ -127,6 +131,9 @@ public class FundServiceImpl implements FundService {
         BankFundHold bankFundHold = bankFundHoldMapper.selectByPrimaryKey(bankFundHoldKey);
 
         String pw = MD5.string2MD5(password);
+
+        DecimalFormat df = new DecimalFormat("#.00");
+        share = Double.valueOf(df.format(share));
 
         if (bankFundHold.getShare() < share) return BankResult.build(400, "Insufficient share", "");
 
