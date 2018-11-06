@@ -39,21 +39,21 @@ public class TransferServiceImpl implements TransferService {
 
         BankAccount inAccount = bankAccountMapper.selectByPrimaryKey(transferInAccount);
         if (!outAccountCustomer.getCustName().equals(name))
-            return BankResult.build(400, "Request Failed", "Wrong name!");
+            return BankResult.build(400, "Incompatible name!", "");
 
         if (!outAccountCustomer.getPhone().equals(phone))
-            return BankResult.build(400, "Request Failed", "Wrong phone!");
+            return BankResult.build(400, "Incompatible phone!", "");
 
         if (outAccount == null)
-            return BankResult.build(400, "Request Failed", "Transfer out account not exist!");
+            return BankResult.build(400, "Transfer out account not exist!", "");
 
-        if (!outAccount.getPassword().equals(pw)) return BankResult.build(400, "Request Failed", "Wrong password!");
+        if (!outAccount.getPassword().equals(pw)) return BankResult.build(400, "Wrong password!", "");
 
         if (inAccount == null)
-            return BankResult.build(400, "Request Failed", "Transfer in account not exist!");
+            return BankResult.build(400, "Transfer in account not exist!", "");
 
         if (outAccount.getBalances() < amount)
-            return BankResult.build(400, "Request Failed", "Insufficient balance in transfer out account!");
+            return BankResult.build(400, "Insufficient balance in transfer out account!", "");
 
         SnowFlake snowFlake = new SnowFlake(datacenterId, machineId);
         long transferId = snowFlake.nextId();

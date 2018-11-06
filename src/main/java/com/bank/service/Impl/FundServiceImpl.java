@@ -9,6 +9,7 @@ import com.bank.utils.SnowFlake;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
@@ -52,7 +53,7 @@ public class FundServiceImpl implements FundService {
         machineId = 2L;
 
         BankAccount bankAccount = bankAccountMapper.selectByPrimaryKey(account);
-        if (bankAccount == null) return BankResult.build(400, "Request Failed", "Account not exist!");
+        if (bankAccount == null) return BankResult.build(400, "Account not exist!", "");
 
         String custId = bankAccount.getCustId();
         BankCustomer bankCustomer = bankCustomerMapper.selectByPrimaryKey(custId);
@@ -60,19 +61,19 @@ public class FundServiceImpl implements FundService {
         String pw = MD5.string2MD5(passowrd);
 
         if (!bankCustomer.getCustName().equals(name))
-            return BankResult.build(400, "Request Failed", "Wrong name!");
+            return BankResult.build(400, "Wrong name!", "");
 
         if (!bankCustomer.getPhone().equals(phone))
-            return BankResult.build(400, "Request Failed", "Wrong phone!");
+            return BankResult.build(400, "Wrong phone!", "");
 
-        if (bankAccount.getBalances() < amount) return BankResult.build(400, "Request Failed", "Insufficient balance!");
+        if (bankAccount.getBalances() < amount) return BankResult.build(400, "Insufficient balance!", "");
 
-        if (!bankAccount.getPassword().equals(pw)) return BankResult.build(400, "Request Failed", "Wrong password!");
+        if (!bankAccount.getPassword().equals(pw)) return BankResult.build(400, "Wrong password!", "");
 
         // 找到对应的基金产品
         BankFundProduct bankFundProduct = getUpdatedFundProduct(fundId);
         if (bankFundProduct == null) {
-            return BankResult.build(400, "Request Failed", "Fund product not exist!");
+            return BankResult.build(400, "Fund product not exist!", "");
         }
 
         SnowFlake snowFlake = new SnowFlake(datacenterId, machineId);
@@ -86,8 +87,11 @@ public class FundServiceImpl implements FundService {
         bankFundLog.setFundId(fundId);
         bankFundLog.setType("0");   // 标记0代表申购/认购
         bankFundLog.setAmount(amount);
-        double share = (amount - amount * bankFundProduct.getPurchaseRate()) / bankFundProduct.getNetAssetValue();
+        double shareTemp = (amount - amount * bankFundProduct.getPurchaseRate()) / bankFundProduct.getNetAssetValue();
+        DecimalFormat df = new DecimalFormat("#.00");
+        double share = Double.valueOf(df.format(shareTemp));
         bankFundLog.setShare(share);
+
         bankFundLog.setTxDate(String.valueOf(System.currentTimeMillis()));
         bankFundLog.setReviewId(reviewerId);
         bankFundLogMapper.insert(bankFundLog);
@@ -128,7 +132,10 @@ public class FundServiceImpl implements FundService {
 
         String pw = MD5.string2MD5(password);
 
-        if (bankFundHold.getShare() < share) return BankResult.build(400, "Request Failed", "Insufficient share");
+        DecimalFormat df = new DecimalFormat("#.00");
+        share = Double.valueOf(df.format(share));
+
+        if (bankFundHold.getShare() < share) return BankResult.build(400, "Insufficient share", "");
 
         SnowFlake snowFlake = new SnowFlake(datacenterId, machineId);
         long fundTxId = snowFlake.nextId();
@@ -136,11 +143,11 @@ public class FundServiceImpl implements FundService {
         // 找到对应的基金产品
         BankFundProduct bankFundProduct = getUpdatedFundProduct(fundId);
         if (bankFundProduct == null) {
-            return BankResult.build(400, "Request Failed", "Fund product not exist!");
+            return BankResult.build(400, "Fund product not exist!", "");
         }
 
         if (!bankAccount.getPassword().equals(pw))
-            return BankResult.build(400, "Request Failed", "Wrong password!");
+            return BankResult.build(400, "Wrong password!", "");
 
         double amount = share * bankFundProduct.getNetAssetValue();
 
