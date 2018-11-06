@@ -49,11 +49,11 @@ public class LoanController {
 
 
     //还款信息获取
-    @RequestMapping(value = "/payment/{value}",method = RequestMethod.GET)
+    @RequestMapping(value = "/payment/{transId}",method = RequestMethod.GET)
     @ResponseBody
-    public BankResult getPaymentOneInfo(@PathVariable("value")String value) {
+    public BankResult getPaymentOneInfo(@PathVariable("transId")String transId) {
 
-        return loanService.getPaymentOneInfo(value);
+        return loanService.getPaymentOneInfo(transId);
     }
 
     //获取利率信息

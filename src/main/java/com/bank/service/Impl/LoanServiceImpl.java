@@ -362,7 +362,11 @@ public class LoanServiceImpl implements LoanService {
     public BankResult sentOneRecord(String transId) {
         try {
             //@REDIS
-            BankLoan bankLoan = JsonUtils.jsonToPojo(jedisClient.get(REDIS_SESSION_KEY+LOAN+transId),BankLoan.class);
+            String str = jedisClient.get(REDIS_SESSION_KEY+LOAN+transId);
+            BankLoan bankLoan = null;
+            if(str != null) {
+                bankLoan = JsonUtils.jsonToPojo(str,BankLoan.class);
+            }
             if(bankLoan == null) {
                 bankLoan = bankLoanMapper.selectByPrimaryKey(transId);
             }
@@ -379,11 +383,14 @@ public class LoanServiceImpl implements LoanService {
     @Override
     public BankResult getInterestRate() {
         try {
-            BankLoanTypeExample bankLoanTypeExample = new BankLoanTypeExample();
+            List<BankLoanType> bankLoanTypeList = null;
+            String str =jedisClient.get(REDIS_SESSION_KEY + LOAN_TYPE);
             //@REDIS
-            List<BankLoanType> bankLoanTypeList = JsonUtils.jsonToList( jedisClient.get(REDIS_SESSION_KEY + LOAN_TYPE),
-                    BankLoanType.class);
+            if(str != null) {
+                bankLoanTypeList = JsonUtils.jsonToList( str, BankLoanType.class);
+            }
             if(bankLoanTypeList == null) {
+                BankLoanTypeExample bankLoanTypeExample = new BankLoanTypeExample();
                 bankLoanTypeList = bankLoanTypeMapper.selectByExample(bankLoanTypeExample);
                 jedisClient.set(REDIS_SESSION_KEY + LOAN_TYPE,JsonUtils.objectToJson(bankLoanTypeList));
             }
@@ -405,8 +412,11 @@ public class LoanServiceImpl implements LoanService {
 
         try {
             //@REDIS
-            BankLoanType bankLoanType = JsonUtils.jsonToPojo(jedisClient.get(REDIS_SESSION_KEY + LOAN_TYPE + value),
-                    BankLoanType.class);
+            String str = jedisClient.get(REDIS_SESSION_KEY + LOAN_TYPE + value);
+            BankLoanType bankLoanType = null;
+            if(str != null ) {
+                bankLoanType = JsonUtils.jsonToPojo(str, BankLoanType.class);
+            }
             if(bankLoanType == null) {
                 bankLoanType = bankLoanTypeMapper.selectByPrimaryKey(text);
                 jedisClient.set(REDIS_SESSION_KEY + LOAN_TYPE + value,JsonUtils.objectToJson(bankLoanType));
@@ -418,11 +428,11 @@ public class LoanServiceImpl implements LoanService {
     }
 
     @Override
-    public BankResult getPaylog(String value) {
+    public BankResult getPaylog(String logId) {
         try {
             BankLoanPaylogExample bankLoanPaylogExample = new BankLoanPaylogExample();
             BankLoanPaylogExample.Criteria criteria = bankLoanPaylogExample.createCriteria();
-            criteria.andTransIdEqualTo(value);
+            criteria.andTransIdEqualTo(logId);
             List<BankLoanPaylog> bankLoanPaylogs = bankLoanPaylogMapper.selectByExample(bankLoanPaylogExample);
             return BankResult.ok(bankLoanPaylogs);
         } catch (Exception e) {
@@ -431,15 +441,19 @@ public class LoanServiceImpl implements LoanService {
     }
 
     @Override
-    public  BankResult getPaymentOneInfo(String value) {
+    public  BankResult getPaymentOneInfo(String transId) {
         try {
-            List<BankLoanPayment> bankLoanPaymentList = JsonUtils.jsonToList(
-                    jedisClient.get(REDIS_SESSION_KEY+LOAN_PAYMENT+value),BankLoanPayment.class);
+            String str = jedisClient.get(REDIS_SESSION_KEY+LOAN_PAYMENT+ transId);
+            List<BankLoanPayment> bankLoanPaymentList = null;
+            if(str != null) {
+                bankLoanPaymentList = JsonUtils.jsonToList(str, BankLoanPayment.class);
+            }
             if(bankLoanPaymentList == null) {
                 BankLoanPaymentExample bankLoanPaymentExample = new BankLoanPaymentExample();
                 BankLoanPaymentExample.Criteria criteria = bankLoanPaymentExample.createCriteria();
-                criteria.andTransIdEqualTo(value);
+                criteria.andTransIdEqualTo( transId);
                 bankLoanPaymentList = bankLoanPaymentMapper.selectByExample(bankLoanPaymentExample);
+                jedisClient.set(REDIS_SESSION_KEY + LOAN_PAYMENT+ transId ,JsonUtils.objectToJson(bankLoanPaymentList));
             }
             return BankResult.ok(bankLoanPaymentList);
         } catch (Exception e) {
@@ -471,9 +485,9 @@ public class LoanServiceImpl implements LoanService {
             BankAccount bankAccount = bankAccountMapper.selectByPrimaryKey(account);
             if(bankAccount == null) { return BankResult.build(400,"账户名不存在！"); }
             //判断密码是否匹配
-//            if(!MD5.string2MD5(password).equals(bankAccount.getPassword())) {
-//                return BankResult.build(400,"密码错误！");
-//            }
+            if(!MD5.string2MD5(password).equals(bankAccount.getPassword())) {
+                return BankResult.build(400,"密码错误！");
+            }
             // 判断姓名与账户是否匹配
             String custId = bankAccount.getCustId();
             BankCustomer bankCustomer = bankCustomerMapper.selectByPrimaryKey(custId);
