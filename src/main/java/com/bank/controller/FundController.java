@@ -4,10 +4,7 @@ import com.bank.service.FundService;
 import com.bank.utils.BankResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 @RequestMapping("/user/fund")
@@ -67,10 +64,9 @@ public class FundController {
     // 请求格式/query/productdetail?fundId=123&purchaseDate=123
     @RequestMapping(value = "/query/productdetail",method = RequestMethod.GET)
     @ResponseBody
-    public BankResult getFundOneProduct(@RequestParam(value = "fundId")String fundId,
-                                      @RequestParam(value = "purchaseDate")String purchaseDate) {
+    public BankResult getFundOneProduct(@RequestParam(value = "fundId")String fundId) {
         // service层操作
-        BankResult bankResult = fundService.getOneFundProduct(fundId, purchaseDate);
+        BankResult bankResult = fundService.getOneFundProduct(fundId);
 
         return bankResult;
     }
@@ -86,7 +82,7 @@ public class FundController {
 
     @RequestMapping(value = "/query/txdetail/{fundTxId}",method = RequestMethod.GET)
     @ResponseBody
-    public BankResult getOneFundLog(@RequestParam(value = "fundTxId")String fundTxId) {
+    public BankResult getOneFundLog(@PathVariable("fundTxId")String fundTxId) {
         // service层操作
         BankResult bankResult = fundService.getOneFundLog(fundTxId);
 

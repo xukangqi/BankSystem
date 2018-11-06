@@ -9,6 +9,7 @@ import com.bank.pojo.BankTransferLog;
 import com.bank.pojo.BankTransferLogExample;
 import com.bank.service.TransferService;
 import com.bank.utils.BankResult;
+import com.bank.utils.MD5;
 import com.bank.utils.SnowFlake;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -34,6 +35,8 @@ public class TransferServiceImpl implements TransferService {
         BankAccount outAccount = bankAccountMapper.selectByPrimaryKey(transferOutAccount);
         BankCustomer outAccountCustomer = bankCustomerMapper.selectByPrimaryKey(outAccount.getCustId());
 
+        String pw = MD5.string2MD5(password);
+
         BankAccount inAccount = bankAccountMapper.selectByPrimaryKey(transferInAccount);
         if (!outAccountCustomer.getCustName().equals(name))
             return BankResult.build(400, "Request Failed", "Wrong name!");
@@ -44,7 +47,7 @@ public class TransferServiceImpl implements TransferService {
         if (outAccount == null)
             return BankResult.build(400, "Request Failed", "Transfer out account not exist!");
 
-        if (!outAccount.getPassword().equals(password)) return BankResult.build(400, "Request Failed", "Wrong password!");
+        if (!outAccount.getPassword().equals(pw)) return BankResult.build(400, "Request Failed", "Wrong password!");
 
         if (inAccount == null)
             return BankResult.build(400, "Request Failed", "Transfer in account not exist!");

@@ -4,6 +4,7 @@ import com.bank.mapper.*;
 import com.bank.pojo.*;
 import com.bank.service.FundService;
 import com.bank.utils.BankResult;
+import com.bank.utils.MD5;
 import com.bank.utils.SnowFlake;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -56,6 +57,8 @@ public class FundServiceImpl implements FundService {
         String custId = bankAccount.getCustId();
         BankCustomer bankCustomer = bankCustomerMapper.selectByPrimaryKey(custId);
 
+        String pw = MD5.string2MD5(passowrd);
+
         if (!bankCustomer.getCustName().equals(name))
             return BankResult.build(400, "Request Failed", "Wrong name!");
 
@@ -64,7 +67,7 @@ public class FundServiceImpl implements FundService {
 
         if (bankAccount.getBalances() < amount) return BankResult.build(400, "Request Failed", "Insufficient balance!");
 
-        if (!bankCustomer.getPassword().equals(passowrd)) return BankResult.build(400, "Request Failed", "Wrong password!");
+        if (!bankAccount.getPassword().equals(pw)) return BankResult.build(400, "Request Failed", "Wrong password!");
 
         // 找到对应的基金产品
         BankFundProduct bankFundProduct = getUpdatedFundProduct(fundId);
@@ -123,6 +126,8 @@ public class FundServiceImpl implements FundService {
         bankFundHoldKey.setAccount(account);
         BankFundHold bankFundHold = bankFundHoldMapper.selectByPrimaryKey(bankFundHoldKey);
 
+        String pw = MD5.string2MD5(password);
+
         if (bankFundHold.getShare() < share) return BankResult.build(400, "Request Failed", "Insufficient share");
 
         SnowFlake snowFlake = new SnowFlake(datacenterId, machineId);
@@ -134,7 +139,7 @@ public class FundServiceImpl implements FundService {
             return BankResult.build(400, "Request Failed", "Fund product not exist!");
         }
 
-        if (!bankAccount.getPassword().equals(password))
+        if (!bankAccount.getPassword().equals(pw))
             return BankResult.build(400, "Request Failed", "Wrong password!");
 
         double amount = share * bankFundProduct.getNetAssetValue();
@@ -171,9 +176,12 @@ public class FundServiceImpl implements FundService {
     }
 
     @Override
-    public BankResult getOneFundProduct(String fundId, String purchaseDate) {
-        BankFundProduct bankFundProduct = getUpdatedFundProduct(fundId);
-        return BankResult.ok(bankFundProduct);
+    public BankResult getOneFundProduct(String fundId) {
+        BankFundProductExample bankFundProductExample = new BankFundProductExample();
+        BankFundProductExample.Criteria criteria = bankFundProductExample.createCriteria();
+        criteria.andFundIdEqualTo(fundId);
+        List<BankFundProduct> bankFundProductList = bankFundProductMapper.selectByExample(bankFundProductExample);
+        return BankResult.ok(bankFundProductList);
     }
 
     @Override

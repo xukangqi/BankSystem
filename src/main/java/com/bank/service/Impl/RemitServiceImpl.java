@@ -6,6 +6,7 @@ import com.bank.mapper.BankRemitLogMapper;
 import com.bank.pojo.*;
 import com.bank.service.RemitService;
 import com.bank.utils.BankResult;
+import com.bank.utils.MD5;
 import com.bank.utils.SnowFlake;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -32,6 +33,8 @@ public class RemitServiceImpl implements RemitService {
         BankCustomer outAccountCustomer = bankCustomerMapper.selectByPrimaryKey(outAccount.getCustId());
         BankAccount inAccount = bankAccountMapper.selectByPrimaryKey(remitInAccount);
 
+        String pw = MD5.string2MD5(password);
+
         if (!outAccountCustomer.getCustName().equals(name))
             return BankResult.build(400, "Request Failed", "Wrong name!");
 
@@ -41,7 +44,7 @@ public class RemitServiceImpl implements RemitService {
         if (outAccount == null)
             return BankResult.build(400, "Request Failed", "Remit out account not exist!");
 
-        if (!outAccount.getPassword().equals(password))
+        if (!outAccount.getPassword().equals(pw))
             return BankResult.build(400, "Request Failed", "Wrong password!");
 
         if (inAccount == null)
