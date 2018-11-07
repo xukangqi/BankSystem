@@ -12,7 +12,7 @@
         <constructor-arg name="host" value="127.0.0.1"></constructor-arg>
         <constructor-arg name="port" value="6379"></constructor-arg>
     </bean>
-    <bean id="jedisClient" class="com.bank.component.JedisClientSingle"/>
+    <!--<bean id="jedisClient" class="com.bank.component.JedisClientSingle"/>-->
 
     <!--redis集群-->
     <bean class="redis.clients.jedis.JedisCluster" id="jedisCluster">
@@ -45,6 +45,6 @@
             </set>
         </constructor-arg>
     </bean>
-    <!--<bean class="com.bank.component.JedisClientCluster" name="jedisClient"></bean>-->
+    <bean class="com.bank.component.JedisClientCluster" name="jedisClient"></bean>
     <bean class="com.bank.pojo.loan.BankLoanApplyInfo" name="bankLoanApplyInfo"></bean>
 </beans>
