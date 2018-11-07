@@ -53,7 +53,7 @@ public class FundServiceImpl implements FundService {
         machineId = 2L;
 
         BankAccount bankAccount = bankAccountMapper.selectByPrimaryKey(account);
-        if (bankAccount == null) return BankResult.build(400, "Account not exist!", "");
+        if (bankAccount == null) return BankResult.build(400, "账户不存在！", "");
 
         String custId = bankAccount.getCustId();
         BankCustomer bankCustomer = bankCustomerMapper.selectByPrimaryKey(custId);
@@ -61,19 +61,19 @@ public class FundServiceImpl implements FundService {
         String pw = MD5.string2MD5(passowrd);
 
         if (!bankCustomer.getCustName().equals(name))
-            return BankResult.build(400, "Wrong name!", "");
+            return BankResult.build(400, "用户姓名不匹配！", "");
 
         if (!bankCustomer.getPhone().equals(phone))
-            return BankResult.build(400, "Wrong phone!", "");
+            return BankResult.build(400, "用户电话不匹配！", "");
 
-        if (bankAccount.getBalances() < amount) return BankResult.build(400, "Insufficient balance!", "");
+        if (bankAccount.getBalances() < amount) return BankResult.build(400, "账户余额不足！", "");
 
-        if (!bankAccount.getPassword().equals(pw)) return BankResult.build(400, "Wrong password!", "");
+        if (!bankAccount.getPassword().equals(pw)) return BankResult.build(400, "密码错误！", "");
 
         // 找到对应的基金产品
         BankFundProduct bankFundProduct = getUpdatedFundProduct(fundId);
         if (bankFundProduct == null) {
-            return BankResult.build(400, "Fund product not exist!", "");
+            return BankResult.build(400, "基金产品不存在！", "");
         }
 
         SnowFlake snowFlake = new SnowFlake(datacenterId, machineId);
@@ -135,7 +135,7 @@ public class FundServiceImpl implements FundService {
         DecimalFormat df = new DecimalFormat("#.00");
         share = Double.valueOf(df.format(share));
 
-        if (bankFundHold.getShare() < share) return BankResult.build(400, "Insufficient share", "");
+        if (bankFundHold.getShare() < share) return BankResult.build(400, "份额不足！", "");
 
         SnowFlake snowFlake = new SnowFlake(datacenterId, machineId);
         long fundTxId = snowFlake.nextId();
@@ -143,11 +143,11 @@ public class FundServiceImpl implements FundService {
         // 找到对应的基金产品
         BankFundProduct bankFundProduct = getUpdatedFundProduct(fundId);
         if (bankFundProduct == null) {
-            return BankResult.build(400, "Fund product not exist!", "");
+            return BankResult.build(400, "基金产品不存在！", "");
         }
 
         if (!bankAccount.getPassword().equals(pw))
-            return BankResult.build(400, "Wrong password!", "");
+            return BankResult.build(400, "密码错误！", "");
 
         double amount = share * bankFundProduct.getNetAssetValue();
 

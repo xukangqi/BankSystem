@@ -39,21 +39,21 @@ public class TransferServiceImpl implements TransferService {
 
         BankAccount inAccount = bankAccountMapper.selectByPrimaryKey(transferInAccount);
         if (!outAccountCustomer.getCustName().equals(name))
-            return BankResult.build(400, "Incompatible name!", "");
+            return BankResult.build(400, "用户姓名不匹配！", "");
 
         if (!outAccountCustomer.getPhone().equals(phone))
-            return BankResult.build(400, "Incompatible phone!", "");
+            return BankResult.build(400, "用户电话不匹配！", "");
 
         if (outAccount == null)
-            return BankResult.build(400, "Transfer out account not exist!", "");
+            return BankResult.build(400, "转账账户不存在！", "");
 
-        if (!outAccount.getPassword().equals(pw)) return BankResult.build(400, "Wrong password!", "");
+        if (!outAccount.getPassword().equals(pw)) return BankResult.build(400, "密码错误！", "");
 
         if (inAccount == null)
-            return BankResult.build(400, "Transfer in account not exist!", "");
+            return BankResult.build(400, "收款账户不存在！", "");
 
         if (outAccount.getBalances() < amount)
-            return BankResult.build(400, "Insufficient balance in transfer out account!", "");
+            return BankResult.build(400, "转账账户余额不足！", "");
 
         SnowFlake snowFlake = new SnowFlake(datacenterId, machineId);
         long transferId = snowFlake.nextId();
