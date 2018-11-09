@@ -82,6 +82,17 @@ public class LoanServiceImpl implements LoanService {
             default: return BankResult.build(400,"贷款类型不存在！");
         }
 
+        try {
+
+            BankAccount bankAccount = new BankAccount();
+            bankAccount.setAccount(bankLoanApplyInfo.getAccount());
+            bankAccount.setBalances(DateControlForLoan.toCriterionD( amountInAccount +
+                    Double.valueOf(bankLoanApplyInfo.getAmount())));
+            bankAccountMapper.updateByPrimaryKeySelective(bankAccount);
+        }  catch (Exception e) {
+            return BankResult.build(400,"数据表更新异常");
+        }
+
         //交易时间戳
         String transDate = String.valueOf( System.currentTimeMillis() );
 
@@ -505,8 +516,8 @@ public class LoanServiceImpl implements LoanService {
                 if( Double.valueOf(amount) > Double.valueOf(bankAccount.getBalances()) ) {
                     return BankResult.build(400,"还款金额超过账户余额");
                 }
-                amountInAccount = Double.valueOf(bankAccount.getBalances());
             }
+            amountInAccount = Double.valueOf(bankAccount.getBalances());
             return BankResult.build(200,"OK",custId); //这个和你没关系
 
         } catch (Exception e) {
